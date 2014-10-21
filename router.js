@@ -1,6 +1,6 @@
 //app layout
 Router.configure({
-	layoutTemplate: 'layout'
+	layoutTemplate: 'index'
 });
 
 //private routes
@@ -10,10 +10,11 @@ Router.onBeforeAction(function() {
 	} else {
 		this.next();
 	}
-}, {only: ['page2', 'me']});
+}, {except: ['index', 'login', 'signup']});
 
 Router.route('/', {
 	name: 'index',
+	
 	onBeforeAction: function() {
 		if(Meteor.user()) {
 			this.render('dashboard');
@@ -23,13 +24,26 @@ Router.route('/', {
 	}
 });
 
-Router.route('/login', {name: 'login'});
+Router.route('/dashboard', function() {
+	this.render('dashboard');
+}, {name: 'dashboard'});
 
-Router.route('/register');
+Router.route('/login', function() {
+	Session.set('isSignup', false);
+	this.render('login');
+}, {name: 'login'});
+
+Router.route('/signup', function() {
+	Session.set('isSignup', true);
+	this.render('login');
+}, {name: 'signup'});
+
+Router.route('/projects', {name: 'projects'});
+Router.route('/settings', {name: 'settings'});
 
 Router.route('/me', function() {
 	this.redirect(Router.path('profile', {_id: Meteor.userId()}));
-});
+}, {name: 'me'});
 
 Router.route('/profile/:_id', function() {
 	this.render('profile', {
@@ -38,8 +52,3 @@ Router.route('/profile/:_id', function() {
 		}
 	});
 }, {name: 'profile'});
-
-
-Router.route('/page2', function() {
-	this.render('page2');
-});

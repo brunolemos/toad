@@ -1,10 +1,57 @@
 Template.login.events({
-'submit form': function(e, template){
-    e.preventDefault();
+	'submit form[name=login]': function(e, template) {
+	    e.preventDefault();
 
-    var emailVar = template.find('#login-email').value;
-    var passwordVar = template.find('#login-password').value;
-    
-    Meteor.loginWithPassword({email: emailVar}, passwordVar);
-}
+	    var email = $('input[name=email]').val();
+	    var password = $('input[name=password]').val();
+	    
+	    Meteor.loginWithPassword({email: email}, password, onLoginSignupAttempt);
+	},
+
+	'submit form[name=signup]': function(e, template){
+	    e.preventDefault();
+
+	    var name = $('input[name=name]').val();
+	    var email = $('input[name=email]').val();
+	    var password = $('input[name=password]').val();
+
+	    Accounts.createUser({
+	        email: email,
+	        password: password,
+
+	        profile: {
+	        	name: name
+	        }
+	    }, onLoginSignupAttempt);
+	},
+
+	'keyup input': function(e, template) {
+		if(!$(e.target).is(':valid')) {
+			$(e.target).parent().removeClass('has-success');
+			$(e.target).parent().addClass('has-error');
+		} else {
+			$(e.target).parent().addClass('has-success');
+			$(e.target).parent().removeClass('has-error');
+		}
+	},
+
+	'change input[name=email]': function(e, template) {
+		Session.set('form_email', e.target.value)
+	},
+
+	'click .close': function(e, template){
+	    e.preventDefault();
+
+    	Session.set('error', null);
+	}
 });
+
+function onLoginSignupAttempt(error) {
+	if(error) {
+		console.dir(error);
+		Session.set('error', error.reason);
+	} else {
+		Session.set('error', null);
+		Router.go('/');
+	}
+}

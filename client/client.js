@@ -1,33 +1,15 @@
-// Session.setDefault('redirect_url', '/');
+Meteor.users._transform = function(user) {
+	if(!user.profile) user.profile = {};
+	var email = (user.emails && user.emails.length >= 1 ? user.emails[0].address : '');
 
-// //on route change
-// Router.onAfterAction(function() {
-// 	var current_path = Router.current().location.path;
+	if (user.profile && user.services.facebook) {
+		user.profile.picture = "http://graph.facebook.com/" + user.services.facebook.id + "/picture/";
+	} else {
+		user.profile.picture = Gravatar.imageUrl(email, {
+		    size: 150,
+		    default: 'mm'
+		});
+	}
 
-// 	//save current route path (if not login page)
-// 	if(current_path != Router.path('login')) {
-// 		Session.set('redirect_url', current_path);
-// 	}
-// });
-
-// Deps.autorun(function() {
-// 	//auto run when user login
-// 	if(Meteor.userId()) {
-
-// 		//nonreactive to fix a redirect loop
-// 		Deps.nonreactive(function() {
-// 			//always get out from login page after login
-// 			if(Session.equals('redirect_url', Router.path('login'))) {
-// 				Session.set('redirect_url', '/');
-// 			} 
-
-// 			//redirect to previous page
-// 			Router.go(Session.get('redirect_url'));
-// 		});
-// 	}
-// });
-// Accounts.ui.config({
-//     requestPermissions: {
-//         facebook: ['public_profile', 'email', 'user_location', 'user_friends'],
-//     }
-// });
+	return user;
+}
