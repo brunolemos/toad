@@ -1,8 +1,8 @@
 Projects = new Mongo.Collection("projetcs");
 
-Companies.attachSchema(new SimpleSchema({
+Projects.attachSchema(new SimpleSchema({
 	name: {
 		type: String,
-		label: "Projeto"
+		label: "Project"
 	}
 }));
