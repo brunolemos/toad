@@ -9,9 +9,9 @@ insecure
 iron:router@1.0.0-pre3
 lsm:session-bind
 accounts-facebook
-nemo64:bootstrap
 less
 aldeed:collection2
 accounts-password
-ian:accounts-ui-bootstrap-3
+jparker:gravatar
+html5cat:bootstrap-material-design
 
