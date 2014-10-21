@@ -1,0 +1,17 @@
+@import '/client/lib/bootstrap/custom.bootstrap.variables.import.less';
+
+.navbar-nav > .dropdown {
+	min-width: 160px;
+
+	&:hover {
+		> .dropdown-menu {
+			display: block;
+		}
+
+		> a {
+			color: @text-color !important;
+			background-color: darken(@dropdown-bg, 10%) !important;
+			border-color: darken(@dropdown-border, 12%);
+		}
+	}
+}

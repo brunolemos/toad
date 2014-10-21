@@ -1,0 +1,33 @@
+<template name="menu">
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="container">
+			<a class="navbar-brand" href="{{pathFor route='index'}}">TOaD</a>
+
+			<div class="navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="{{pathFor route='page2'}}">Link</a></li>
+				</ul>
+
+				<ul id="user-menu" class="nav navbar-nav navbar-right">
+					{{#unless currentUser}}
+						{{> loginButtons}}
+					{{/unless}}
+
+					{{#if currentUser}}
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{name}} <span class="caret"></span></a>
+
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="{{pathFor route='me'}}">Profile</a></li>
+								<li><a href="#">Another action</a></li>
+								<li><a href="#">Something else here</a></li>
+								<li class="divider"></li>
+								<li><a id="logout" href="#">Logout</a></li>
+							</ul>
+						</li>
+					{{/if}}
+				</ul>
+			</div>
+		</div>
+	</nav>
+</template>
