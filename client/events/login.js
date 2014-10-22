@@ -51,7 +51,7 @@ function onLoginSignupAttempt(error) {
 	} else {
 		Session.set('error', null);
 
-		if(Router.current().url == Router.path('login')) {
+		if(Router.current().url == Router.path('login') || Router.current().url == Router.path('signup')) {
 			Router.go('/');
 		}
 	}
