@@ -1,0 +1,29 @@
+<template name="listProjects">
+	<section class="table-responsive">
+		<p></p>
+
+		{{#if projects.count}}
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Projeto</th>
+						<th class="col-xs-1">Ações</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					{{#each projects}}
+					<tr>
+						<td>{{name}}</td>
+						<td>
+							<a href="#" id="deleteProject">deletar</a>
+						</td>
+					</tr>
+					{{/each}}
+				</tbody>
+			</table>
+		{{else}}
+			<p>Nenhum projeto foi cadastrado até o momento. Que tal <a href="{{pathFor 'newProject'}}">cadastrar um novo projeto</a>?</p>
+		{{/if}}
+	</section>
+</template>

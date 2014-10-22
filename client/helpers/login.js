@@ -10,10 +10,6 @@ Template.login.helpers({
 		return Session.get('isSignup');
 	},
 
-	error: function() {
-		return Session.get('error');
-	},
-
 	avatar: function() {
 		var email = Session.get('form_email');
 

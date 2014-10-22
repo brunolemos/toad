@@ -1,3 +1,7 @@
+Template.login.rendered = function() {
+	Session.set('error', null);
+};
+
 Template.login.events({
 	'submit form[name=login]': function(e, template) {
 	    e.preventDefault();
@@ -52,6 +56,9 @@ function onLoginSignupAttempt(error) {
 		Session.set('error', error.reason);
 	} else {
 		Session.set('error', null);
-		Router.go('/');
+
+		if(Router.current().url == Router.path('login')) {
+			Router.go('/');
+		}
 	}
 }

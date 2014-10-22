@@ -1,0 +1,11 @@
+<template name="projects">
+	<div class="row clearfix">
+		<h1 class="pull-left col-xs-12 col-sm-3">Projetos</h1>
+
+		<section class="actions col-sm-offset-3">
+			<a href="{{pathFor 'newProject'}}" class="btn btn-primary pull-right">Novo projeto</a>
+		</section>
+	</div>
+
+	{{> listProjects projects=projects}}
+</template>

@@ -1,0 +1,29 @@
+<template name="listTasks">
+	<section class="table-responsive">
+		<p></p>
+
+		{{#if tasks.count}}
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Tarefa</th>
+						<th class="col-xs-1">Ações</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					{{#each tasks}}
+					<tr>
+						<td>{{name}}</td>
+						<td>
+							<a href="#" id="deleteTask">deletar</a>
+						</td>
+					</tr>
+					{{/each}}
+				</tbody>
+			</table>
+		{{else}}
+			<p>Nenhuma tarefa foi cadastrada até o momento. Que tal <a href="{{pathFor 'newTask'}}">cadastrar uma nova tarefa</a>?</p>
+		{{/if}}
+	</section>
+</template>

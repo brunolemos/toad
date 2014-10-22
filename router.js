@@ -6,7 +6,11 @@ Router.configure({
 //private routes
 Router.onBeforeAction(function() {
 	if(!Meteor.user()) {
-		this.render('login');
+		this.wait(function() {return !Meteor.loggingIn(); });
+
+		if(this.ready()) {
+			this.render('login');
+		}
 	} else {
 		this.next();
 	}
@@ -39,6 +43,9 @@ Router.route('/signup', function() {
 }, {name: 'signup'});
 
 Router.route('/projects', {name: 'projects'});
+Router.route('/projects/new', {name: 'newProject'});
+Router.route('/tasks', {name: 'tasks'});
+Router.route('/tasks/new', {name: 'newTask'});
 Router.route('/settings', {name: 'settings'});
 
 Router.route('/me', function() {

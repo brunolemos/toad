@@ -3,7 +3,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="">
-	<title>TOaD - Project Management</title>
+	<title>TOaD - Gerenciamento de Projetos</title>
 	
 	<!-- <link href='http://fonts.googleapis.com/css?family=Titillium+Web:300,200,600' rel='stylesheet' type='text/css'> -->
 </head>
@@ -16,4 +16,19 @@
 	<article class="container">
 		{{> yield}}
 	</article>
+
+	{{#if error}}
+	<section>
+		<div class="navbar navbar-fixed-bottom alert alert-danger alert-dismissible" role="alert">
+			<div class="container">
+				<button type="button" class="close" data-dismiss="alert">
+					<span aria-hidden="true">&times;</span>
+					<span class="sr-only">Close</span>
+				</button>
+
+				<strong>Oops!</strong> {{error}}
+			</div>
+		</div>
+	</section>
+	{{/if}}
 </template>

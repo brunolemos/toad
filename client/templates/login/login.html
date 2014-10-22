@@ -1,0 +1,36 @@
+<template name="login">
+<section class="col-xs-6 col-xs-offset-3">
+	<form name="{{#if isSignup}}signup{{else}}login{{/if}}" role="form">
+		<div class="center-block text-center">
+			<a href="http://gravatar.com/" target="_blank"> 
+				<img src="{{avatar}}" class="profile-avatar img-circle"/>
+			</a>
+		</div>
+
+		{{#if isSignup}}
+			<div class="form-group">
+				<label for="name">Nome</label>
+				<input type="text" name="name" placeholder="Seu nome" class="form-control input-lg" required/>
+			</div>
+		{{/if}}
+
+		<div class="form-group">
+			<label for="email">E-mail</label>
+			<input type="email" name="email" placeholder="Seu e-mail" class="form-control input-lg" required/>
+		</div>
+		
+		<div class="form-group">
+			<label for="password">Senha</label>
+			<input type="password" name="password" placeholder="Senha" class="form-control input-lg" required pattern=".{6,}"/>
+		</div>
+
+		{{#if isSignup}}
+			<p><button type="submit" class="btn btn-primary btn-lg btn-block">Cadastrar</button></p>
+			<p class="text-center">Já é cadastrado? <a href="{{pathFor 'login'}}">Entrar</a></p>
+		{{else}}
+			<p><button type="submit" class="btn btn-primary btn-lg btn-block">Entrar</button></p>
+			<p class="text-center">Ou <a href="{{pathFor 'signup'}}">Criar uma conta</a></p>
+		{{/if}}
+	</form>
+</section>
+</template>
