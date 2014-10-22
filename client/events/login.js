@@ -41,12 +41,6 @@ Template.login.events({
 
 	'change input[name=email]': function(e, template) {
 		Session.set('form_email', e.target.value)
-	},
-
-	'click .close': function(e, template){
-	    e.preventDefault();
-
-    	Session.set('error', null);
 	}
 });
 

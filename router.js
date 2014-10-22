@@ -33,8 +33,12 @@ Router.route('/dashboard', function() {
 }, {name: 'dashboard'});
 
 Router.route('/login', function() {
-	Session.set('isSignup', false);
-	this.render('login');
+	if(Meteor.userId()) {
+		this.redirect('index');
+	} else {
+		Session.set('isSignup', false);
+		this.render('login');
+	}
 }, {name: 'login'});
 
 Router.route('/signup', function() {
