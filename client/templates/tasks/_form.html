@@ -1,7 +1,13 @@
-<template name="newTask">
+<template name="formTask">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			 <h3 class="panel-title">Nova tarefa</h3>
+			 <h3 class="panel-title">
+			 	{{#if this._id}}
+			 		Editar tarefa
+			 	{{else}}
+			 		Nova tarefa
+			 	{{/if}}
+			 </h3>
 		</div>
 		
 		<div class="panel-body">
@@ -13,7 +19,7 @@
 						<label for="name" class="col-sm-2 control-label">Nome</label>
 						<div class="col-sm-5">
 							<div class="form-control-wrapper">
-								<input type="text" name="name" class="form-control input-md" required/>
+								<input type="text" name="name" class="form-control input-md" value="{{name}}" required/>
 								<span class="material-input"></span>
 							</div>
 						</div>
@@ -24,9 +30,9 @@
 						<div class="col-sm-2">
 							<div class="form-control-wrapper">
 								<select name="priority" class="form-control input-md" required>
-									<option value="1">Baixa</option>
-									<option value="2">Média</option>
-									<option value="3">Alta</option>
+									<option value="1" {{selected priority '1'}}>Baixa</option>
+									<option value="2" {{selected priority '2'}}>Média</option>
+									<option value="3" {{selected priority '3'}}>Alta</option>
 								</select>
 						    	<span class="material-input"></span>
 							</div>
@@ -40,20 +46,20 @@
 						<div class="col-sm-5">
 							<div class="form-control-wrapper">
 								<select name="assignedTo" class="form-control input-md">
-									<option>Nenhum membro cadastrado em seu time</option>
 								</select>
 						    	<span class="material-input"></span>
 							</div>
+							<span class="help-block">Nenhum membro cadastrado em seu time</span>
 						</div>
 					</div>
 
 					<hr/>
 
 					<div class="form-group">
-						<label for="plannedDuration" class="col-sm-2 control-label">Duração</label>
+						<label for="plannedDuration" class="col-sm-2 control-label">Duração (dias)</label>
 						<div class="col-sm-2">
 							<div class="form-control-wrapper">
-								<input type="number" name="plannedDuration" class="form-control input-md" data-toggle="tooltip" data-placement="right" title="Duração planejada (em minutos)"/>
+								<input type="number" name="plannedDuration" min="0" class="form-control input-md" data-toggle="tooltip" data-placement="right" title="Duração planejada (em dias)" value="{{plannedDuration}}"/>
 								<span class="material-input"></span>
 							</div>
 						</div>
@@ -64,7 +70,7 @@
 						<div class="col-sm-3">
 
 							<div class="form-control-wrapper">
-								<input type="date" name="startDate" class="form-control input-md" value="{{today}}"/>
+								<input type="date" name="startDate" class="form-control input-md" value="{{dateInput startDate today}}"/>
 						    	<span class="material-input"></span>
 							</div>
 						</div>
@@ -75,15 +81,21 @@
 						<div class="col-sm-3">
 
 							<div class="form-control-wrapper">
-								<input type="date" name="endDate" class="form-control input-md" value="{{today}}"/>
+								<input type="date" name="endDate" class="form-control input-md" value="{{dateInput endDate today}}"/>
 						    	<span class="material-input"></span>
 							</div>
 						</div>
 					</div>
 
-					<div class="form-group">
-						<div class="col-sm-offset-8 col-sm-4">
-							<button type="submit" class="btn btn-primary pull-right">Inserir tarefa</button>
+					<div class="form-group row">
+						<div class="col-xs-12">
+							{{#if this._id}}
+								<button type="submit" class="btn btn-success pull-right">Salvar Tarefa</button>
+								<button type="button" class="btn btn-danger pull-left delete">Deletar Tarefa</button>
+							{{else}}
+								<button type="submit" class="btn btn-success pull-right">Inserir Tarefa</button>
+							{{/if}}
+
 							<a href="{{pathFor 'tasks'}}" class="btn btn-default pull-right">Cancelar</a>
 						</div>
 					</div>

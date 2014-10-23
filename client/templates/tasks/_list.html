@@ -7,17 +7,15 @@
 				<thead>
 					<tr>
 						<th>Tarefa</th>
-						<th class="col-xs-1">Ações</th>
+						<!-- <th class="col-xs-1">Ações</th> -->
 					</tr>
 				</thead>
 
 				<tbody>
 					{{#each tasks}}
-					<tr>
+					<tr class="item pointer">
 						<td>{{name}}</td>
-						<td>
-							<a href="#" id="deleteTask">deletar</a>
-						</td>
+						<!-- <td>...</td> -->
 					</tr>
 					{{/each}}
 				</tbody>

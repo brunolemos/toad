@@ -20,7 +20,7 @@ Tasks.attachSchema(new SimpleSchema({
 	// },
 
 	plannedDuration: {
-		type: Date,
+		type: Number,
 	},
 
 	startDate: {

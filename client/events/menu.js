@@ -5,7 +5,9 @@ Template.menu.events({
         Meteor.logout();
     },
 
-    'click #main-menu a': function(e, template) {
-    	template.$('.navbar-toggle').click();
+    'click #main-menu a:not(.dropdown-toggle)': function(e, template) {
+    	if(template.$("#main-menu .collapse").hasClass("in")) {
+    		template.$('.navbar-toggle').click();
+    	}
     },
 });

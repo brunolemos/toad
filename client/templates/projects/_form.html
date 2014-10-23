@@ -1,7 +1,13 @@
-<template name="newProject">  
+<template name="formProject">  
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			 <h3 class="panel-title">Novo projeto</h3>
+			 <h3 class="panel-title">
+			 	{{#if this._id}}
+			 		Editar projeto
+			 	{{else}}
+			 		Novo projeto
+			 	{{/if}}
+			 </h3>
 		</div>
 
 		<div class="panel-body">
@@ -13,7 +19,7 @@
 						<label for="name" class="col-sm-2 control-label">Nome</label>
 						<div class="col-sm-5">
 							<div class="form-control-wrapper">
-								<input type="text" name="name" class="form-control input-md" required>
+								<input type="text" name="name" class="form-control input-md" value="{{name}}" required>
 						    	<span class="material-input"></span>
 							</div>
 						</div>
@@ -23,7 +29,7 @@
 						<label for="priority" class="col-sm-2 control-label">Prioridade</label>
 						<div class="col-sm-3">
 							<div class="form-control-wrapper">
-								<select name="priority" class="form-control input-md" required>
+								<select name="priority" class="form-control input-md" value="{{priority}}" required>
 									<option value="1">Baixa</option>
 									<option value="2">Média</option>
 									<option value="3">Alta</option>
@@ -40,7 +46,7 @@
 						<div class="col-sm-3">
 
 							<div class="form-control-wrapper">
-								<input type="date" name="startDate" class="form-control input-md" value="{{today}}">
+								<input type="date" name="startDate" class="form-control input-md" value="{{dateInput startDate today}}">
 						    	<span class="material-input"></span>
 							</div>
 						</div>
@@ -52,7 +58,7 @@
 						<label for="motivation" class="col-sm-2 control-label">Motivação</label>
 						<div class="col-sm-6">
 							<div class="form-control-wrapper">
-								<textarea name="motivation" class="form-control empty" rows="3"></textarea>
+								<textarea name="motivation" class="form-control empty" rows="3" value="{{motivation}}"></textarea>
 								<span class="material-input"></span>
 							</div>
 							<span class="help-block">Por que este projeto é importante? Como ele está alinhado com as estratégias?</span>
@@ -63,16 +69,22 @@
 						<label for="objective" class="col-sm-2 control-label">Resultados esperados</label>
 						<div class="col-sm-6">
 							<div class="form-control-wrapper">
-								<textarea name="objective" class="form-control empty" rows="3"></textarea>
+								<textarea name="objective" class="form-control empty" rows="3" value="{{objective}}"></textarea>
 								<span class="material-input"></span>
 							</div>
 							<span class="help-block">Quais os objetivos e resultados a serem atingidos com este projeto?</span>
 						</div>
 					</div>
 
-					<div class="form-group">
-						<div class="col-sm-offset-8 col-sm-4">
-							<button type="submit" class="btn btn-primary pull-right">Inserir Projeto</button>
+					<div class="form-group row">
+						<div class="col-xs-12">
+							{{#if this._id}}
+								<button type="submit" class="btn btn-success pull-right">Salvar Projeto</button>
+								<button type="button" class="btn btn-danger pull-left delete">Deletar Projeto</button>
+							{{else}}
+								<button type="submit" class="btn btn-success pull-right">Inserir Projeto</button>
+							{{/if}}
+
 							<a href="{{pathFor 'projects'}}" class="btn btn-default pull-right">Cancelar</a>
 						</div>
 					</div>

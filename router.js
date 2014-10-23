@@ -47,14 +47,44 @@ Router.route('/signup', function() {
 }, {name: 'signup'});
 
 Router.route('/projects', {name: 'projects'});
-Router.route('/projects/new', {name: 'newProject'});
+
+Router.route('/projects/:_id/edit', function() {
+	this.render('formProject', {
+		data: function() {
+			return Projects.findOne({_id: this.params._id});
+		}
+	});
+}, {name: 'editProject'});
+
+Router.route('/projects/new', function() {
+	this.render('formProject');
+}, {name: 'newProject'});
+
 Router.route('/tasks', {name: 'tasks'});
-Router.route('/tasks/new', {name: 'newTask'});
-Router.route('/settings', {name: 'settings'});
+
+Router.route('/tasks/:_id/edit', function() {
+	this.render('formTask', {
+		data: function() {
+			return Tasks.findOne({_id: this.params._id});
+		}
+	});
+}, {name: 'editTask'});
+
+Router.route('/tasks/new', function() {
+	this.render('formTask');
+}, {name: 'newTask'});
 
 Router.route('/me', function() {
-	this.redirect(Router.path('profile', {_id: Meteor.userId()}));
+	this.render('profile', {
+		data: function() {
+			return Meteor.users.findOne({_id: Meteor.userId()});
+		}
+	});
 }, {name: 'me'});
+
+// Router.route('/profile', function() {
+// 	this.redirect('me');
+// });
 
 Router.route('/profile/:_id', function() {
 	this.render('profile', {
@@ -63,3 +93,6 @@ Router.route('/profile/:_id', function() {
 		}
 	});
 }, {name: 'profile'});
+
+
+Router.route('/settings', {name: 'settings'});
