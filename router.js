@@ -48,6 +48,19 @@ Router.route('/signup', function() {
 
 Router.route('/projects', {name: 'projects'});
 
+Router.route('/projects/:_id/tasks', function() {
+	this.render('listTasks', {to: 'listProjectTasks', 
+		data: function() {
+			return Tasks.findOne({_id: this.params._id});
+		}
+	});
+}, {name: 'listProjectTasks'});
+
+Router.route('projects/:_id/new', function() {
+	this.render('formTask');
+}, {name: 'newProjectTask'});
+
+
 Router.route('/projects/:_id/edit', function() {
 	this.render('formProject', {
 		data: function() {
@@ -62,6 +75,7 @@ Router.route('/projects/new', function() {
 
 Router.route('/tasks', {name: 'tasks'});
 
+
 Router.route('/tasks/:_id/edit', function() {
 	this.render('formTask', {
 		data: function() {
@@ -70,9 +84,9 @@ Router.route('/tasks/:_id/edit', function() {
 	});
 }, {name: 'editTask'});
 
-Router.route('/tasks/new', function() {
+/*Router.route('/tasks/new', function() {
 	this.render('formTask');
-}, {name: 'newTask'});
+}, {name: 'newTask'});*/
 
 Router.route('/me', function() {
 	this.render('profile', {

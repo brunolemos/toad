@@ -4,6 +4,7 @@ Template.formTask.events({
 
 	    var data 				= {};
 	    data.name 				= $('[name=name]').val();
+	    data.project			= $('[project=project]').val();		
 	    data.priority 			= $('[name=priority]').val();
 	    data.assignedTo 		= $('[name=assignedTo]').val();
 	    data.plannedDuration	= $('[name=plannedDuration]').val();

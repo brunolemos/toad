@@ -6,6 +6,6 @@ Template.listProjects.events({
 	// },
 
 	'click .item.pointer': function(e, template) {
-		Router.go('editProject', {_id: this._id});
+		Router.go('listProjectTasks', {_id: this._id});
 	},
 });
