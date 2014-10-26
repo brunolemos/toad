@@ -1,21 +1,31 @@
-//app layout
+//
+//CONFIGURATION
+//
 Router.configure({
 	layoutTemplate: 'index'
 });
 
-//private routes
+//
+//PRIVATE ROUTES
+//
 Router.onBeforeAction(function() {
 	if(!Meteor.user()) {
+		//prevent from showing login page on app startup when already logged
 		this.wait(function() {return !Meteor.loggingIn(); });
 
 		if(this.ready()) {
 			this.render('login');
+		} else {
+			this.render(null);
 		}
 	} else {
 		this.next();
 	}
 }, {except: ['index', 'login', 'signup']});
 
+//
+//HOMEPAGE
+//
 Router.route('/', {
 	name: 'index',
 	
@@ -28,10 +38,17 @@ Router.route('/', {
 	}
 });
 
+//
+//DASHBOARD
+//
 Router.route('/dashboard', function() {
 	this.render('dashboard');
-}, {name: 'dashboard'});
+});
 
+
+//
+//LOGIN & SIGNUP
+//
 Router.route('/login', function() {
 	if(Meteor.userId()) {
 		this.redirect('index');
@@ -39,27 +56,28 @@ Router.route('/login', function() {
 		Session.set('isSignup', false);
 		this.render('login');
 	}
-}, {name: 'login'});
+});
 
 Router.route('/signup', function() {
 	Session.set('isSignup', true);
 	this.render('login');
-}, {name: 'signup'});
+});
 
-Router.route('/projects', {name: 'projects'});
 
-Router.route('/projects/:_id/tasks', function() {
-	this.render('listTasks', {to: 'listProjectTasks', 
-		data: function() {
-			return Tasks.findOne({_id: this.params._id});
-		}
+//
+//PROJECTS
+//
+Router.route('/projects', function() {
+	this.render('projects');
+	this.render(null, {to: 'content'});
+});
+
+Router.route('/projects/new', function() {
+	this.render('projects');
+	this.render('formProject', {
+		to: 'content',
 	});
-}, {name: 'listProjectTasks'});
-
-Router.route('projects/:_id/new', function() {
-	this.render('formTask');
-}, {name: 'newProjectTask'});
-
+}, {name: 'newProject'});
 
 Router.route('/projects/:_id/edit', function() {
 	this.render('formProject', {
@@ -69,25 +87,48 @@ Router.route('/projects/:_id/edit', function() {
 	});
 }, {name: 'editProject'});
 
-Router.route('/projects/new', function() {
-	this.render('formProject');
-}, {name: 'newProject'});
+Router.route('/projects/:projectId/tasks', function() {
+	this.render('projects');
 
-Router.route('/tasks', {name: 'tasks'});
+	this.render('listTasks', {
+		to: 'content',
+		data: function() {
+			return {
+				projectId: this.params.projectId,
+				tasks: Tasks.find({projectId: this.params.projectId}).fetch(),
+			};
+		},
+	});
+}, {name: 'projectTasks'});
 
+Router.route('/projects/:projectId/tasks/new', function() {
+	this.render('projects');
 
-Router.route('/tasks/:_id/edit', function() {
 	this.render('formTask', {
+		to: 'content',
+		data: function() {
+			return {
+				projectId: this.params.projectId,
+			};
+		},
+	});
+}, {name: 'newProjectTask'});
+
+Router.route('/projects/:projectId/tasks/:_id/edit', function() {
+	this.render('projects');
+
+	this.render('formTask', {
+		to: 'content',
 		data: function() {
 			return Tasks.findOne({_id: this.params._id});
-		}
+		},
 	});
-}, {name: 'editTask'});
+}, {name: 'editProjectTask'});
 
-/*Router.route('/tasks/new', function() {
-	this.render('formTask');
-}, {name: 'newTask'});*/
 
+//
+//PROFILE
+//
 Router.route('/me', function() {
 	this.render('profile', {
 		data: function() {
@@ -96,9 +137,9 @@ Router.route('/me', function() {
 	});
 }, {name: 'me'});
 
-// Router.route('/profile', function() {
-// 	this.redirect('me');
-// });
+Router.route('/profile', function() {
+	this.redirect('me');
+}, {name: '_profile'});
 
 Router.route('/profile/:_id', function() {
 	this.render('profile', {
@@ -107,6 +148,3 @@ Router.route('/profile/:_id', function() {
 		}
 	});
 }, {name: 'profile'});
-
-
-Router.route('/settings', {name: 'settings'});

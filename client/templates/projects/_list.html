@@ -1,8 +1,8 @@
 <template name="listProjects">
-	<section class="table-responsive left col-sm-12">
+	<section class="table-responsive">
 		<p></p>
 
-		{{#if projects.count}}
+		{{#if this.count}}
 			<table class="table table-hover">
 				<thead>
 					<tr>
@@ -12,7 +12,7 @@
 				</thead>
 
 				<tbody>
-					{{#each projects}}
+					{{#each this}}
 					<tr class="item pointer">
 						<td>{{name}}</td>
 						<!-- <td>...</td> -->

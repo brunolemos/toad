@@ -1,16 +1,21 @@
 <template name="projects">
-	<div class="row clearfix">
-		<div class="col-sm-3 sidebar">
-			<h1 class="">Projetos</h1>
+<section id="projects">
+	<div class="col-sm-3 sidebar-wrapper">
+		<div class="sidebar">
+			<!-- <h1 class="">Projetos</h1> -->
 
-			<section class="actions">
-				<a href="{{pathFor 'newProject'}}" class="btn btn-primary">Novo projeto</a>
+			<section>
+				{{> listProjects projects}}
 			</section>
 
-			{{> listProjects projects=projects}}
-		</div>
-		<div class="col-sm-9 col-sm-offset-3">
-			{{> listProjectTasks tasks=tasks}}
+			<section class="actions">
+				<a href="{{pathFor 'newProject'}}" class="btn btn-primary col-xs-12">Novo projeto</a>
+			</section>
 		</div>
 	</div>
+
+	<div class="col-sm-9">
+		{{> yield 'content'}}
+	</div>
+</section>
 </template>

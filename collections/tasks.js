@@ -5,9 +5,9 @@ Tasks.attachSchema(new SimpleSchema({
 		type: String,
 	},
 
-	// project: {
-	// 	type: String,
-	// },
+	projectId: {
+		type: String,
+	},
 
 	priority: {
 		type: Number,

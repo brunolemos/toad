@@ -4,13 +4,12 @@ Template.formTask.events({
 
 	    var data 				= {};
 	    data.name 				= $('[name=name]').val();
-	    data.project			= $('[project=project]').val();		
+	    data.projectId			= $('[name=projectId]').val();		
 	    data.priority 			= $('[name=priority]').val();
 	    data.assignedTo 		= $('[name=assignedTo]').val();
 	    data.plannedDuration	= $('[name=plannedDuration]').val();
 	    data.startDate 			= new Date($('[name=startDate]').val());
 	    data.endDate 			= new Date($('[name=endDate]').val());
-	    
 	    
 	    if(this._id) {
 	    	Tasks.update({_id: this._id}, {$set: data}, saveTaskCallback);
@@ -33,6 +32,6 @@ function saveTaskCallback(error, result) {
 		Session.set('error', error.message);
 	} else if(result) {
 		Session.set('error', null);
-		Router.go('tasks');
+		history.back();
 	}
 }

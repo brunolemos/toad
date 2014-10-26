@@ -2,7 +2,7 @@
 	<section class="table-responsive">
 		<p></p>
 
-		{{#if tasks.count}}
+		{{#if tasks}}
 			<table class="table table-hover">
 				<thead>
 					<tr>
@@ -21,7 +21,7 @@
 				</tbody>
 			</table>
 		{{else}}
-			<p>Nenhuma tarefa foi cadastrada até o momento. Que tal <a href="{{pathFor 'newTask'}}">cadastrar uma nova tarefa</a>?</p>
+			<p>Nenhuma tarefa foi cadastrada até o momento. Que tal <a href="{{pathFor 'newProjectTask'}}">cadastrar uma nova tarefa</a>?</p>
 		{{/if}}
 	</section>
 </template>
