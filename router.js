@@ -90,7 +90,7 @@ Router.route('/projects/:_id/edit', function() {
 Router.route('/projects/:projectId/tasks', function() {
 	this.render('projects');
 
-	this.render('listTasks', {
+	this.render('tasks', {
 		to: 'content',
 		data: function() {
 			return {

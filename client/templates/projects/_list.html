@@ -1,27 +1,23 @@
 <template name="listProjects">
-	<section class="table-responsive">
-		<p></p>
+	{{#if projects}}
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Projeto</th>
+					<!-- <th class="col-xs-1">Ações</th> -->
+				</tr>
+			</thead>
 
-		{{#if this.count}}
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th>Projeto</th>
-						<!-- <th class="col-xs-1">Ações</th> -->
-					</tr>
-				</thead>
-
-				<tbody>
-					{{#each this}}
-					<tr class="item pointer">
-						<td>{{name}}</td>
-						<!-- <td>...</td> -->
-					</tr>
-					{{/each}}
-				</tbody>
-			</table>
-		{{else}}
-			<p>Nenhum projeto foi cadastrado até o momento. Que tal <a href="{{pathFor 'newProject'}}">cadastrar um novo projeto</a>?</p>
-		{{/if}}
-	</section>
+			<tbody>
+				{{#each projects}}
+				<tr class="item pointer">
+					<td>{{name}}</td>
+					<!-- <td>...</td> -->
+				</tr>
+				{{/each}}
+			</tbody>
+		</table>
+	{{else}}
+		<p>Nenhum projeto foi cadastrado até o momento. Que tal <a href="{{pathFor 'newProject'}}">cadastrar um novo projeto</a>?</p>
+	{{/if}}
 </template>

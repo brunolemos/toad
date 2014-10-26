@@ -3,9 +3,9 @@
 		<h1 class="pull-left col-xs-12 col-sm-3">Tarefas</h1>
 
 		<section class="actions col-sm-offset-3">
-			<a href="{{pathFor 'newTask'}}" class="btn btn-primary pull-right">Nova tarefa</a>
+			<a href="{{pathFor 'newProjectTask'}}" class="btn btn-primary pull-right">Nova tarefa</a>
 		</section>
 	</div>
 
-	{{> listTasks tasks}}
+	{{> listTasks tasks=tasks}}
 </template>
