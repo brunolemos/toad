@@ -4,15 +4,27 @@
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th>Tarefa</th>
+						<!-- <th>Tarefa</th> -->
 						<!-- <th class="col-xs-1">Ações</th> -->
 					</tr>
 				</thead>
 
 				<tbody>
 					{{#each tasks}}
-					<tr class="item pointer">
-						<td>{{name}}</td>
+					<!-- <tr class="item pointer"> -->
+					<tr class="item pointer {{#unless status}}done{{/unless}}">
+						<td><i class="mdi-action-done checkTask"></i></td>
+						
+						<td class="taskName">
+							{{#if editting _id}}
+								<input type="text" value="{{name}}" placeholder="Task name">
+							{{/if}}
+							{{#unless editting _id}}{{name}}{{/unless}}
+						</td>
+
+						<td class="taskStartDate">{{formatDate startDate}}</td>
+						<td>{{formatDate endDate}}</td>
+						<td><i class="mdi-action-delete deleteTask"></i></td>
 						<!-- <td>...</td> -->
 					</tr>
 					{{/each}}

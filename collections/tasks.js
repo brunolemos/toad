@@ -5,6 +5,10 @@ Tasks.attachSchema(new SimpleSchema({
 		type: String,
 	},
 
+	status: {
+		type: Boolean,
+	},
+
 	projectId: {
 		type: String,
 	},

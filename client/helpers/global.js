@@ -12,3 +12,7 @@ UI.registerHelper('dateInput', function (date, _default) {
 UI.registerHelper('selected', function(selectedValue, optionValue) {
   return selectedValue == optionValue ? {selected: 'selected'} : '';
 });
+
+UI.registerHelper('formatDate', function(date) {
+    return moment(date).format('DD-MM-YYYY');
+});
