@@ -1,0 +1,19 @@
+<template name="autocompleteTasks">
+
+	<div class="well">
+	  {{#textareaAutocomplete settings=settings id="autocomplete-input" name="assignedTo" class="form-control" placeholder="@username" autofocus="autofocus"}}{{/textareaAutocomplete}}
+	 </div>
+
+</template>
+
+<template name="serverCollectionPill">
+  {{profile.name}} <small class="muted label label-primary"></small>
+</template>
+
+<template name="clientCollectionPill">
+  {{type}} <small class="muted">({{_id}})</small>
+</template>
+
+<template name="serverNoMatch">
+    <span class="text-danger">Nothing found on the server for <b>{{getFilter}}</b>!</span>
+</template>

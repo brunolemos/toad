@@ -19,9 +19,9 @@ Tasks.attachSchema(new SimpleSchema({
 		max: 3,
 	},
 
-	// assignedTo: {
-	// 	type: String,
-	// },
+	assignedTo: {
+	 	type: String,
+	},
 
 	plannedDuration: {
 		type: Number,

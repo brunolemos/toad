@@ -7,7 +7,7 @@ Template.formTask.events({
 	    data.status				= true
 	    data.projectId			= $('[name=projectId]').val();		
 	    data.priority 			= $('[name=priority]').val();
-	    data.assignedTo 		= $('[name=assignedTo]').val();
+	    data.assignedTo 		= formatName($('[name=assignedTo]').val());
 	    data.plannedDuration	= $('[name=plannedDuration]').val();
 	    data.startDate 			= new Date($('[name=startDate]').val());
 	    data.endDate 			= new Date($('[name=endDate]').val());

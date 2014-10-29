@@ -16,3 +16,8 @@ UI.registerHelper('selected', function(selectedValue, optionValue) {
 UI.registerHelper('formatDate', function(date) {
     return moment(date).format('DD-MM-YYYY');
 });
+
+UI.registerHelper('formatName', function(name) {
+    return name.replace('@', '');
+});
+
