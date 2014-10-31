@@ -1,31 +1,54 @@
 <template name="listTasks">
-	<section class="table-responsive">
+	<section id="tasks-list" class="table-responsive">
 		{{#if tasks}}
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<!-- <th>Tarefa</th> -->
-						<!-- <th class="col-xs-1">Ações</th> -->
+						<th class="col-xs-1 text-center"><i class="mdi-action-done"></i></th>
+						<th class="col-xs-4">Tarefa</th>
+						<th>Responsável</th>
+						<th>Início</th>
+						<th>Prazo</th>
+						<th>Ações</th>
 					</tr>
 				</thead>
 
 				<tbody>
 					{{#each tasks}}
-					<!-- <tr class="item pointer"> -->
-					<tr class="item pointer {{#unless status}}done{{/unless}}">
-						<td><i class="mdi-action-done checkTask"></i></td>
+					<tr class="item {{#if checked}}done{{/if}}">
+						<td class="text-center">
+							<div class="checkbox">
+								<label>
+									<input type="checkbox" name="checked" {{checkboxInput checked}}/>
+									<span class="check"></span>
+								</label>
+							</div>
+						</td>
 						
-						<td class="taskName">
-							{{#if editting _id}}
-								<input type="text" value="{{name}}" placeholder="Task name">
+						<td class="taskName pointer strikable">
+							{{#if isEditing this}}
+								<input type="text" name="name" value="{{name}}" placeholder="Task name" autofocus>
+							{{else}}
+								{{name}}
 							{{/if}}
-							{{#unless editting _id}}{{name}}{{/unless}}
+						</td>
+						
+						<td class="assignedTo pointer strikable">
+							{{#with loadUser assignedTo}}{{profile.name}}{{/with}}
 						</td>
 
-						<td class="taskStartDate">{{formatDate startDate}}</td>
-						<td>{{formatDate endDate}}</td>
-						<td><i class="mdi-action-delete deleteTask"></i></td>
-						<!-- <td>...</td> -->
+						<td class="taskStartDate pointer strikable">
+							<!-- {{#if isEditing this}} -->
+								<!-- <input type="date" name="startDate" value="{{dateInput startDate today}}"/> -->
+							<!-- {{else}} -->
+								{{formatDate startDate}}
+							<!-- {{/if}} -->
+						</td>
+
+						<td class="pointer strikable">{{formatDate endDate}}</td>
+						<td class="text-center">
+							<i class="mdi-action-delete deleteTask"></i>
+						</td>
 					</tr>
 					{{/each}}
 				</tbody>

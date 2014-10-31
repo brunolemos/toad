@@ -1,9 +1,5 @@
 <template name="autocompleteTasks">
-
-	<div class="well">
-	  {{#textareaAutocomplete settings=settings id="autocomplete-input" name="assignedTo" class="form-control" placeholder="@username" autofocus="autofocus"}}{{/textareaAutocomplete}}
-	 </div>
-
+  {{#textareaAutocomplete settings=settings id="autocomplete-input" name="assignedTo" class="form-control" placeholder="@username"}}{{/textareaAutocomplete}}
 </template>
 
 <template name="serverCollectionPill">
@@ -15,5 +11,5 @@
 </template>
 
 <template name="serverNoMatch">
-    <span class="text-danger">Nothing found on the server for <b>{{getFilter}}</b>!</span>
+    <span class="text-danger">Nada encontrado para <b>{{getFilter}}</b>!</span>
 </template>

@@ -9,7 +9,11 @@ UI.registerHelper('dateInput', function (date, _default) {
 	return date.toISOString().substr(0, 10);
 });
 
-UI.registerHelper('selected', function(selectedValue, optionValue) {
+UI.registerHelper('checkboxInput', function(isChecked, optionValue) {
+  return isChecked ? {checked: 'checked'} : '';
+});
+
+UI.registerHelper('optionSelected', function(selectedValue, optionValue) {
   return selectedValue == optionValue ? {selected: 'selected'} : '';
 });
 
@@ -17,7 +21,6 @@ UI.registerHelper('formatDate', function(date) {
     return moment(date).format('DD-MM-YYYY');
 });
 
-UI.registerHelper('formatName', function(name) {
-    return name.replace('@', '');
+UI.registerHelper('loadUser', function(userId) {
+	return Meteor.users.findOne(userId);
 });
-

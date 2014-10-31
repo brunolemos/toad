@@ -1,5 +1,5 @@
 Template.listTasks.helpers({
-    'editting': function(id) {
-        return Session.get("editTaskId") == id;
+    'isEditing': function(task) {
+        return Session.get("editTaskId") == task._id;
     }
 });

@@ -1,19 +1,23 @@
 <template name="projects">
-<section id="projects">
-	<div class="col-sm-3 sidebar-wrapper">
-		<div class="sidebar">
-			<h1>Projetos</h1>
+	<section id="projects" class="well">
+		<div class="row">
+			<div class="col-sm-3">
+				<h2>Projetos</h2>
 
-			{{> listProjects projects=projects}}
+				{{> listProjects projects=projects}}
 
-			<section class="actions">
-				<a href="{{pathFor 'newProject'}}" class="btn btn-primary col-xs-12">Novo projeto</a>
-			</section>
+				<section class="actions">
+					<a href="{{pathFor 'newProject'}}" class="btn btn-primary col-xs-12">Novo projeto</a>
+
+					<!-- <a href="{{pathFor 'newProject'}}" class="btn btn-primary btn-fab btn-raised mdi-content-add withripple pull-right">
+						<div class="ripple-wrapper"></div>
+					</a> -->
+				</section>
+			</div>
+
+			<div class="col-sm-9">
+				{{> yield 'content'}}
+			</div>
 		</div>
-	</div>
-
-	<div class="col-sm-9">
-		{{> yield 'content'}}
-	</div>
-</section>
+	</section>
 </template>

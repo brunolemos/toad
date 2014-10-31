@@ -1,22 +1,23 @@
 <template name="formTask">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			 <h3 class="panel-title">
+	<!-- <div class="panel panel-default"> -->
+		<!-- <div class="panel-heading"> -->
+			 <!-- <h3 class="panel-title"> -->
+			 <h2>
 			 	{{#if this._id}}
 			 		Editar tarefa
 			 	{{else}}
 			 		Nova tarefa
 			 	{{/if}}
-			 </h3>
-		</div>
+			 </h2>
+		<!-- </div> -->
 		
-		<div class="panel-body">
+		<!--<div class="panel-body">-->
 			<form class="form-horizontal" role="form">
 				<fieldset>
 					<input type="hidden" name="projectId" value="{{this.projectId}}"/>
 
 					<div class="form-group">
-						<label for="name" class="col-sm-2 control-label">Nome</label>
+						<label for="name" class="col-sm-3 control-label">Nome</label>
 						<div class="col-sm-5">
 							<div class="form-control-wrapper">
 								<input type="text" name="name" class="form-control input-md" value="{{name}}" required/>
@@ -26,13 +27,13 @@
 					</div>
 
 					<div class="form-group">
-						<label for="priority" class="col-sm-2 control-label">Prioridade</label>
+						<label for="priority" class="col-sm-3 control-label">Prioridade</label>
 						<div class="col-sm-2">
 							<div class="form-control-wrapper">
 								<select name="priority" class="form-control input-md" required>
-									<option value="1" {{selected priority '1'}}>Baixa</option>
-									<option value="2" {{selected priority '2'}}>Média</option>
-									<option value="3" {{selected priority '3'}}>Alta</option>
+									<option value="1" {{optionSelected priority '1'}}>Baixa</option>
+									<option value="2" {{optionSelected priority '2'}}>Média</option>
+									<option value="3" {{optionSelected priority '3'}}>Alta</option>
 								</select>
 						    	<span class="material-input"></span>
 							</div>
@@ -42,20 +43,20 @@
 					<hr/>
 
 					<div class="form-group">
-						<label for="assignedTo" class="col-sm-2 control-label">Responsável</label>
+						<label for="assignedTo" class="col-sm-3 control-label">Responsável</label>
 						<div class="col-sm-5">
 							<div class="form-control-wrapper">
 									{{> autocompleteTasks}}
 						    	<span class="material-input"></span>
 							</div>
-							<span class="help-block">Nenhum membro cadastrado em seu time</span>
+							<!-- <span class="help-block">Nenhum membro cadastrado em seu time</span> -->
 						</div>
 					</div>
 
 					<hr/>
 
 					<div class="form-group">
-						<label for="plannedDuration" class="col-sm-2 control-label">Duração (dias)</label>
+						<label for="plannedDuration" class="col-sm-3 control-label">Duração (dias)</label>
 						<div class="col-sm-2">
 							<div class="form-control-wrapper">
 								<input type="number" name="plannedDuration" min="0" class="form-control input-md" data-toggle="tooltip" data-placement="right" title="Duração planejada (em dias)" value="{{plannedDuration}}"/>
@@ -65,7 +66,7 @@
 					</div>
 
 					<div class="form-group">
-						<label for="startDate" class="col-sm-2 control-label">Início</label>
+						<label for="startDate" class="col-sm-3 control-label">Início</label>
 						<div class="col-sm-3">
 
 							<div class="form-control-wrapper">
@@ -76,7 +77,7 @@
 					</div>
 
 					<div class="form-group">
-						<label for="endDate" class="col-sm-2 control-label">Término</label>
+						<label for="endDate" class="col-sm-3 control-label">Término</label>
 						<div class="col-sm-3">
 
 							<div class="form-control-wrapper">
@@ -100,6 +101,6 @@
 					</div>
 				</fieldset>
 			</form>
-		</div>
-	</div>
+		<!-- </div> -->
+	<!-- </div> -->
 </template>

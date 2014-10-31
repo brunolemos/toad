@@ -5,8 +5,9 @@ Tasks.attachSchema(new SimpleSchema({
 		type: String,
 	},
 
-	status: {
+	checked: {
 		type: Boolean,
+		optional: true,
 	},
 
 	projectId: {
@@ -21,17 +22,21 @@ Tasks.attachSchema(new SimpleSchema({
 
 	assignedTo: {
 	 	type: String,
+		optional: true,
 	},
 
 	plannedDuration: {
 		type: Number,
+		optional: true,
 	},
 
 	startDate: {
 		type: Date,
+		optional: true,
 	},
 
 	endDate: {
 		type: Date,
+		optional: true,
 	},
 }));

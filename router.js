@@ -21,7 +21,7 @@ Router.onBeforeAction(function() {
 	} else {
 		this.next();
 	}
-}, {except: ['index', 'login', 'signup']});
+}, {except: ['index', 'login', 'logout', 'signup']});
 
 //
 //HOMEPAGE
@@ -56,6 +56,12 @@ Router.route('/login', function() {
 		Session.set('isSignup', false);
 		this.render('login');
 	}
+});
+
+Router.route('/logout', function() {
+	Meteor.logout(function() {
+		Router.go('login');
+	});
 });
 
 Router.route('/signup', function() {
