@@ -1,23 +1,17 @@
 <template name="projects">
-	<section id="projects" class="well">
-		<div class="row">
-			<div class="col-sm-3">
-				<h2>Projetos</h2>
+	<section id="projects">
+		<header class="well">
+			<div class="row">
+				<h2 class="col-xs-9">Projetos</h2>
 
-				{{> listProjects projects=projects}}
-
-				<section class="actions">
-					<a href="{{pathFor 'newProject'}}" class="btn btn-primary col-xs-12">Novo projeto</a>
-
-					<!-- <a href="{{pathFor 'newProject'}}" class="btn btn-primary btn-fab btn-raised mdi-content-add withripple pull-right">
+				<section class="actions col-xs-3">
+					<button type="button" class="btn btn-primary btn-fab btn-raised mdi-content-add withripple pull-right newProject">
 						<div class="ripple-wrapper"></div>
-					</a> -->
+					</button>
 				</section>
 			</div>
+		</header>
 
-			<div class="col-sm-9">
-				{{> yield 'content'}}
-			</div>
-		</div>
+		{{> listProjects projects=projects}}
 	</section>
 </template>

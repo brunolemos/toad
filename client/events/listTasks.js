@@ -1,5 +1,5 @@
-Template.listTasks.events({
-	'click .item > .pointer': function(e, template) {
+Template.taskRow.events({
+	'click .taskItem > .pointer': function(e, template) {
 		if(e.target.localName != 'td' && e.target.localName != 'th')
 			return;
 
@@ -15,28 +15,51 @@ Template.listTasks.events({
 	    }
 	},
 
-	'blur .item > .pointer [name=name]': function(event) {
+	'blur .taskItem input': function(event) {
     	if (Session.equals('editTaskId', this._id)) {
       		Session.set('editTaskId', null);
-    		Tasks.update(this._id, {$set: {name: event.target.value}});
     	}
   	},
 
-	'change [name=checked]': function(e, template) {
-		this.checked = e.target.checked;
+	'change .taskItem input': function(e, template) {
+		var value = e.target.value;
+		if(e.target.type == 'checkbox') value = e.target.checked;
 
-		if(this.checked) {
-			Tasks.update({_id: this._id}, {$set: {checked: true}});
-		}else {
-			Tasks.update({_id: this._id}, {$set: {checked: false}});
-		}
+		var data = {};
+		data[e.target.name] = value;
+		Tasks.update({_id: this._id}, {$set: data});
+  	},
 
-	},
+	'change .taskItem.newTask input[name=name]': function(e, template) {
+	    var data 				= {};
+	    data.checked 			= template.$('[name=checked]')[0].checked;
+	    data.name 				= template.$('[name=name]').val();
+	    // data.priority 			= template.$('[name=priority]').val();
+	    data.assignedTo 		= template.$('[name=assignedTo]').val() ? Session.get('assignedTo') : '';
+	    // data.plannedDuration	= template.$('[name=plannedDuration]').val();
+	    // data.startDate 			= new Date(template.$('[name=startDate]').val());
+	    // data.endDate 			= new Date(template.$('[name=endDate]').val());
+	    data.projectId			= Session.get('selectedProjectId');
+
+	    if(!data.name) return;
+		
+		$('.newTask input').val(null);
+		$('.newTask input[type=checkbox]').prop('checked', false);
+		$('form[name=editTask] [name=name]').focus();
+		
+		Tasks.insert(data, function(error, result) {
+			if(error) {
+				Session.set('error', error.message);
+			} else if(result) {
+				Session.set('error', null);
+			}
+		});
+  	},
 
 	'click .deleteTask': function(e, template) {
 	    e.preventDefault();
 
-		if(this._id && confirm("Deseja excluir esta tarefa permanentemente?")) {
+		if(this._id) {// && confirm("Deseja excluir esta tarefa permanentemente?")) {
 	    	Tasks.remove({_id: this._id});
 	    }
 	},
@@ -52,7 +75,17 @@ Template.listTasks.events({
 	    	Session.set("editTaskId", null);
 	    	
 			e.preventDefault();
-			e.target.blur();
+
+			if(e.target.value == '') {
+				Router.go('projects');
+				return;
+			}
+
+			e.target.value = '';
+
+			if(this._id) {
+				e.target.blur();
+			}
 		}
 	},
 

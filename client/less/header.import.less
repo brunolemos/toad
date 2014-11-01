@@ -1,8 +1,20 @@
-header {
-	height: 220px;
-	margin-bottom: -100px;
+.navbar-statusbar {
+	background: darken(#00bcd4, 20%);
 }
 
-.navbar-statusbar {
-	background-color: rgba(0, 0, 0, 0.2);
+@media(max-width: 767px) { 
+	.navbar-statusbar {
+		margin-bottom: 0;
+	}
+}
+
+@media(min-width: 768px) { 
+	#app-header {
+		height: 220px;
+		margin-bottom: -100px;
+	}
+
+	.navbar-statusbar {
+		background: rgba(0, 0, 0, 0.20);
+	}
 }

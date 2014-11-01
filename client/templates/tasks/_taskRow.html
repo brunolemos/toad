@@ -1,0 +1,50 @@
+<template name="taskRow">
+	<tr class="item taskItem {{#if checked}}done{{/if}} {{#if newTask}}newTask{{/if}}">
+		<td class="text-center">
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" name="checked" {{checkboxInput checked}}/>
+					<span class="check"></span>
+				</label>
+			</div>
+		</td>
+		
+		<td class="taskName strikable {{#unless newTask}}pointer{{/unless}}">
+			{{#if isEditing this}}
+				<div class="form-control-wrapper">
+					<input type="text" name="name" class="form-control input-md" value="{{name}}" placeholder="{{#if newTask}}Nova tarefa{{/if}}" autofocus/>
+				</div>
+			{{else}}
+				{{name}}
+			{{/if}}
+		</td>
+		
+		{{#if newTask}}
+		 	<td colspan="4"></td>
+		{{else}}
+			<td class="assignedTo pointer strikable">
+			<!-- {{#if isEditing this}}
+				<div class="form-control-wrapper">
+						{{> autocompleteTasks}}
+			    	<span class="material-input"></span>
+				</div>
+			{{else}} -->
+				{{#with loadUser assignedTo}}{{profile.name}}{{/with}}
+			<!-- {{/if}} -->
+			</td>
+
+			<td class="taskStartDate pointer strikable">
+				<!-- {{#if isEditing this}} -->
+					<!-- <input type="date" name="startDate" value="{{dateInput startDate today}}"/> -->
+				<!-- {{else}} -->
+					{{formatDate startDate}}
+				<!-- {{/if}} -->
+			</td>
+
+			<td class="pointer strikable">{{formatDate endDate}}</td>
+			<td>
+				<i class="mdi-action-delete deleteTask"></i>
+			</td>
+		{{/if}}
+	</tr>
+</template>

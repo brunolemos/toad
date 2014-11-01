@@ -1,13 +1,15 @@
 <template name="tasks">
-	<div class="row clearfix">
-		<h2 class="pull-left col-xs-12 col-sm-9">Tarefas</h2>
+	<section id="tasks">
+		<header>
+			<h2 class="col-xs-9">Tarefas</h2>
 
-		<section class="actions col-sm-3">
-			<a href="{{pathFor 'newProjectTask'}}" class="btn btn-primary btn-fab btn-raised mdi-content-add withripple pull-right">
-				<div class="ripple-wrapper"></div>
-			</a>
-		</section>
-	</div>
+			<section class="actions col-xs-3">
+				<a href="{{pathFor 'newProjectTask'}}" class="btn btn-primary btn-fab btn-raised mdi-content-add withripple pull-right">
+					<div class="ripple-wrapper"></div>
+				</a>
+			</section>
+		</header>
 
-	{{> listTasks}}
+		{{> listTasks}}
+	</section>
 </template>

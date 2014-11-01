@@ -5,19 +5,20 @@ Tasks.attachSchema(new SimpleSchema({
 		type: String,
 	},
 
+	projectId: {
+		type: String,
+	},
+
 	checked: {
 		type: Boolean,
 		optional: true,
-	},
-
-	projectId: {
-		type: String,
 	},
 
 	priority: {
 		type: Number,
 		min: 1,
 		max: 3,
+		optional: true,
 	},
 
 	assignedTo: {

@@ -1,10 +1,10 @@
 <template name="listTasks">
-	<section id="tasks-list" class="table-responsive">
-		{{#if tasks}}
+	<section id="tasks-list" class="table-responsive col-xs-12">
+		<form name="editTask">
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th class="col-xs-1 text-center"><i class="mdi-action-done"></i></th>
+						<th class="text-center"><i class="mdi-action-done"></i></th>
 						<th class="col-xs-4">Tarefa</th>
 						<th>Responsável</th>
 						<th>Início</th>
@@ -15,46 +15,12 @@
 
 				<tbody>
 					{{#each tasks}}
-					<tr class="item {{#if checked}}done{{/if}}">
-						<td class="text-center">
-							<div class="checkbox">
-								<label>
-									<input type="checkbox" name="checked" {{checkboxInput checked}}/>
-									<span class="check"></span>
-								</label>
-							</div>
-						</td>
-						
-						<td class="taskName pointer strikable">
-							{{#if isEditing this}}
-								<input type="text" name="name" value="{{name}}" placeholder="Task name" autofocus>
-							{{else}}
-								{{name}}
-							{{/if}}
-						</td>
-						
-						<td class="assignedTo pointer strikable">
-							{{#with loadUser assignedTo}}{{profile.name}}{{/with}}
-						</td>
-
-						<td class="taskStartDate pointer strikable">
-							<!-- {{#if isEditing this}} -->
-								<!-- <input type="date" name="startDate" value="{{dateInput startDate today}}"/> -->
-							<!-- {{else}} -->
-								{{formatDate startDate}}
-							<!-- {{/if}} -->
-						</td>
-
-						<td class="pointer strikable">{{formatDate endDate}}</td>
-						<td class="text-center">
-							<i class="mdi-action-delete deleteTask"></i>
-						</td>
-					</tr>
+						{{> taskRow}}
 					{{/each}}
+
+					{{> taskRow newTask=true}}
 				</tbody>
 			</table>
-		{{else}}
-			<p>Nenhuma tarefa foi cadastrada até o momento. Que tal <a href="{{pathFor 'newProjectTask'}}">cadastrar uma nova tarefa</a>?</p>
-		{{/if}}
+		</form>
 	</section>
 </template>

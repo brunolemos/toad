@@ -75,29 +75,26 @@ Router.route('/signup', function() {
 //
 Router.route('/projects', function() {
 	this.render('projects');
-	this.render(null, {to: 'content'});
 });
 
 Router.route('/projects/new', function() {
 	this.render('projects');
-	this.render('formProject', {
-		to: 'content',
-	});
-}, {name: 'newProject'});
+	this.render('formProject', {to: 'topContent'});
 
-Router.route('/projects/:_id/edit', function() {
-	this.render('formProject', {
-		data: function() {
-			return Projects.findOne({_id: this.params._id});
-		}
-	});
-}, {name: 'editProject'});
+}, {
+	name: 'newProject',
+	onStop: function() {
+		this.render(null, {to: 'topContent'});
+	},
+});
 
-Router.route('/projects/:projectId/tasks', function() {
-	this.render('projects');
-
-	this.render('tasks', {
-		to: 'content',
+Router.route('/projects/:projectId', function() {
+	Session.set('selectedProjectId', this.params.projectId);
+	Session.set('editTaskId', null);
+	
+	this.render('projects', {data: {projectId: this.params.projectId}});
+	this.render('listTasks', {
+		to: 'projectDetails',
 		data: function() {
 			return {
 				projectId: this.params.projectId,
@@ -105,31 +102,14 @@ Router.route('/projects/:projectId/tasks', function() {
 			};
 		},
 	});
-}, {name: 'projectTasks'});
 
-Router.route('/projects/:projectId/tasks/new', function() {
-	this.render('projects');
-
-	this.render('formTask', {
-		to: 'content',
-		data: function() {
-			return {
-				projectId: this.params.projectId,
-			};
-		},
-	});
-}, {name: 'newProjectTask'});
-
-Router.route('/projects/:projectId/tasks/:_id/edit', function() {
-	this.render('projects');
-
-	this.render('formTask', {
-		to: 'content',
-		data: function() {
-			return Tasks.findOne({_id: this.params._id});
-		},
-	});
-}, {name: 'editProjectTask'});
+}, {
+	name: 'projectTasks',
+	onStop: function() {
+		Session.set('selectedProjectId', null);
+		this.render(null, {to: 'projectDetails'});
+	},
+});
 
 
 //
