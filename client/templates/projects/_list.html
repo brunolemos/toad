@@ -1,47 +1,25 @@
 <template name="listProjects">
-	{{#each projects}}
-		<div class="well projectItem {{#if isProjectSelected this._id}}selected{{/if}}">
-			<div class="row">
-				<div class="col-xs-12">
-					<div class="pull-left">
-						{{#if isProjectSelected this._id}}
-							<div class="form-control-wrapper">
-								<input id="projectName" type="text" name="name" class="form-control h3" value="{{name}}" placeholder="Nome do projeto"/>
-							</div>
-						{{else}}
-							<h3>{{name}}</h3>
-						{{/if}}
+	<section id="project-list">
+		{{#each projects}}
+			<div class="projectItem {{#if isProjectSelected this._id}}selected{{/if}}">
+				<section class="row">
+					<div class="col-xs-8">
+						<h3>{{name}}</h3>
 					</div>
 
-					<div class="pull-right">
+					<div class="col-xs-4">
 						{{> projectCompletedTasksChart}}
 					</div>
+				</section>
+			</div>
+		{{else}}
+			<div class="row">
+				<div class="col-xs-12">
+					<p>Nenhum projeto foi cadastrado até o momento. Que tal <a href="#" class="newProject">cadastrar um novo projeto</a>?</p>
 				</div>
 			</div>
-
-			{{#if isProjectSelected this._id}}
-				<section class="row">
-					{{> yield 'projectDetails'}}
-				</section>
-			{{/if}}
-
-			{{#if isProjectSelected this._id}}
-				<section class="actions row">
-					<div class="col-xs-3 col-xs-offset-9">
-						<button id="removeProject" type="button" class="btn btn-danger mdi-action-delete withripple pull-right">
-							<div class="ripple-wrapper"></div>
-						</button>
-					</div>
-				</section>
-			{{/if}}
-		</div>
-	{{else}}
-		<div class="row well">
-			<div class="col-xs-12">
-				<p>Nenhum projeto foi cadastrado até o momento. Que tal <a href="#" class="newProject">cadastrar um novo projeto</a>?</p>
-			</div>
-		</div>
-	{{/each}}
+		{{/each}}
+	</section>
 </template>
 
 <template name="projectCompletedTasksChart">

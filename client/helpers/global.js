@@ -1,3 +1,17 @@
+UI.registerHelper('avatar', function(user, size) {
+	if(typeof(user) == 'string') user = Meteor.users.findOne(user);
+	if(!(size > 0)) size = 150;
+	var email = '';
+
+	try {
+		if (user.profile.picture) return user.profile.picture;
+		if (user.services.facebook) return "http://graph.facebook.com/" + user.services.facebook.id + "/picture/?size=" + size;
+		email = user.emails[0].address;
+	} catch(e) {}
+
+	return Gravatar.imageUrl(email, {size: size, default: 'mm'});
+});
+
 UI.registerHelper('today', function () {
 	return new Date();
 });

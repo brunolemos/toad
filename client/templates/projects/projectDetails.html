@@ -1,0 +1,35 @@
+<template name="projectDetails">
+	<section id="project-details" class="well">
+		<header>
+			<div class="row">
+				<div class="col-xs-10">
+					<h2>
+						<a href="{{pathFor route='projects'}}">Projetos</a>
+						<i class="text-muted mdi-navigation-chevron-right"></i>
+						<input id="projectName" type="text" name="name" class="h2" value="{{name}}" placeholder="Nome do projeto"/>
+					</h2>
+				</div>
+
+				<section class="charts col-xs-2">
+					{{> projectCompletedTasksChart}}
+				</section>
+			</div>
+		</header>
+
+		<div>
+			<section class="row">
+				{{> yield 'content'}}
+			</section>
+
+			{{#if this._id}}
+				<section class="row actions">
+					<div class="col-xs-4 col-xs-offset-8">
+						<button id="removeProject" type="button" class="btn btn-danger mdi-action-delete withripple pull-right">
+							<div class="ripple-wrapper"></div>
+						</button>
+					</div>
+				</section>
+			{{/if}}
+		</div>
+	</section>
+</template>

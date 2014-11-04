@@ -1,5 +1,5 @@
 <template name="menu">
-	<nav id="main-menu" class="navbar navbar-statusbar navbar-static-top" role="navigation">
+	<nav id="main-menu" class="navbar navbar-statusbar navbar-fixed-top" role="navigation">
 		<div class="container">
 			<div class="navbar-header">
 				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
@@ -9,13 +9,13 @@
 					<span class="icon-bar"></span>
 				</button>
 				
-				<a href="{{pathFor 'index'}}" class="navbar-brand">TOaD</a>
+				<a href="{{pathFor 'index'}}" class="navbar-brand visible-xs-block">TOaD</a>
 			</div>
 
 			<div class="navbar-collapse bs-navbar-collapse collapse" role="navigation">
 				<ul class="nav navbar-nav">
 					{{#if currentUser}}
-						<!-- <li><a href="{{pathFor route='dashboard'}}">Dashboard</a></li> -->
+						<li><a href="{{pathFor route='dashboard'}}">Dashboard</a></li>
 						<li><a href="{{pathFor route='projects'}}">Projetos</a></li>
 						<!-- <li><a href="{{pathFor route='tasks'}}">Tarefas</a></li> -->
 					{{/if}}
@@ -23,8 +23,12 @@
 
 				<ul id="user-menu" class="nav navbar-nav navbar-right">
 					{{#if currentUser}}
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{name}} <span class="caret"></span></a>
+						<li class="dropdown user-menu">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								<div class="visible-xs-inline">{{name}}</div>
+								<img src="{{avatar currentUser 40}}" class="avatar img-circle hidden-xs"/>
+								<span class="caret"></span>
+							</a>
 
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="{{pathFor route='me'}}">Meu perfil</a></li>
@@ -34,7 +38,8 @@
 							</ul>
 						</li>
 					{{else}}
-						<li><a href="{{pathFor route='login'}}">Criar uma conta / Entrar</a></li>
+						<li><a href="{{pathFor route='signup'}}">Criar uma conta</a></li>
+						<li><a href="{{pathFor route='login'}}">Entrar</a></li>
 					{{/if}}
 				</ul>
 			</div>

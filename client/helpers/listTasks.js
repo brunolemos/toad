@@ -1,5 +1,5 @@
 Template.listTasks.rendered = function() {
-	this.find('.newTask input[name=name]').focus();
+	// this.find('.newTask input[name=name]').focus();
 }
 
 Template.taskRow.helpers({

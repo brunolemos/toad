@@ -24,10 +24,12 @@ Template.taskRow.events({
 	'change .taskItem input': function(e, template) {
 		var value = e.target.value;
 		if(e.target.type == 'checkbox') value = e.target.checked;
+		if(e.target.type == 'date') value = moment(value).toDate();
 
 		var data = {};
 		data[e.target.name] = value;
 		Tasks.update({_id: this._id}, {$set: data});
+		console.dir(data);
   	},
 
 	'change .taskItem.newTask input[name=name]': function(e, template) {
@@ -35,7 +37,7 @@ Template.taskRow.events({
 	    data.checked 			= template.$('[name=checked]')[0].checked;
 	    data.name 				= template.$('[name=name]').val();
 	    // data.priority 			= template.$('[name=priority]').val();
-	    data.assignedTo 		= template.$('[name=assignedTo]').val() ? Session.get('assignedTo') : '';
+	    // data.assignedTo 		= template.$('[name=assignedTo]').val() ? Session.get('assignedTo') : '';
 	    // data.plannedDuration	= template.$('[name=plannedDuration]').val();
 	    // data.startDate 			= new Date(template.$('[name=startDate]').val());
 	    // data.endDate 			= new Date(template.$('[name=endDate]').val());

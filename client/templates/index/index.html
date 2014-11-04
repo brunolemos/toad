@@ -12,16 +12,12 @@
 </head>
 
 <template name="index">
-	<header id="app-header" class="navbar-material-cyan">
+	<header id="app-header">
 		{{> menu}}
 	</header>
 
 	<section id="main" class="container">
-		<div class="row">
-			<div class="col-sm-10 col-sm-offset-1">
-				{{> yield}}
-			</div>
-		</div>
+		{{> yield}}
 	</section>
 
 	{{#if error}}

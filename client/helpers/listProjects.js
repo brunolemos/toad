@@ -1,4 +1,4 @@
-MyCharts = [];
+MyCharts = {};
 
 Template.listProjects.helpers({
 	selectedProjectId: function() {
@@ -11,8 +11,13 @@ Template.listProjects.helpers({
 });
 
 Template.projectCompletedTasksChart.rendered = function() {
-	var projectId = this.$('.chart').first().data('projectId');
+	var projectId = this.data._id;
 	createChart(projectId);
+}
+
+Template.projectCompletedTasksChart.destroyed = function() {
+	var projectId = this.data._id; //this.$('.chart').first().data('projectId');
+	delete MyCharts[projectId];
 }
 
 Template.projectCompletedTasksChart.helpers({
@@ -22,16 +27,16 @@ Template.projectCompletedTasksChart.helpers({
 		var checked 	= Tasks.find({projectId: projectId, checked: true}).count();
 		var notChecked 	= Tasks.find({projectId: projectId, checked: false}).count();
 
-		var chartId = '#chart-' + projectId;
-		var canvas = $(chartId).get(0);
+		var canvas = $('#chart-' + projectId).get(0);
 		if(!canvas) return;	
 
-		if(!MyCharts[chartId]) createChart(projectId);
+		if(!MyCharts[projectId]) createChart(projectId);
 
-		MyCharts[chartId].options.animationSteps = 25;
-		MyCharts[chartId].segments[0].value = (!checked && !notChecked) ? 1 : notChecked;
-		MyCharts[chartId].segments[1].value = checked;
-		MyCharts[chartId].update();
+		MyCharts[projectId].options.animation = true;
+		MyCharts[projectId].options.animationSteps = 25;
+		MyCharts[projectId].segments[0].value = (!checked && !notChecked) ? 1 : notChecked;
+		MyCharts[projectId].segments[1].value = checked;
+		MyCharts[projectId].update();
 	},
 });
 
@@ -39,15 +44,14 @@ function createChart(projectId) {
 	var checked 	= Tasks.find({projectId: projectId, checked: true}).count();
 	var notChecked 	= Tasks.find({projectId: projectId, checked: false}).count();
 	
-	var chartId = '#chart-' + projectId;
-	var canvas 	= $(chartId).get(0);
-	if(!canvas || MyCharts[chartId]) return;	
+	var canvas 	= $('#chart-' + projectId).get(0);
+	if(!canvas) return;	
 
 	var ctx = canvas.getContext("2d");
 	var data = [
 	    {
 	        value: (!checked && !notChecked) ? 1 : notChecked,
-	        color:"#EEEEEE",
+	        color:"#f2f2f2",
 	        // label: "To Do",
 	    },
 	    {
@@ -57,5 +61,5 @@ function createChart(projectId) {
 	    }
 	];
 
-	MyCharts[chartId] = new Chart(ctx).Doughnut(data, {animationSteps: 40, animationEasing: 'easeOut'});
+	MyCharts[projectId] = new Chart(ctx).Doughnut(data, {animation: false, animationSteps: 40, animationEasing: 'easeOut', segmentShowStroke:false});
 }

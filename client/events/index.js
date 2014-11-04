@@ -4,4 +4,8 @@ Template.index.events({
 
     	Session.set('error', null);
 	},
+
+	'click body': function(e, template) {
+		console.dir(e.target);
+	}
 });

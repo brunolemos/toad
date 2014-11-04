@@ -1,13 +1,15 @@
 <template name="projects">
-	<section id="projects">
-		<header class="well">
+	<section id="projects" class="well">
+		<header>
 			<div class="row">
-				<h2 class="col-xs-9">Projetos</h2>
+				<div class="col-xs-10">
+					<h2>Projetos</h2>
+				</div>
 
-				<section class="actions col-xs-3">
-					<button type="button" class="btn btn-primary btn-fab btn-raised mdi-content-add withripple pull-right newProject">
+				<section class="actions col-xs-2">
+					<a href="{{pathFor 'newProject'}}" class="btn btn-primary btn-fab btn-raised mdi-content-add withripple pull-right newProject">
 						<div class="ripple-wrapper"></div>
-					</button>
+					</a>
 				</section>
 			</div>
 		</header>

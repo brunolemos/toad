@@ -78,23 +78,17 @@ Router.route('/projects', function() {
 });
 
 Router.route('/projects/new', function() {
-	this.render('projects');
-	this.render('formProject', {to: 'topContent'});
+	this.render('projectDetails');
 
-}, {
-	name: 'newProject',
-	onStop: function() {
-		this.render(null, {to: 'topContent'});
-	},
-});
+}, {name: 'newProject'});
 
 Router.route('/projects/:projectId', function() {
 	Session.set('selectedProjectId', this.params.projectId);
 	Session.set('editTaskId', null);
 	
-	this.render('projects', {data: {projectId: this.params.projectId}});
+	this.render('projectDetails', {data: Projects.findOne(this.params.projectId)});
 	this.render('listTasks', {
-		to: 'projectDetails',
+		to: 'content',
 		data: function() {
 			return {
 				projectId: this.params.projectId,
@@ -104,10 +98,10 @@ Router.route('/projects/:projectId', function() {
 	});
 
 }, {
-	name: 'projectTasks',
+	name: 'projectDetails',
 	onStop: function() {
 		Session.set('selectedProjectId', null);
-		this.render(null, {to: 'projectDetails'});
+		this.render(null, {to: 'content'});
 	},
 });
 

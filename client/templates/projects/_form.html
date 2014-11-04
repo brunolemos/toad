@@ -1,95 +1,97 @@
 <template name="formProject">  
-	<!-- <div class="panel panel-default">
-		<div class="panel-heading">
-			 <h3 class="panel-title"> -->
-			 <h2>
-			 	{{#if this._id}}
-			 		Editar projeto
-			 	{{else}}
-			 		Novo projeto
-			 	{{/if}}
-			 </h2>
+	<div class="well">
+		<!-- <div class="panel panel-default">
+			<div class="panel-heading">
+				 <h3 class="panel-title"> -->
+				 <h2>
+				 	{{#if this._id}}
+				 		Editar projeto
+				 	{{else}}
+				 		Novo projeto
+				 	{{/if}}
+				 </h2>
+			<!-- </div> -->
+
+			<!-- <div class="panel-body"> -->
+				<form class="form-horizontal" role="form">
+					<fieldset>
+						<div class="form-group">
+							<label for="name" class="col-sm-3 control-label">Nome</label>
+							<div class="col-sm-5">
+								<div class="form-control-wrapper">
+									<input type="text" name="name" class="form-control input-md" value="{{name}}" required>
+							    	<span class="material-input"></span>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="priority" class="col-sm-3 control-label">Prioridade</label>
+							<div class="col-sm-3">
+								<div class="form-control-wrapper">
+									<select name="priority" class="form-control input-md" required>
+										<option value="1" {{optionSelected priority '1'}}>Baixa</option>
+										<option value="2" {{optionSelected priority '2'}}>Média</option>
+										<option value="3" {{optionSelected priority '3'}}>Alta</option>
+									</select>
+							    	<span class="material-input"></span>
+								</div>
+							</div>
+						</div>
+
+						<hr/>
+
+						<div class="form-group">
+							<label for="startDate" class="col-sm-3 control-label">Data de início</label>
+							<div class="col-sm-3">
+
+								<div class="form-control-wrapper">
+									<input type="date" name="startDate" class="form-control input-md" value="{{dateInput startDate today}}">
+							    	<span class="material-input"></span>
+								</div>
+							</div>
+						</div>
+
+						<hr/>
+
+						<div class="form-group" id="groupWhy">
+							<label for="motivation" class="col-sm-3 control-label">Motivação</label>
+							<div class="col-sm-6">
+								<div class="form-control-wrapper">
+									<textarea name="motivation" class="form-control empty" rows="3" value="{{motivation}}"></textarea>
+									<span class="material-input"></span>
+								</div>
+								<span class="help-block">Por que este projeto é importante? Como ele está alinhado com as estratégias?</span>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="objective" class="col-sm-3 control-label">Resultados esperados</label>
+							<div class="col-sm-6">
+								<div class="form-control-wrapper">
+									<textarea name="objective" class="form-control empty" rows="3" value="{{objective}}"></textarea>
+									<span class="material-input"></span>
+								</div>
+								<span class="help-block">Quais os objetivos e resultados a serem atingidos com este projeto?</span>
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<div class="col-xs-12">
+								{{#if this._id}}
+									<button type="submit" class="btn btn-success pull-right">Salvar Projeto</button>
+									<button type="button" class="btn btn-danger pull-left delete">Deletar Projeto</button>
+								{{else}}
+									<button type="submit" class="btn btn-success pull-right">Inserir Projeto</button>
+								{{/if}}
+
+								<a href="{{pathFor 'projects'}}" class="btn btn-default pull-right">Cancelar</a>
+							</div>
+						</div>
+					</fieldset>
+				</form>
+			<!-- </div> -->
 		<!-- </div> -->
-
-		<!-- <div class="panel-body"> -->
-			<form class="form-horizontal" role="form">
-				<fieldset>
-					<div class="form-group">
-						<label for="name" class="col-sm-3 control-label">Nome</label>
-						<div class="col-sm-5">
-							<div class="form-control-wrapper">
-								<input type="text" name="name" class="form-control input-md" value="{{name}}" required>
-						    	<span class="material-input"></span>
-							</div>
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label for="priority" class="col-sm-3 control-label">Prioridade</label>
-						<div class="col-sm-3">
-							<div class="form-control-wrapper">
-								<select name="priority" class="form-control input-md" required>
-									<option value="1" {{optionSelected priority '1'}}>Baixa</option>
-									<option value="2" {{optionSelected priority '2'}}>Média</option>
-									<option value="3" {{optionSelected priority '3'}}>Alta</option>
-								</select>
-						    	<span class="material-input"></span>
-							</div>
-						</div>
-					</div>
-
-					<hr/>
-
-					<div class="form-group">
-						<label for="startDate" class="col-sm-3 control-label">Data de início</label>
-						<div class="col-sm-3">
-
-							<div class="form-control-wrapper">
-								<input type="date" name="startDate" class="form-control input-md" value="{{dateInput startDate today}}">
-						    	<span class="material-input"></span>
-							</div>
-						</div>
-					</div>
-
-					<hr/>
-
-					<div class="form-group" id="groupWhy">
-						<label for="motivation" class="col-sm-3 control-label">Motivação</label>
-						<div class="col-sm-6">
-							<div class="form-control-wrapper">
-								<textarea name="motivation" class="form-control empty" rows="3" value="{{motivation}}"></textarea>
-								<span class="material-input"></span>
-							</div>
-							<span class="help-block">Por que este projeto é importante? Como ele está alinhado com as estratégias?</span>
-						</div>
-					</div>
-
-					<div class="form-group">
-						<label for="objective" class="col-sm-3 control-label">Resultados esperados</label>
-						<div class="col-sm-6">
-							<div class="form-control-wrapper">
-								<textarea name="objective" class="form-control empty" rows="3" value="{{objective}}"></textarea>
-								<span class="material-input"></span>
-							</div>
-							<span class="help-block">Quais os objetivos e resultados a serem atingidos com este projeto?</span>
-						</div>
-					</div>
-
-					<div class="form-group row">
-						<div class="col-xs-12">
-							{{#if this._id}}
-								<button type="submit" class="btn btn-success pull-right">Salvar Projeto</button>
-								<button type="button" class="btn btn-danger pull-left delete">Deletar Projeto</button>
-							{{else}}
-								<button type="submit" class="btn btn-success pull-right">Inserir Projeto</button>
-							{{/if}}
-
-							<a href="{{pathFor 'projects'}}" class="btn btn-default pull-right">Cancelar</a>
-						</div>
-					</div>
-				</fieldset>
-			</form>
-		<!-- </div> -->
-	<!-- </div> -->
+	</div>
 </template>
 		

@@ -1,7 +1,3 @@
-body {
-	padding-bottom: 60px;
-}
-
 h1, .h1 {
 	height: auto !important;
 	margin-bottom: 36px;
@@ -9,6 +5,7 @@ h1, .h1 {
 
 h2, .h2 {
 	height: auto !important;
+	line-height: 42px;
 	margin-bottom: 30px;
 }
 
@@ -19,6 +16,22 @@ h3, .h3 {
 	margin-bottom: 10px;
 }
 
+a {
+	color: @main-color;
+}
+
+input {
+	background-color: transparent;
+
+	&:hover {
+		background-color: rgba(0, 0, 0, 5%) !important;
+	}
+}
+
 .pointer {
 	cursor: pointer;
+}
+
+.avatar {
+	background-color: rgba(0, 0, 0, 2%);
 }
