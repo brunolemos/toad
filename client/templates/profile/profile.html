@@ -1,8 +1,16 @@
 <template name="profile">
 	<section id="profile" class="well">
 		<div class="center-block text-center">
-			<img src="{{avatar this 150}}" class="avatar img-circle"/>
-			<h2 class="profile-name">{{profile.name}}</h2>
+			{{#if isThisMe _id}}
+				<a href="http://gravatar.com/" target="_blank"> 
+					<img src="{{avatar this 150}}" class="avatar avatar-lg img-circle"/>
+				</a>
+
+				<input type="text" id="profile-name" name="name" class="profile-input h2 noborder center-block text-center" value="{{profile.name}}" />
+			{{else}}
+				<img src="{{avatar this 150}}" class="avatar avatar-lg img-circle center-block"/>
+				<h2 id="profile-name" class="center-block text-center">{{profile.name}}</h2>
+			{{/if}}
 		</div>
 	</section>
 </template>

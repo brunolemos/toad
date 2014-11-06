@@ -1,16 +1,51 @@
 #tasks-list {
 	margin-top: 20px;
 	
-	.taskName > input {
+	.task-name > input {
 		width: 100%;
 	}
 
-	.taskItem {
+	tr {
+		td, th {
+			padding: 0 8px;
+			vertical-align: middle;
+		}
+
+		.task-col-checkbox {
+			width: 40px;
+
+			.checkbox {
+				margin: 0;
+			}
+		}
+
+		.task-col-date {
+			width: 160px;
+		}
+
+		.task-col-actions {
+			width: 20px;
+		}
+	}
+
+	.task-item {
 		vertical-align: middle;
 		
 		input {
+			height: 40px;
 			border: none;
+
+			&[type=text] {
+				padding: 20px 0;
+			}
+		}
+		
+		.task-col-name input {
 			min-width: 200px;
+		}
+
+		&.done .strikable {
+			text-decoration: line-through;
 		}
 	}
 }

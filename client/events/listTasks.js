@@ -1,5 +1,5 @@
 Template.taskRow.events({
-	'click .taskItem > .pointer': function(e, template) {
+	'click .task-item > .pointer': function(e, template) {
 		if(e.target.localName != 'td' && e.target.localName != 'th')
 			return;
 
@@ -15,13 +15,13 @@ Template.taskRow.events({
 	    }
 	},
 
-	'blur .taskItem input': function(event) {
+	'blur .task-item input': function(event) {
     	if (Session.equals('editTaskId', this._id)) {
       		Session.set('editTaskId', null);
     	}
   	},
 
-	'change .taskItem input': function(e, template) {
+	'change .task-item input': function(e, template) {
 		var value = e.target.value;
 		if(e.target.type == 'checkbox') value = e.target.checked;
 		if(e.target.type == 'date') value = moment(value).toDate();
@@ -29,10 +29,9 @@ Template.taskRow.events({
 		var data = {};
 		data[e.target.name] = value;
 		Tasks.update({_id: this._id}, {$set: data});
-		console.dir(data);
   	},
 
-	'change .taskItem.newTask input[name=name]': function(e, template) {
+	'change .task-item.newTask input[name=name]': function(e, template) {
 	    var data 				= {};
 	    data.checked 			= template.$('[name=checked]')[0].checked;
 	    data.name 				= template.$('[name=name]').val();
@@ -58,7 +57,7 @@ Template.taskRow.events({
 		});
   	},
 
-	'click .deleteTask': function(e, template) {
+	'click .delete-task': function(e, template) {
 	    e.preventDefault();
 
 		if(this._id) {// && confirm("Deseja excluir esta tarefa permanentemente?")) {

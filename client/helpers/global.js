@@ -38,3 +38,18 @@ UI.registerHelper('formatDate', function(date) {
 UI.registerHelper('loadUser', function(userId) {
 	return Meteor.users.findOne(userId);
 });
+
+UI.registerHelper('isThisMe', function(userId) {
+	return Meteor.userId() == userId;
+});
+
+UI.registerHelper('momentFromNow', function(date) {
+	if(!date) return '-';
+
+	return moment(date).fromNow();
+});
+
+UI.registerHelper('isModEqual', function(a, b, m, sum) {
+	if(sum) a += sum;
+	return a % b == m;
+});

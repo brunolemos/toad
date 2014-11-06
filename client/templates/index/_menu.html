@@ -18,6 +18,7 @@
 						<li><a href="{{pathFor route='dashboard'}}">Dashboard</a></li>
 						<li><a href="{{pathFor route='projects'}}">Projetos</a></li>
 						<!-- <li><a href="{{pathFor route='tasks'}}">Tarefas</a></li> -->
+						<li><a href="{{pathFor route='people'}}">Pessoas</a></li>
 					{{/if}}
 				</ul>
 
@@ -26,7 +27,7 @@
 						<li class="dropdown user-menu">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 								<div class="visible-xs-inline">{{name}}</div>
-								<img src="{{avatar currentUser 40}}" class="avatar img-circle hidden-xs"/>
+								<img src="{{avatar currentUser 40}}" class="avatar avatar-sm img-circle hidden-xs"/>
 								<span class="caret"></span>
 							</a>
 

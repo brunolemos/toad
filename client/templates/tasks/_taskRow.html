@@ -1,6 +1,6 @@
 <template name="taskRow">
-	<tr class="item taskItem {{#if checked}}done{{/if}} {{#if newTask}}newTask{{/if}}">
-		<td>
+	<tr class="item task-item {{#if checked}}done{{/if}} {{#if newTask}}newTask{{/if}}">
+		<td class="task-col-checkbox">
 			<div class="checkbox">
 				<label>
 					<input type="checkbox" name="checked" {{checkboxInput checked}}/>
@@ -9,16 +9,14 @@
 			</div>
 		</td>
 		
-		<td class="taskName strikable {{#unless newTask}}pointer{{/unless}}">
-			<div class="form-control-wrapper">
-				<input type="text" name="name" class="form-control input-md" value="{{name}}" placeholder="{{#if newTask}}Nova tarefa{{/if}}"/>
-			</div>
+		<td class="task-col-name strikable {{#unless newTask}}pointer{{/unless}}">
+			<input type="text" name="name" class="form-control input-md" value="{{name}}" placeholder="{{#if newTask}}Nova tarefa{{/if}}"/>
 		</td>
 		
 		{{#if newTask}}
-		 	<td colspan="4"></td>
+		 	<td colspan="3"></td>
 		{{else}}
-			<td class="assignedTo pointer strikable">
+			<!-- <td class="task-col-assigned-to pointer strikable"> -->
 			<!-- {{#if isEditing this}}
 				<div class="form-control-wrapper">
 						{{> autocompleteTasks}}
@@ -27,18 +25,18 @@
 			{{else}} -->
 				{{#with loadUser assignedTo}}{{profile.name}}{{/with}}
 			<!-- {{/if}} -->
-			</td>
+			<!-- </td> -->
 
-			<td class="taskStartDate pointer strikable">
+			<td class="task-col-date task-col-start-date pointer strikable">
 				<input type="date" name="startDate" value="{{dateInput startDate today}}"/>
 			</td>
 
-			<td class="taskEndDate pointer strikable">
+			<td class="task-col-date task-col-end-date pointer strikable">
 				<input type="date" name="endDate" value="{{dateInput endDate today}}"/>
 			</td>
 
-			<td>
-				<i class="mdi-action-delete deleteTask"></i>
+			<td class="task-col-actions">
+				<i class="mdi-action-delete delete-task"></i>
 			</td>
 		{{/if}}
 	</tr>

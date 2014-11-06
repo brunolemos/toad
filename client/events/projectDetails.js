@@ -19,17 +19,29 @@ Template.projectDetails.events({
 	},
 
 	'click #removeProject': function(e, template) {
-		var projectId = this._id;
-		Projects.remove({_id: projectId}, function(error, result) {
-			if(error) {
-				Session.set('error', error.message);
-			} else {
-				Session.set('error', null);
-				// Tasks.remove({projectId: projectId});
-			}
-		});
-		
-		Router.go('projects');
+	    e.preventDefault();
+
+		if(this._id && confirm("Deseja excluir este projeto e todas suas tarefas?")) {
+			var projectId = this._id;
+			Projects.remove({_id: projectId}, function(error, result) {
+				if(error) {
+					Session.set('error', error.message);
+				} else {
+					Session.set('error', null);
+					// Tasks.remove({projectId: projectId});
+				}
+			});
+			
+			Router.go('projects');
+	    }
+	},
+
+	'click .delete': function(e, template) {
+	    e.preventDefault();
+
+		if(this._id && confirm("Deseja excluir este projeto permanentemente?")) {
+	    	Projects.remove({_id: this._id}, saveProjectCallback);
+	    }
 	},
 });
 

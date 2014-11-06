@@ -107,6 +107,12 @@ Router.route('/projects/:projectId', function() {
 
 
 //
+//PEOPLE
+//
+Router.route('/people', {name: 'people'});
+
+
+//
 //PROFILE
 //
 Router.route('/me', function() {

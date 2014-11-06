@@ -1,0 +1,28 @@
+<template name="people">
+	<section id="people" class="well">
+		<h2 class="title">Pessoas</h2>
+
+		<div class="row">
+			{{#each users}}
+				<div class="col-sm-6">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<a href="{{pathFor 'profile'}}" class="center-block text-center">
+								<p><img src="{{avatar this 80}}" class="avatar avatar-md img-circle"/></p>
+								<p class="user-name h4">{{profile.name}}</p>
+							</a>
+						</div>
+
+						<div class="panel-footer text-right">
+							{{#if status.online}}
+								<em class="muted text-success">online</em>
+							{{else}}
+								<em class="muted">{{momentFromNow status.lastLogin.date}}</em>
+							{{/if}}
+						</div>
+					</div>
+				</div>
+			{{/each}}
+		</div>
+	</section>
+</template>
