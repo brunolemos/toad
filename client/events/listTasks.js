@@ -67,7 +67,7 @@ Template.taskRow.events({
 
 	'keydown input[type=text]': function(e) {
 		//ENTER = Save
-		if (e.which === 13) {
+		if (e.which === 13 || e.which === 2) {
 			e.preventDefault();
 			e.target.blur();
 

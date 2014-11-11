@@ -10,9 +10,11 @@
 					</h2>
 				</div>
 
-				<section class="charts col-xs-2">
-					{{> projectCompletedTasksChart}}
-				</section>
+				{{#if this._id}}
+					<section class="charts col-xs-2">
+						{{> projectCompletedTasksChart}}
+					</section>
+				{{/if}}
 			</div>
 		</header>
 

@@ -31,7 +31,7 @@ Router.route('/', {
 	
 	onBeforeAction: function() {
 		if(Meteor.user()) {
-			this.render('dashboard');
+			this.render('projects');
 		} else {
 			this.render('home');
 		}
@@ -64,9 +64,21 @@ Router.route('/logout', function() {
 	});
 });
 
-Router.route('/signup', function() {
-	Session.set('isSignup', true);
+Router.route('/newOrganzation', function() {
+	Session.set('newOrganzation', true);
 	this.render('login');
+});
+
+Router.route('/projects/:projectId', function() {
+	Session.set('selectedProjectId', this.params.projectId);
+	Session.set('editTaskId', null);
+	
+}, {
+	name: 'projectDetails',
+	onStop: function() {
+		Session.set('selectedProjectId', null);
+		this.render(null, {to: 'content'});
+	},
 });
 
 
