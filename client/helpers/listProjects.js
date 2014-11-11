@@ -51,7 +51,7 @@ function createChart(projectId) {
 	var data = [
 	    {
 	        value: (!checked && !notChecked) ? 1 : notChecked,
-	        color:"#f2f2f2",
+	        color: "rgba(0, 0, 0, 0.05)",
 	        // label: "To Do",
 	    },
 	    {

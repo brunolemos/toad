@@ -1,12 +1,16 @@
 <template name="taskRow">
 	<tr class="item task-item {{#if checked}}done{{/if}} {{#if newTask}}newTask{{/if}}">
-		<td class="task-col-checkbox">
-			<div class="checkbox">
-				<label>
-					<input type="checkbox" name="checked" {{checkboxInput checked}}/>
-					<span class="check"></span>
-				</label>
-			</div>
+		<td class="task-col-checkbox text-center">
+			{{#if newTask}}
+				<i class="mdi-content-add"></i>
+			{{else}}
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" name="checked" {{checkboxInput checked}}/>
+						<span class="check"></span>
+					</label>
+				</div>
+			{{/if}}
 		</td>
 		
 		<td class="task-col-name strikable {{#unless newTask}}pointer{{/unless}}">

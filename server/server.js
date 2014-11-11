@@ -6,8 +6,9 @@ Meteor.publish("projects", function() {
 	
 	if(this.userId)
 	{
-		var companyId = Meteor.users.findOne(this.userId).profile.companies[0]
-		return Projects.find({company: companyId});
+		// var companyId = Meteor.users.findOne(this.userId).profile.companies[0]
+		// return Projects.find({company: companyId});
+		return Projects.find();
 	}else{
 		return null;		
 	}

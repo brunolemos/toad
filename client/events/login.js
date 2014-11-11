@@ -12,24 +12,21 @@ Template.login.events({
 	    Meteor.loginWithPassword({email: email}, password, onLoginSignupAttempt);
 	},
 
-	'submit form[name=newOrganization]': function(e, template){
+	'submit form[name=signup]': function(e, template){
 	    e.preventDefault();
 
-	    var name = $('input[name=organizationName]').val();
-	    var state = $('input[name=state]').val();
-	    var city = $('input[name=city]').val();
+	    var name = $('input[name=name]').val();
+	    var email = $('input[name=email]').val();
+	    var password = $('input[name=password]').val();
 
-	    if(!Companies.findOne(name))
-	    {
-	    	Companies.insert({name: company}, function(error, result){
-			    if(error){
-				    console.dir(error);
-					Session.set('error', error.reason);
-				}
-	    	}
-	    }
+	    Accounts.createUser({
+	        email: email,
+	        password: password,
 
-
+	        profile: {
+	        	name: name
+	        }
+	    }, onLoginSignupAttempt);
 	},
 
 	'keyup input': function(e, template) {
