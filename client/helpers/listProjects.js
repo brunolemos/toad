@@ -11,7 +11,7 @@ Template.listProjects.helpers({
 });
 
 Template.projectCompletedTasksChart.rendered = function() {
-	var projectId = this.data._id;
+	var projectId = Session.get('selectedProjectId'); //this.data._id;
 	createChart(projectId);
 }
 
@@ -21,12 +21,12 @@ Template.projectCompletedTasksChart.destroyed = function() {
 }
 
 Template.projectCompletedTasksChart.helpers({
-	dummy: function(a) {
-		var projectId = this._id;
+	dummy: function() {
+		var projectId = Session.get('selectedProjectId');
 
 		var checked 	= Tasks.find({projectId: projectId, checked: true}).count();
 		var notChecked 	= Tasks.find({projectId: projectId, checked: false}).count();
-
+		
 		var canvas = $('#chart-' + projectId).get(0);
 		if(!canvas) return;	
 

@@ -110,7 +110,7 @@ Router.route('/projects/:projectId', function() {
 		data: function() {
 			return {
 				projectId: this.params.projectId,
-				tasks: Tasks.find({projectId: this.params.projectId}).fetch(),
+				tasks: Tasks.find({projectId: this.params.projectId}),
 			};
 		},
 	});

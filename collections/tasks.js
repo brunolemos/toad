@@ -11,7 +11,7 @@ Tasks.attachSchema(new SimpleSchema({
 
 	checked: {
 		type: Boolean,
-		optional: true,
+		defaultValue: false,
 	},
 
 	priority: {
