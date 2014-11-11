@@ -6,15 +6,15 @@ Template.autocompleteTasks.helpers({
 		limit: 10,
 		rules: [
 			{
-				token: '@',
+				token: '',
 				// string means a server-side collection; otherwise, assume a client-side collection
 				collection: Meteor.users,
 				field: 'profile.name',
-				options: 'case-sensitive', // Use case-sensitive match to take advantage of server index.
-				template: Template.serverCollectionPill,
+				options: '', // Use case-sensitive match to take advantage of server index.
+				template: Template.autocompleteUserName,
 				noMatchTemplate: Template.serverNoMatch,
-				callback: function(item, element) { 
-					Session.set('assignedTo', item._id);
+				callback: function(user, element) { 
+					$(element).value("assignedTo", user.assignedTo);
 				}
 			}
 		],

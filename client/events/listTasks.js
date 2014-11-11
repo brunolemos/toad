@@ -40,7 +40,7 @@ Template.taskRow.events({
 	    if(!data.name) return;
 		
 		$('.newTask input').val(null);
-		// $('.newTask input[type=checkbox]').prop('checked', false);
+		//$('.newTask input[type=checkbox]').prop('checked', false);
 		$('form[name=editTask] [name=name]').focus();
 		
 		Tasks.insert(data, function(error, result) {

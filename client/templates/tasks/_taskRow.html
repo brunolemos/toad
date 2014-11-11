@@ -20,17 +20,9 @@
 		{{#if newTask}}
 		 	<td colspan="3"></td>
 		{{else}}
-			<!-- <td class="task-col-assigned-to pointer strikable"> -->
-			<!-- {{#if isEditing this}}
-				<div class="form-control-wrapper">
-						{{> autocompleteTasks}}
-			    	<span class="material-input"></span>
-				</div>
-			{{else}} -->
-				{{#with loadUser assignedTo}}{{profile.name}}{{/with}}
-			<!-- {{/if}} -->
-			<!-- </td> -->
-
+			<td class="task-col-assigned-to pointer strikable">
+				{{> autocompleteTasks}}
+			</td>
 			<td class="task-col-date task-col-start-date pointer strikable">
 				<input type="date" name="startDate" value="{{dateInput startDate today}}"/>
 			</td>

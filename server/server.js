@@ -1,5 +1,6 @@
 Meteor.publish("users", function() {
-	return Meteor.users.find();
+	var companyId = Meteor.users.findOne(this.userId).profile.companies[0];
+	return Meteor.users.profile.find({companies: companyId});
 });
 
 Meteor.publish("projects", function() {

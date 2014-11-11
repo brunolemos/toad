@@ -1,13 +1,13 @@
 <template name="autocompleteTasks">
-  {{#textareaAutocomplete settings=settings id="autocomplete-input" name="assignedTo" class="form-control" placeholder="@username"}}{{/textareaAutocomplete}}
+  {{#inputAutocomplete type="text" settings=settings name="assignedTo" class="form-control input-md" placeholder="name"}}{{/inputAutocomplete}}
 </template>
 
-<template name="serverCollectionPill">
+<template name="autocompleteUserName">
   {{profile.name}} <small class="muted label label-primary"></small>
 </template>
 
-<template name="clientCollectionPill">
-  {{type}} <small class="muted">({{_id}})</small>
+<template name="autocompleteUserId">
+  {{_id}} <small class="muted">({{_id}})</small>
 </template>
 
 <template name="serverNoMatch">
