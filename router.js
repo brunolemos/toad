@@ -19,7 +19,11 @@ Router.onBeforeAction(function() {
 			this.render(null);
 		}
 	} else {
-		this.next();
+		if(Meteor.user().profile.companies && Meteor.user().profile.companies.length > 0) {
+			this.next();
+		} else {
+			this.render('createFirstCompany');
+		}
 	}
 }, {except: ['index', 'login', 'logout', 'signup']});
 
@@ -31,7 +35,7 @@ Router.route('/', {
 	
 	onBeforeAction: function() {
 		if(Meteor.user()) {
-			this.render('dashboard');
+			this.redirect('dashboard');
 		} else {
 			this.render('home');
 		}
@@ -42,7 +46,7 @@ Router.route('/', {
 //DASHBOARD
 //
 Router.route('/dashboard', function() {
-	this.render('dashboard');
+	this.redirect('projects');
 });
 
 
@@ -68,6 +72,20 @@ Router.route('/signup', function() {
 	Session.set('isSignup', true);
 	this.render('login');
 });
+
+
+//
+//COMPANY
+//
+Router.route('/companies/new', function() {
+	Session.set('isCreateCompany', true);
+	this.render('createFirstCompany');
+}, {name: 'newCompany'});
+
+Router.route('/companies/associate', function() {
+	Session.set('isCreateCompany', false);
+	this.render('createFirstCompany');
+}, {name: 'associateToCompany'});
 
 
 //

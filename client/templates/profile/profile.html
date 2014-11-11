@@ -3,12 +3,12 @@
 		<div class="center-block text-center">
 			{{#if isThisMe _id}}
 				<a href="http://gravatar.com/" target="_blank"> 
-					<img src="{{avatar this 150}}" class="avatar avatar-lg img-circle"/>
+					<img src="{{userAvatar this 150}}" class="avatar avatar-lg img-circle"/>
 				</a>
 
 				<input type="text" id="profile-name" name="name" class="profile-input h2 noborder center-block text-center" value="{{profile.name}}" />
 			{{else}}
-				<img src="{{avatar this 150}}" class="avatar avatar-lg img-circle center-block"/>
+				<img src="{{userAvatar this 150}}" class="avatar avatar-lg img-circle center-block"/>
 				<h2 id="profile-name" class="center-block text-center">{{profile.name}}</h2>
 			{{/if}}
 		</div>

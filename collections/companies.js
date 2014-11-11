@@ -4,10 +4,8 @@ Companies.attachSchema(new SimpleSchema({
 	name: {
 		type: String,
 	},
-	city: {
+
+	facebookId: {
 		type: String,
 	},
-	state: {
-		type: String,
-	}
 }));

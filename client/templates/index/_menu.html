@@ -27,12 +27,13 @@
 						<li class="dropdown user-menu">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 								<div class="visible-xs-inline">{{name}}</div>
-								<img src="{{avatar currentUser 40}}" class="avatar avatar-sm img-circle hidden-xs"/>
+								<img src="{{userAvatar currentUser 40}}" class="avatar avatar-sm img-circle hidden-xs"/>
 								<span class="caret"></span>
 							</a>
 
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="{{pathFor route='me'}}">Meu perfil</a></li>
+								<li><a href="{{pathFor route='associateToCompany'}}">Trocar de empresa</a></li>
 								<!-- <li><a href="{{pathFor route='settings'}}">Configurações</a></li> -->
 								<li class="divider"></li>
 								<li><a id="logout" href="#">Sair</a></li>

@@ -1,4 +1,4 @@
-UI.registerHelper('avatar', function(user, size) {
+UI.registerHelper('userAvatar', function(user, size) {
 	if(typeof(user) == 'string') user = Meteor.users.findOne(user);
 	if(!(size > 0)) size = 150;
 	var email = '';
@@ -10,6 +10,20 @@ UI.registerHelper('avatar', function(user, size) {
 	} catch(e) {}
 
 	return Gravatar.imageUrl(email, {size: size, default: 'mm'});
+});
+
+UI.registerHelper('facebookAvatar', function(facebookUrl, size) {
+	if(!(size > 0)) size = 150;
+	var facebookId = facebookUrl;
+	if(!facebookId) {
+		return Gravatar.imageUrl('', {size: size, default: 'mm'});
+	}
+
+	try {
+		facebookId = facebookUrl.match(/(?:https?:\/\/)?(?:www\.)?facebook\.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[\w\-]*\/)*([\w\-\.]*)/)[1];
+	} catch(e) {}
+	
+	return "http://graph.facebook.com/" + facebookId + "/picture/?size=" + size;
 });
 
 UI.registerHelper('today', function () {

@@ -1,0 +1,54 @@
+<template name="createFirstCompany">
+	<section id="createFirstCompany" class="row">
+		<div class="well col-sm-8 col-sm-offset-2">
+			<header>
+				<div class="row">
+					<div class="col-xs-8">
+						<h2 class="title">
+							{{#if isCreateCompany}}
+								Criar uma empresa
+							{{else}}
+								Associar-se à uma empresa
+							{{/if}}
+						</h2>
+					</div>
+
+					<section class="col-xs-4">
+						<div id="avatar-area" class="pull-right">
+							<img src="{{facebookAvatar facebookId 80}}" class="avatar avatar-md img-circle pull-right" alt="{{company.name}}" title="{{company.name}}"/>
+						</div>
+					</section>
+				</div>
+			</header>
+
+			<form name="{{#if isCreateCompany}}createCompany{{else}}associateCompany{{/if}}" role="form">
+				<div class="form-group">
+					<label for="facebookUrl">Facebook</label>
+					<div class="form-control-wrapper">
+						<input type="text" name="facebookUrl" placeholder="Link da fanpage da empresa" class="form-control input-lg empty" />
+					</div>
+				</div>
+
+				{{#if isCreateCompany}}
+					<div class="form-group">
+						<label for="name">Nome</label>
+						<div class="form-control-wrapper">
+							<input type="text" name="name" placeholder="Nome da empresa" class="form-control input-lg empty" required/>
+						</div>
+					</div>
+				{{/if}}
+
+
+				<section class="actions form-group">
+					{{#if isCreateCompany}}
+						<p><button type="submit" class="btn btn-success btn-lg btn-block">Cadastrar</button></p>
+						<p class="text-center">Empresa já cadastrada? <a id="associateCompanyLink">Associar</a></p>
+					{{else}}
+						<p><button type="submit" class="btn btn-primary btn-lg btn-block">Associar</button></p>
+						<p class="text-center">Ou <a id="createCompanyLink">Criar uma empresa</a></p>
+					{{/if}}
+				</section>
+			</form>
+		</div>
+	</section>
+</template>

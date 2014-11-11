@@ -5,9 +5,9 @@ Projects.attachSchema(new SimpleSchema({
 		type: String,
 	},
 
-	// company: {
-	// 	type: String,
-	// },
+	companyId: {
+		type: String,
+	},
 
 	priority: {
 		type: Number,

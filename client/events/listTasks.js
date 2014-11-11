@@ -32,20 +32,15 @@ Template.taskRow.events({
   	},
 
 	'change .task-item.newTask input[name=name]': function(e, template) {
-	    var data 				= {};
-	    data.checked 			= template.$('[name=checked]')[0].checked;
-	    data.name 				= template.$('[name=name]').val();
-	    // data.priority 			= template.$('[name=priority]').val();
-	    // data.assignedTo 		= template.$('[name=assignedTo]').val() ? Session.get('assignedTo') : '';
-	    // data.plannedDuration	= template.$('[name=plannedDuration]').val();
-	    // data.startDate 			= new Date(template.$('[name=startDate]').val());
-	    // data.endDate 			= new Date(template.$('[name=endDate]').val());
-	    data.projectId			= Session.get('selectedProjectId');
+	    var data 		= {};
+	    data.name 		= template.$('[name=name]').val();
+	    // data.checked 	= template.$('[name=checked]')[0].checked;
+	    data.projectId	= Session.get('selectedProjectId');
 
 	    if(!data.name) return;
 		
 		$('.newTask input').val(null);
-		$('.newTask input[type=checkbox]').prop('checked', false);
+		// $('.newTask input[type=checkbox]').prop('checked', false);
 		$('form[name=editTask] [name=name]').focus();
 		
 		Tasks.insert(data, function(error, result) {

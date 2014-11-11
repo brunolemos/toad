@@ -1,16 +1,36 @@
 <template name="login">
 	<section id="login" class="row">
 		<div class="well col-sm-8 col-sm-offset-2">
-			<section id="avatar-area" class="center-block text-center">
-				<a href="http://gravatar.com/" target="_blank"> 
-					<img src="{{avatar}}" class="avatar avatar-lg img-circle"/>
-				</a>
-			</section>
+			<header>
+				<div class="row">
+					<div class="col-xs-8">
+						<h2 class="title">
+							{{#if isSignup}}
+								Criar uma conta
+							{{else}}
+								Entrar
+							{{/if}}
+						</h2>
+					</div>
+
+					<section class="col-xs-4">
+						<div id="avatar-area" class="pull-right">
+							<a href="http://gravatar.com/" target="_blank">
+								<img src="{{avatar}}" class="avatar avatar-md img-circle pull-right" title="Clique para alterar seu avatar no site gravatar.com" />
+							</a>
+
+							{{#if company}}
+								<img src="{{facebookAvatar company.facebookId 80}}" class="avatar avatar-md img-circle pull-right" alt="{{company.name}}" title="{{company.name}}"/>
+							{{/if}}
+						</div>
+					</section>
+				</div>
+			</header>
 
 			<form name="{{#if isSignup}}signup{{else}}login{{/if}}" role="form">
 				{{#if isSignup}}
 					<div class="form-group">
-						<label for="name">Seu nome</label>
+						<label for="name">Nome</label>
 						<div class="form-control-wrapper">
 							<input type="text" name="name" placeholder="Seu nome" class="form-control input-lg empty" required/>
 						</div>
@@ -33,7 +53,7 @@
 
 				<section class="actions form-group">
 					{{#if isSignup}}
-						<p><button type="submit" class="btn btn-primary btn-lg btn-block">Cadastrar</button></p>
+						<p><button type="submit" class="btn btn-success btn-lg btn-block">Cadastrar</button></p>
 						<p class="text-center">Já é cadastrado? <a href="{{pathFor 'login'}}">Entrar</a></p>
 					{{else}}
 						<p><button type="submit" class="btn btn-primary btn-lg btn-block">Entrar</button></p>

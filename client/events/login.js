@@ -1,7 +1,3 @@
-Template.login.rendered = function() {
-	Session.set('error', null);
-};
-
 Template.login.events({
 	'submit form[name=login]': function(e, template) {
 	    e.preventDefault();
@@ -41,7 +37,7 @@ Template.login.events({
 
 	'change input[name=email]': function(e, template) {
 		Session.set('form_email', e.target.value)
-	}
+	},
 });
 
 function onLoginSignupAttempt(error) {
