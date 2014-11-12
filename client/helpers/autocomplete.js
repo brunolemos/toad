@@ -14,7 +14,8 @@ Template.autocompleteTasks.helpers({
 				template: Template.autocompleteUserName,
 				noMatchTemplate: Template.serverNoMatch,
 				callback: function(user, element) { 
-					$(element).value("assignedTo", user.assignedTo);
+					$(element).data("id", user._id);
+					$($(element).parent().find('[name=assignedTo]')[0]).val(user._id).change();
 				}
 			}
 		],

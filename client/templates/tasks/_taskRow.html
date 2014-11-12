@@ -13,21 +13,27 @@
 			{{/if}}
 		</td>
 		
-		<td class="task-col-name strikable {{#unless newTask}}pointer{{/unless}}">
+		<td class="task-col-name strikable">
 			<input type="text" name="name" class="form-control input-md" value="{{name}}" placeholder="{{#if newTask}}Nova tarefa{{/if}}"/>
 		</td>
 		
 		{{#if newTask}}
 		 	<td colspan="3"></td>
 		{{else}}
-			<td class="task-col-assigned-to pointer strikable">
-				{{> autocompleteTasks}}
+			<td class="task-col-assigned-to strikable">
+				<input type="hidden" name="assignedTo" value="{{assignedTo}}"/> 
+
+				{{#with loadUser assignedTo}}
+					{{> autocompleteTasks value=profile.name}}
+				{{else}}
+					{{> autocompleteTasks}}
+				{{/with}}
 			</td>
-			<td class="task-col-date task-col-start-date pointer strikable">
+			<td class="task-col-date task-col-start-date strikable">
 				<input type="date" name="startDate" value="{{dateInput startDate today}}"/>
 			</td>
 
-			<td class="task-col-date task-col-end-date pointer strikable">
+			<td class="task-col-date task-col-end-date strikable">
 				<input type="date" name="endDate" value="{{dateInput endDate today}}"/>
 			</td>
 

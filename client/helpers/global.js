@@ -5,7 +5,7 @@ UI.registerHelper('userAvatar', function(user, size) {
 
 	try {
 		if (user.profile.picture) return user.profile.picture;
-		if (user.services.facebook) return "http://graph.facebook.com/" + user.services.facebook.id + "/picture/?size=" + size;
+		if (user.services.facebook) return "http://graph.facebook.com/" + user.services.facebook.id + "/picture/?width=" + size + "&height=" + size;
 		email = user.emails[0].address;
 	} catch(e) {}
 
@@ -23,7 +23,7 @@ UI.registerHelper('facebookAvatar', function(facebookUrl, size) {
 		facebookId = facebookUrl.match(/(?:https?:\/\/)?(?:www\.)?facebook\.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[\w\-]*\/)*([\w\-\.]*)/)[1];
 	} catch(e) {}
 	
-	return "http://graph.facebook.com/" + facebookId + "/picture/?size=" + size;
+	return "http://graph.facebook.com/" + facebookId + "/picture/?width=" + size + "&height=" + size;
 });
 
 UI.registerHelper('today', function () {
