@@ -35,7 +35,7 @@ Router.route('/', {
 	
 	onBeforeAction: function() {
 		if(Meteor.user()) {
-			this.redirect('dashboard');
+			this.redirect('follow-up');
 		} else {
 			this.render('home');
 		}
@@ -43,10 +43,10 @@ Router.route('/', {
 });
 
 //
-//DASHBOARD
+//follow-up
 //
-Router.route('/dashboard', function() {
-	this.redirect('projects');
+Router.route('/follow-up', function() {
+	this.render('follow-up');
 });
 
 

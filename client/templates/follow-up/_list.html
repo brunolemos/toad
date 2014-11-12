@@ -1,0 +1,8 @@
+<template name="listweekTasks">
+	{{#each tasks}}
+		<tr class="item task-item">
+			<td>{{name}}</td>
+			<td>{{formatDate dateInput endDate}}</td>
+		</tr>
+	{{/each}}
+</template>

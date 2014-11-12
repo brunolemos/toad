@@ -37,6 +37,7 @@ Template.taskRow.events({
 	'change .task-item.newTask input[name=name]': function(e, template) {
 	    var data 		= {};
 	    data.name 		= template.$('[name=name]').val();
+	    data.assignedTo = template.$('name=assignedTo').val();
 	    // data.checked 	= template.$('[name=checked]')[0].checked;
 	    data.projectId	= Session.get('selectedProjectId');
 
