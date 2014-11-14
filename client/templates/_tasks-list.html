@@ -1,0 +1,50 @@
+<template name="listTasks">
+	<section id="tasks-list">
+		<form name="editTask" class="table-responsive">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th class="task-col-checkbox"></th>
+						<th class="task-col-name">Tarefa</th>
+						<th class="task-col-project">Projeto</th>
+						<th class="task-col-assignedTo">Responsável</th>
+						<th class="task-col-date">Início</th>
+						<th class="task-col-date">Prazo</th>
+						<th class="task-col-actions"></th>
+					</tr>
+				</thead>
+
+				<tbody>
+					{{#each tasks}}
+						{{> taskRow}}
+					{{/each}}
+				</tbody>
+			</table>
+		</form>
+	</section>
+</template>
+
+<template name="taskRow">
+	<tr class="item task-item {{#if checked}}done{{/if}}">
+		<td class="task-col-checkbox text-center">
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" name="checked" {{checkboxInput checked}}/>
+					<span class="check"></span>
+				</label>
+			</div>
+		</td>
+		
+		<td class="task-col-name strikable">{{name}}</td>
+
+		<td class="task-col-project strikable">
+			{{#with loadProject projectId}}
+				<a href="{{pathFor 'projectDetails' projectId=_id}}">{{name}}</a>
+			{{/with}}
+		</td>
+
+		<td class="task-col-assigned-to strikable">{{#with loadUser assignedTo}}{{profile.name}}{{/with}}</td>
+		<td class="task-col-date task-col-start-date strikable" title="{{formatDate startDate}}">{{momentFromNow startDate}}</td>
+		<td class="task-col-date task-col-end-date strikable" title="{{formatDate endDate}}">{{momentFromNow endDate}}</td>
+	</tr>
+</template>

@@ -1,4 +1,31 @@
-<template name="taskRow">
+<template name="listTasksEditable">
+	<section id="tasks-list">
+		<form name="editTask" class="table-responsive">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th class="task-col-checkbox"></th>
+						<th class="task-col-name">Tarefa</th>
+						<th class="task-col-assignedTo">Responsável</th>
+						<th class="task-col-date">Início</th>
+						<th class="task-col-date">Prazo</th>
+						<th class="task-col-actions"></th>
+					</tr>
+				</thead>
+
+				<tbody>
+					{{#each tasks}}
+						{{> taskRowEditable}}
+					{{/each}}
+
+					{{> taskRowEditable newTask=true}}
+				</tbody>
+			</table>
+		</form>
+	</section>
+</template>
+
+<template name="taskRowEditable">
 	<tr class="item task-item {{#if checked}}done{{/if}} {{#if newTask}}newTask{{/if}}">
 		<td class="task-col-checkbox text-center">
 			{{#if newTask}}
@@ -24,9 +51,9 @@
 				<input type="hidden" name="assignedTo" value="{{assignedTo}}"/> 
 
 				{{#with loadUser assignedTo}}
-					{{> autocompleteTasks value=profile.name}}
+					{{> autocompleteAssignedTo value=profile.name}}
 				{{else}}
-					{{> autocompleteTasks}}
+					{{> autocompleteAssignedTo}}
 				{{/with}}
 			</td>
 			<td class="task-col-date task-col-start-date strikable">

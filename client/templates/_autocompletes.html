@@ -1,0 +1,11 @@
+<template name="autocompleteAssignedTo">
+	{{#inputAutocomplete type="text" value=value name="_assignedTo" placeholder="Responsável" data-ignore-change="true" settings=settings class="form-control input-md"}}{{/inputAutocomplete}}
+</template>
+
+<template name="autocompleteUserName">
+ 	<span>{{profile.name}}</span>
+</template>
+
+<template name="autocompleteNotFound">
+    <span class="text-danger">Nada encontrado para <b>{{getFilter}}</b></span>
+</template>

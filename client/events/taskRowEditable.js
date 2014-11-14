@@ -1,4 +1,4 @@
-Template.taskRow.events({
+Template.taskRowEditable.events({
 	'click .task-item > .pointer': function(e, template) {
 		if(e.target.localName != 'td' && e.target.localName != 'th')
 			return;

@@ -9,7 +9,11 @@
 					<span class="icon-bar"></span>
 				</button>
 				
-				<a href="{{pathFor 'index'}}" class="navbar-brand">TOaD</a>
+				{{#if currentUser}}
+					<a href="{{pathFor 'dashboard'}}" class="navbar-brand">TOaD</a>
+				{{else}}
+					<a href="{{pathFor 'index'}}" class="navbar-brand">TOaD</a>
+				{{/if}}
 			</div>
 
 			<div class="navbar-collapse bs-navbar-collapse collapse" role="navigation">

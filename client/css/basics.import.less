@@ -39,7 +39,7 @@ input {
 	background-color: transparent;
 
 	&:hover {
-		background-color: rgba(0, 0, 0, 5%);
+		background-color: @darken-transparent-bg-hover;
 	}
 }
 
@@ -52,7 +52,7 @@ input {
 }
 
 .avatar {
-	background-color: rgba(0, 0, 0, 2%);
+	background-color: @darken-transparent-bg;
 
 	&.avatar-sm {
 		width: 40px;
@@ -77,5 +77,11 @@ input {
 
 	&.status-online {
 		color: @green;
+	}
+}
+
+table {
+	td, th {
+		height: 40px;
 	}
 }

@@ -64,12 +64,16 @@ UI.registerHelper('loadUser', function(userId) {
 	return Meteor.users.findOne(userId);
 });
 
+UI.registerHelper('loadProject', function(projectId) {
+	return Projects.findOne(projectId);
+});
+
 UI.registerHelper('isThisMe', function(userId) {
 	return Meteor.userId() == userId;
 });
 
 UI.registerHelper('momentFromNow', function(date) {
-	if(!date) return '-';
+	if(!date) return '';
 
 	return moment(date).fromNow();
 });
