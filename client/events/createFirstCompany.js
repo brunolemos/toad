@@ -1,8 +1,4 @@
 Template.createFirstCompany.events({
-	'change form': function(e, template) {
-		Session.set('error', null);
-	},
-
 	'submit form[name=associateCompany]': function(e, template) {
 	    e.preventDefault();
 
@@ -10,31 +6,22 @@ Template.createFirstCompany.events({
 	    var company = Companies.findOne({facebookId: facebookId});
 
 	    if(company) {
-		    updateUserCompany(company._id);
+	    	Meteor.call('updateUserCompany', company._id, onUpdateUserCompany);
 	    } else {
-	    	Session.set('error', 'Empresa não encontrada');
+			FlashMessages.sendWarning("Empresa não foi encontrada.");
 	    }
 	},
 
 	'submit form[name=createCompany]': function(e, template){
+		console.log('createCompany');
 	    e.preventDefault();
 
 	    var data = {};
 	    data.name = $('input[name=name]').val();
 	    data.facebookId = Session.get('companyFacebookId');
+	    data.admins = [Meteor.userId()];
 
-	    var company = Companies.findOne({facebookId: data.facebookId});
-	    if(company) {
-		    Meteor.users.update(Meteor.userId(), {$set: {'profile.companies': [company._id]}});
-	    } else {
-		    Companies.insert(data, function(error, result) {
-		    	if(error) {
-		    		Session.set('error', error.message);
-		    	} else if(result) {
-		    		updateUserCompany(result);
-		    	}
-		    });
-		}
+    	Meteor.call('insertCompanyAndUpdateUser', data.name, data.facebookId, data.admins, onUpdateUserCompany);
 	},
 
 	'change input[name=facebookUrl]': function(e, template) {
@@ -43,23 +30,20 @@ Template.createFirstCompany.events({
 		try {
 			facebookId = facebookId.match(/(?:https?:\/\/)?(?:www\.)?facebook\.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[\w\-]*\/)*([\w\-\.]*)/)[1];
 		} catch(e) {}
-
+		
 		Session.set('companyFacebookId', facebookId);
-	},
-
-	'click #createCompanyLink': function(e, template) {
-		Session.set('isCreateCompany', true);
-	},
-
-	'click #associateCompanyLink': function(e, template) {
-		Session.set('isCreateCompany', false);
 	},
 });
 
-function updateUserCompany(companyId) {
-    Meteor.users.update(Meteor.userId(), {$set: {'profile.companies': [companyId]}});
+function onUpdateUserCompany(error, result) {
+	if(error) {
+		FlashMessages.sendError(error.message);
 
-	if(Router.current().url == Router.path('newCompany') || Router.current().url == Router.path('associateToCompany')) {
-		Router.go('/');
+	} else {
+		var route = Router.current().route.getName();
+		console.log(route);
+		if(route == 'newCompany' || route == 'associateToCompany') {
+			Router.go('/');
+		}
 	}
 }

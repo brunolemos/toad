@@ -42,10 +42,10 @@
 				<section class="actions form-group">
 					{{#if isCreateCompany}}
 						<p><button type="submit" class="btn btn-success btn-lg btn-block">Cadastrar</button></p>
-						<p class="text-center">Empresa já cadastrada? <a id="associateCompanyLink">Associar</a></p>
+						<p class="text-center">Empresa já cadastrada? <a href="{{pathFor 'associateToCompany'}}">Associar</a></p>
 					{{else}}
 						<p><button type="submit" class="btn btn-primary btn-lg btn-block">Associar</button></p>
-						<p class="text-center">Ou <a id="createCompanyLink">Criar uma empresa</a></p>
+						<p class="text-center">Ou <a href="{{pathFor 'newCompany'}}">Criar uma empresa</a></p>
 					{{/if}}
 				</section>
 			</form>

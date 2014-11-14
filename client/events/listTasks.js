@@ -37,14 +37,11 @@ Template.taskRow.events({
 	'change .task-item.newTask input[name=name]': function(e, template) {
 	    var data 		= {};
 	    data.name 		= template.$('[name=name]').val();
-	    data.assignedTo = template.$('name=assignedTo').val();
-	    // data.checked 	= template.$('[name=checked]')[0].checked;
 	    data.projectId	= Session.get('selectedProjectId');
 
 	    if(!data.name) return;
 		
 		$('.newTask input').val(null);
-		//$('.newTask input[type=checkbox]').prop('checked', false);
 		$('form[name=editTask] [name=name]').focus();
 		
 		Tasks.insert(data, function(error, result) {

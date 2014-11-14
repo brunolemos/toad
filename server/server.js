@@ -3,32 +3,15 @@ Meteor.publish("allCompanies", function() {
 });
 
 Meteor.publish("usersFromMyCompanies", function(companies) {
-	if(companies instanceof Array) {
-		return Meteor.users.find({'profile.companies': { $in: companies }});
-	}
-
-	return null;
+	if(!(companies instanceof Array)) return;
+	return Meteor.users.find({'profile.companies': { $in: companies }});
 });
 
 Meteor.publish("projectsFromMyCompanies", function(companies) {
-	if(companies instanceof Array) {
-		return Projects.find({companyId: { $in: companies }});
-	}
-
-	return null;
+	if(!(companies instanceof Array)) return;
+	return Projects.find({companyId: { $in: companies }});
 });
 
-Meteor.publish("tasksFromMyCompanies", function(companies) {
-	if(companies instanceof Array) {
-		var projectIds = [];
-		var projects = Projects.find({companyId: { $in: companies }}).fetch();
-
-		for(var i = 0; i < projects.length; i++) {
-			projectIds.push(projects[i]._id);
-		}
-
-		return Tasks.find({projectId: { $in: projectIds }});
-	}
-
-	return null;
+Meteor.publish("tasksFromProject", function(projectId) {
+	return Tasks.find({projectId: projectId});
 });

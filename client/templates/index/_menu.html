@@ -9,13 +9,12 @@
 					<span class="icon-bar"></span>
 				</button>
 				
-				<a href="{{pathFor 'index'}}" class="navbar-brand visible-xs-block">TOaD</a>
+				<a href="{{pathFor 'index'}}" class="navbar-brand">TOaD</a>
 			</div>
 
 			<div class="navbar-collapse bs-navbar-collapse collapse" role="navigation">
 				<ul class="nav navbar-nav">
 					{{#if currentUser}}
-						<li><a href="{{pathFor route='follow-up'}}">Follow Up</a></li>
 						<li><a href="{{pathFor route='projects'}}">Projetos</a></li>
 						<li><a href="{{pathFor route='people'}}">Pessoas</a></li>
 					{{/if}}

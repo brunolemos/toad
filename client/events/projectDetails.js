@@ -24,14 +24,7 @@ Template.projectDetails.events({
 
 		if(this._id && confirm("Deseja excluir este projeto e todas suas tarefas?")) {
 			var projectId = this._id;
-			Projects.remove({_id: projectId}, function(error, result) {
-				if(error) {
-					Session.set('error', error.message);
-				} else {
-					Session.set('error', null);
-					// Tasks.remove({projectId: projectId});
-				}
-			});
+			Meteor.call('removeProjectsAndTasks', projectId);
 			
 			Router.go('projects');
 	    }

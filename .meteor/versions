@@ -27,7 +27,6 @@ html-tools@1.0.2
 htmljs@1.0.2
 http@1.0.8
 id-map@1.0.1
-insecure@1.0.1
 iron:controller@1.0.0
 iron:core@1.0.0
 iron:dynamic-template@1.0.0
@@ -57,6 +56,7 @@ mizzao:user-status@0.6.3
 mobile-status-bar@1.0.1
 mongo-livedata@1.0.6
 mongo@1.0.8
+mrt:flash-messages@1.0.0
 mrt:moment@2.8.1
 npm-bcrypt@0.7.7
 observe-sequence@1.0.3

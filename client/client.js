@@ -1,13 +1,25 @@
-Meteor.subscribe("allCompanies");
+Meteor.startup(function() {
+	Meteor.subscribe("allCompanies");
 
-Deps.autorun(function() {
-	try {
-		var myCompanies = Meteor.user().profile.companies;
-	} catch(e) {
-		var myCompanies = null;
-	}
+	Tracker.autorun(function() {
+		try {
+			var myCompanies = Meteor.user().profile.companies;
+		} catch(e) {
+			var myCompanies = [];
+		}
 
-	Meteor.subscribe("usersFromMyCompanies", myCompanies);
-	Meteor.subscribe("projectsFromMyCompanies", myCompanies);
-	Meteor.subscribe("tasksFromMyCompanies", myCompanies);
+		Meteor.subscribe("usersFromMyCompanies", myCompanies);
+		Meteor.subscribe("projectsFromMyCompanies", myCompanies);
+	});
+
+	var tasksHandler = [];
+	Projects.find().observeChanges({
+		added: function(id) {
+			tasksHandler[id] = Meteor.subscribe("tasksFromProject", id);
+		},
+
+		removed: function(id) {
+			tasksHandler[id].stop();
+		},
+	});
 });

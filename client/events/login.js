@@ -40,14 +40,12 @@ Template.login.events({
 	},
 });
 
-function onLoginSignupAttempt(error) {
+function onLoginSignupAttempt(error, result) {
 	if(error) {
-		console.dir(error);
-		Session.set('error', error.reason);
-	} else {
-		Session.set('error', null);
-
-		if(Router.current().url == Router.path('login') || Router.current().url == Router.path('signup')) {
+		FlashMessages.sendError(error.message);
+	} else if(result) {
+		var route = Router.current().route.getName();
+		if(route == 'login' || route == 'signup') {
 			Router.go('/');
 		}
 	}
