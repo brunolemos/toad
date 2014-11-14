@@ -2,7 +2,8 @@
 	{{#each tasks}}
 		<tr class="item task-item">
 			<td>{{name}}</td>
-			<td>{{formatDate dateInput endDate}}</td>
+			<td title="{{formatDate startDate}}">{{momentFromNow startDate}}</td>
+			<td title="{{formatDate endDate}}">{{momentFromNow endDate}}</td>
 		</tr>
 	{{/each}}
 </template>

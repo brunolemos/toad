@@ -26,13 +26,20 @@ UI.registerHelper('facebookAvatar', function(facebookUrl, size) {
 	return "http://graph.facebook.com/" + facebookId + "/picture/?width=" + size + "&height=" + size;
 });
 
-UI.registerHelper('today', function () {
+UI.registerHelper('today', function() {
 	return new Date();
 });
 
-UI.registerHelper('dateInput', function (date, _default) {
-	if(!date) date = _default;
-	if(!(date instanceof Date)) date = new Date(date);
+UI.registerHelper('dateInput', function(date, _default) {
+	if(!date) {
+		if(_default instanceof Date) {
+			date = _default;
+		} else {
+			return '';
+		}
+	} else if(!(date instanceof Date)) {
+		date = new Date(date);
+	}
 
 	return date.toISOString().substr(0, 10);
 });
@@ -45,8 +52,12 @@ UI.registerHelper('optionSelected', function(selectedValue, optionValue) {
   return selectedValue == optionValue ? {selected: 'selected'} : '';
 });
 
-UI.registerHelper('formatDate', function(date) {
-    return moment(date).format('DD-MM-YYYY');
+UI.registerHelper('formatDate', function(date, format) {
+	if(!date) return '';
+	if(!(date instanceof Date)) date = new Date(date);
+	if(typeof(format) != 'string') format = 'DD/MM/YYYY';
+
+    return moment(date).format(format);
 });
 
 UI.registerHelper('loadUser', function(userId) {
