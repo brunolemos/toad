@@ -9,7 +9,11 @@
 				<input type="text" id="profile-name" name="name" class="profile-input h2 noborder center-block text-center" value="{{profile.name}}" />
 			{{else}}
 				<img src="{{userAvatar this 150}}" class="avatar avatar-lg img-circle center-block"/>
-				<h2 id="profile-name" class="center-block text-center">{{profile.name}}</h2>
+					
+				<h2 id="profile-name" class="center-block text-center">
+					<i class="status-icon status-{{#if status.online}}online{{else}}offline{{/if}} mdi-image-brightness-1"></i>
+					<span>{{profile.name}}</span>
+				</h2>
 			{{/if}}
 		</div>
 	</section>

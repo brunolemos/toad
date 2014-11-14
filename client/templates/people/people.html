@@ -5,22 +5,17 @@
 		<div class="row">
 			{{#each users}}
 				<div class="col-xs-6 col-sm-4">
-					<div class="panel panel-default">
-						<div class="panel-body">
-							<a href="{{pathFor 'profile'}}" class="center-block text-center">
+					<!-- <div class="panel panel-default"> -->
+						<!-- <div class="panel-body"> -->
+							<a href="{{pathFor 'profile'}}" class="person center-block text-center">
 								<p><img src="{{userAvatar this 80}}" class="avatar avatar-md img-circle"/></p>
-								<p class="user-name h4">{{profile.name}}</p>
+								<p class="user-name h4" title="{{#if status.online}}Online{{else}}Último acesso: {{momentFromNow status.lastLogin.date}}{{/if}}">
+									<i class="status-icon status-{{#if status.online}}online{{else}}offline{{/if}} mdi-image-brightness-1"></i>
+									<span>{{profile.name}}</span>
+								</p>
 							</a>
-
-							<p class="status text-center">
-								{{#if status.online}}
-									<em class="muted text-success">online</em>
-								{{else}}
-									<em class="muted">{{momentFromNow status.lastLogin.date}}</em>
-								{{/if}}
-							</p>
-						</div>
-					</div>
+						<!-- </div> -->
+					<!-- </div> -->
 				</div>
 			{{/each}}
 		</div>

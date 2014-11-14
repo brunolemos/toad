@@ -60,8 +60,8 @@ input {
 	}
 
 	&.avatar-md {
-		width: 80px;
-		height: 80px;
+		width: 100px;
+		height: 100px;
 	}
 
 	&.avatar-lg {
@@ -70,6 +70,12 @@ input {
 	}
 }
 
-#messages .alert {
-	margin-bottom: 0;
+.status-icon {
+	font-size: 42%;
+	vertical-align: middle;
+	color: #ccc;
+
+	&.status-online {
+		color: @green;
+	}
 }
