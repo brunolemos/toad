@@ -1,4 +1,6 @@
 Meteor.startup(function() {
+	moment.locale('pt-BR');
+	
 	Meteor.subscribe("allCompanies");
 
 	Tracker.autorun(function() {
