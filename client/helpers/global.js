@@ -82,3 +82,16 @@ UI.registerHelper('isModEqual', function(a, b, m, sum) {
 	if(sum) a += sum;
 	return a % b == m;
 });
+
+UI.registerHelper('momentFromNowDiff', function(date){
+	a = moment(); 
+	diff = a.diff(date, 'days');
+
+	if (diff > 0 && diff < 10){
+		return "late";
+	}else if(diff > 10){
+		return "tooLate";
+	}else{
+		return "onDate";
+	}
+});

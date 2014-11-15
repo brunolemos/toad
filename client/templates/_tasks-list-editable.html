@@ -59,8 +59,7 @@
 			<td class="task-col-date task-col-start-date strikable">
 				<input type="date" name="startDate" value="{{dateInput startDate}}"/>
 			</td>
-
-			<td class="task-col-date task-col-end-date strikable">
+			<td class="task-col-date task-col-end-date strikable {{momentFromNowDiff endDate}}">
 				<input type="date" name="endDate" value="{{dateInput endDate}}"/>
 			</td>
 
