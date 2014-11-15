@@ -1,5 +1,5 @@
 Template.profile.events({
-	'change input.profile-input': function(e, template) {
+	'change input#profile-name': function(e, template) {
 	    var data 	= {};
 	    data.name 	= e.target.value;
 

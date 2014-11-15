@@ -1,0 +1,19 @@
+<template name="companies">
+	<section id="companies" class="well">
+		<header>
+			<div class="row">
+				<div class="col-xs-10">
+					<h2>Organizações</h2>
+				</div>
+
+				<section class="actions col-xs-2">
+					<a href="{{pathFor 'newCompany'}}" class="btn btn-primary btn-fab btn-raised mdi-content-add withripple pull-right newCompany">
+						<div class="ripple-wrapper"></div>
+					</a>
+				</section>
+			</div>
+		</header>
+
+		{{> listCompanies companies=this}}
+	</section>
+</template>

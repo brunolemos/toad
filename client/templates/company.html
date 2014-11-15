@@ -1,0 +1,40 @@
+<template name="company">
+	<section id="company" class="profile-page well">
+		<header class="clearfix">
+			<div class="page-header--avatar pull-left valign">
+				<div class="content">
+					<img src="{{facebookAvatar facebookId 120}}" class="avatar avatar-lg img-circle"/>
+				</div>
+			</div>
+
+			<div class="page-header--info pull-left valign">
+				<div class="content">
+					<h2 id="profile-name" class="profile-name">{{name}}</h2>
+					<a href="http://facebook.com/{{facebookId}}" target="_blank" class="h4 profile-address text-muted">facebook.com/{{facebookId}}</a>
+				</div>
+			</div>
+
+			<div class="page-header--navigation valign pull-right">
+				<div class="content">
+					<div class="number-text-nav pull-left">
+						<a href="{{pathFor 'companyPeople' this}}">
+							<p class="h3">{{membersCount}}</p>
+							<p class="text-muted">Membros</p>
+						</a>
+					</div>
+
+					<div class="number-text-nav pull-left">
+						<a href="{{pathFor 'companyProjects' this}}">
+							<p class="h3">{{projectsCount}}</p>
+							<p class="text-muted">Projetos</p>
+						</a>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<section class="clearfix">
+			{{> yield 'content'}}
+		</section>
+	</section>
+</template>

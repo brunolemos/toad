@@ -1,7 +1,7 @@
 <template name="listProjects">
-	<section id="project-list">
+	<section id="project-list" class="list-view">
 		{{#each projects}}
-			<div class="projectItem {{#if isProjectSelected this._id}}selected{{/if}}">
+			<div class="item pointer {{#if isProjectSelected this._id}}selected{{/if}}">
 				<section class="row">
 					<div class="col-xs-8">
 						<h3>{{name}}</h3>

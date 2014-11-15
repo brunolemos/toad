@@ -1,5 +1,5 @@
 Template.listProjects.events({
-	'click .projectItem': function(e, template) {
+	'click #project-list > .item': function(e, template) {
 		if(e.target.tagName == 'A' || e.target.tagName == 'INPUT' || e.target.tagName == 'BUTTON') return true;
 
 		if(Session.equals('selectedProjectId', this._id)) {

@@ -18,20 +18,18 @@
 			</div>
 		</header>
 
-		<div>
-			<section class="row">
-				{{> yield 'content'}}
-			</section>
+		<section class="row">
+			{{> yield 'content'}}
+		</section>
 
-			{{#if this._id}}
-				<section class="row actions">
-					<div class="col-xs-4 col-xs-offset-8">
-						<button id="removeProject" type="button" class="btn btn-danger mdi-action-delete withripple pull-right">
-							<div class="ripple-wrapper"></div>
-						</button>
-					</div>
-				</section>
-			{{/if}}
-		</div>
+		{{#if this._id}}
+			<section class="row actions">
+				<div class="col-xs-4 col-xs-offset-8">
+					<button id="removeProject" type="button" class="btn btn-danger mdi-action-delete withripple pull-right">
+						<div class="ripple-wrapper"></div>
+					</button>
+				</div>
+			</section>
+		{{/if}}
 	</section>
 </template>

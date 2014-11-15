@@ -13,7 +13,6 @@ Template.createFirstCompany.events({
 	},
 
 	'submit form[name=createCompany]': function(e, template){
-		console.log('createCompany');
 	    e.preventDefault();
 
 	    var data = {};
@@ -41,7 +40,6 @@ function onUpdateUserCompany(error, result) {
 
 	} else {
 		var route = Router.current().route.getName();
-		console.log(route);
 		if(route == 'newCompany' || route == 'associateToCompany') {
 			Router.go('/');
 		}

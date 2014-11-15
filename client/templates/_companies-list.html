@@ -1,0 +1,15 @@
+<template name="listCompanies">
+	<section id="company-list" class="list-view clearfix">
+		{{#each companies}}
+			<div class="item pointer">
+				<h3>{{name}}</h3>
+			</div>
+		{{/each}}
+	</section>
+
+	<section class="actions clearfix">
+		<div class="col-xs-4 col-xs-offset-8">
+			<a href="{{pathFor 'newCompany'}}" class="btn btn-primary mdi-content-add withripple pull-right"></a>
+		</div>
+	</section>
+</template>

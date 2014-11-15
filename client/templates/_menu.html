@@ -10,7 +10,7 @@
 				</button>
 				
 				{{#if currentUser}}
-					<a href="{{pathFor 'dashboard'}}" class="navbar-brand">TOaD</a>
+					<span class="navbar-brand">TOaD</span>
 				{{else}}
 					<a href="{{pathFor 'index'}}" class="navbar-brand">TOaD</a>
 				{{/if}}
@@ -19,8 +19,10 @@
 			<div class="navbar-collapse bs-navbar-collapse collapse" role="navigation">
 				<ul class="nav navbar-nav">
 					{{#if currentUser}}
-						<li><a href="{{pathFor route='projects'}}">Projetos</a></li>
-						<li><a href="{{pathFor route='people'}}">Pessoas</a></li>
+						<li><a href="{{pathFor 'dashboard'}}">Dashboard</a></li>
+						<li><a href="{{pathFor 'projects'}}">Projetos</a></li>
+						<li><a href="{{pathFor 'userCompanies' _id=currentUser._id}}">Organizações</a></li>
+						<!-- <li><a href="{{pathFor 'goals'}}">Indicadores</a></li> -->
 					{{/if}}
 				</ul>
 
@@ -34,16 +36,16 @@
 							</a>
 
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="{{pathFor route='me'}}">Meu perfil</a></li>
-								<li><a href="{{pathFor route='associateToCompany'}}">Trocar de empresa</a></li>
-								<!-- <li><a href="{{pathFor route='settings'}}">Configurações</a></li> -->
+								<li><a href="{{pathFor 'me'}}">Meu perfil</a></li>
+								<!-- <li><a href="{{pathFor 'companies'}}">Organizações</a></li> -->
+								<!-- <li><a href="{{pathFor 'settings'}}">Configurações</a></li> -->
 								<li class="divider"></li>
 								<li><a id="logout" href="#">Sair</a></li>
 							</ul>
 						</li>
 					{{else}}
-						<li><a href="{{pathFor route='signup'}}">Criar uma conta</a></li>
-						<li><a href="{{pathFor route='login'}}">Entrar</a></li>
+						<li><a href="{{pathFor 'signup'}}">Criar uma conta</a></li>
+						<li><a href="{{pathFor 'login'}}">Entrar</a></li>
 					{{/if}}
 				</ul>
 			</div>
