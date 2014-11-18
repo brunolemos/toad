@@ -37,6 +37,15 @@ Template.projectDetails.events({
 	    	Projects.remove({_id: this._id}, saveProjectCallback);
 	    }
 	},
+
+	'click #report': function(e, template) {
+		Router.go('report', {projectId: this._id});
+	},
+
+	'click #tasks': function(e,template) {
+		Router.go('projectDetails', {projectId: this._id});
+	},
+
 });
 
 function saveProjectCallback(error, result) {

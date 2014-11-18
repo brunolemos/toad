@@ -16,15 +16,21 @@
 					</section>
 				{{/if}}
 
-				<input id="projectTags" type="text" name="name" class="form-control input-md" value="{{name}}" placeholder="Tags do projeto"/>
 			</div>
 		</header>
 
-		<section class="row">
-			{{> yield 'content'}}
-		</section>
-
 		{{#if this._id}}
+			<section class="row">
+				<a id="tasks">Tarefas</a>
+				<a id="report">Relatório</a>
+				<a id="indicator">Indicadores</a>
+			</section>
+
+
+			<section class="row">
+				{{> yield 'content'}}
+			</section>
+
 			<section class="row actions">
 				<div class="col-xs-4 col-xs-offset-8">
 					<button id="removeProject" type="button" class="btn btn-danger mdi-action-delete withripple pull-right">

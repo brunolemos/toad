@@ -1,0 +1,24 @@
+<template name="listImprovements">
+	<section id="tasks-improvements-list">
+		<form name="editTask" class="table-responsive">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th class="task-col-name">Tarefa</th>
+						<th class="task-col-assignedTo">Responsável</th>
+						<th class="task-col-improvement">Melhoria</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					{{#each tasks}}
+						<tr class="item task-item">
+							<td class="task-col-name strikable">{{name}}</td>
+							<td class="task-col-assigned-to strikable">{{#with loadUser assignedTo}}{{profile.name}}{{/with}}</td>
+						</tr>
+					{{/each}}
+				</tbody>
+			</table>
+		</form>
+	</section>
+</template>
