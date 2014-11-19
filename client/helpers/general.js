@@ -1,4 +1,4 @@
-Template.dashboard.helpers({
+Template.general.helpers({
 	tasks: function() {	
 		var startOfWeek = moment().startOf('week').toDate();
 		var endOfWeek 	= moment().endOf('week').toDate();

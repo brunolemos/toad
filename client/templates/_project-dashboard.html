@@ -1,0 +1,17 @@
+<template name="dashboard">
+	<section id="">
+		<div class="col-xs-4">
+			{{> CompletedTasksChart}}
+			{{> LateTasksChart}}
+			<small>Progresso</small>
+		</div>
+	</section>
+</template>
+
+<template name="CompletedTasksChart">
+	<canvas id="com-chart-{{projectId}}" width="150" height="150" class="chart pull-right" data-project-id="{{projectId}}" data-dummy="{{dummy}}"></canvas>
+</template>
+
+<template name="LateTasksChart">
+	<canvas id="late-chart-{{projectId}}" width="150" height="150" class="chart pull-right" data-project-id="{{projectId}}" data-dummy="{{dummy}}"></canvas>
+</template>

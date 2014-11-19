@@ -46,6 +46,10 @@ Template.projectDetails.events({
 		Router.go('projectDetails', {projectId: this._id});
 	},
 
+	'click #dashboard': function(e,template) {
+		Router.go('dashboard', {projectId: this._id});
+	},
+
 });
 
 function saveProjectCallback(error, result) {
