@@ -1,11 +1,15 @@
 <template name="general">
-	<section id="general" class="well">
-		<!-- <h2 class="title">Dashboard</h2> -->
-		
-		<section>
-			<h3>Tarefas da semana</h3>
-			
-			{{> listTasksEditable tasks=tasks}}
-		</section>
+	<section id="general">
+		<header>
+			<div class="container">
+				<h1>Tarefas da semana</h1>
+			</div>
+		</header>
+
+		<article class="content">
+			<div class="container">
+				{{> listTasks tasks=tasks}}
+			</div>
+		</article>
 	</section>
 </template>

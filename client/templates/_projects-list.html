@@ -1,22 +1,19 @@
 <template name="listProjects">
 	<section id="project-list" class="list-view">
 		{{#each projects}}
-			<div class="item pointer {{#if isProjectSelected this._id}}selected{{/if}}">
-				<section class="row">
-					<div class="col-xs-8">
-						<h3>{{name}}</h3>
-					</div>
-
-					<div class="col-xs-4">
-						{{> projectCompletedTasksChart}}
-					</div>
-				</section>
-			</div>
-		{{else}}
-			<div class="row">
-				<div class="col-xs-12">
-					<p>Nenhum projeto foi cadastrado até o momento. Que tal <a href="{{pathFor 'newProject'}}" class="newProject">cadastrar um novo projeto</a>?</p>
+			<a href="{{pathFor 'project'}}" class="item clearfix">
+				<div class="pull-left">
+					<div class="title">{{name}}</div>
+					<div class="description text-muted">Descrição do projeto</div>
 				</div>
+
+				<div class="pull-right">
+					{{> projectCompletedTasksChart}}
+				</div>
+			</a>
+		{{else}}
+			<div class="clearfix">
+				<p>Nenhum projeto foi cadastrado até o momento. Que tal <a href="{{pathFor 'newProject'}}" class="newProject">cadastrar um novo projeto</a>?</p>
 			</div>
 		{{/each}}
 	</section>

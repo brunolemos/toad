@@ -41,7 +41,7 @@ function onUpdateUserCompany(error, result) {
 	} else {
 		var route = Router.current().route.getName();
 		if(route == 'newCompany' || route == 'associateToCompany') {
-			Router.go('/');
+			Router.go('projects');
 		}
 	}
 }

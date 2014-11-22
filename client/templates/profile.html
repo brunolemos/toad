@@ -1,61 +1,58 @@
 <template name="profile">
-	<section id="profile" class="profile-page well">
-		<header class="clearfix">
-			<div class="page-header--avatar pull-left valign">
-				<div class="content">
-					{{#if isThisMe _id}}
-						<a href="http://gravatar.com/" target="_blank">
-							<img src="{{userAvatar this 120}}" class="avatar avatar-lg img-circle avatar-status {{#if status.online}}status-online{{else}}status-offline{{/if}}"/>
-						</a>
-					{{else}}
-						<img src="{{userAvatar this 120}}" class="avatar avatar-lg img-circle avatar-status {{#if status.online}}status-online{{else}}status-offline{{/if}}"/>
-					{{/if}}
+	<section id="profile">
+		<header class="page-header clearfix dark-theme">
+			<div class="container">
+				<div class="page-header--icon pull-left valign">
+					<div class="content">
+						{{#if isThisMe _id}}
+							<a href="http://gravatar.com/" target="_blank">
+								<img src="{{userAvatar this 120}}" class="avatar avatar-lg img-circle"/>
+							</a>
+						{{else}}
+							<img src="{{userAvatar this 120}}" class="avatar avatar-lg img-circle"/>
+						{{/if}}
+					</div>
 				</div>
-			</div>
 
-			<div class="page-header--info pull-left valign">
-				<div class="content">
-					{{#if isThisMe _id}}
-						<input type="text" id="profile-name" name="name" class="profile-name h2 noborder" value="{{profile.name}}" />
-						<p class="h4 profile-address text-muted">{{emails.[0].address}}</p>
-					{{else}}
-						<h2 id="profile-name" class="profile-name">
-							<!-- <i class="status-icon status-{{#if status.online}}online{{else}}offline{{/if}} mdi-image-brightness-1"></i> -->
-							<span>{{profile.name}}</span>
-						</h2>
+				<div class="page-header--info pull-left valign">
+					<div class="content">
+						{{#if isThisMe _id}}
+							<input type="text" id="profile-name" name="name" class="profile-name h2 noborder" value="{{profile.name}}" />
+							<p class="h4 profile-address text-muted">{{emails.[0].address}}</p>
+						{{else}}
+							<h2 id="profile-name" class="profile-name">
+								<i class="status-icon status-{{#if status.online}}online{{else}}offline{{/if}} mdi-image-brightness-1"></i>
+								<span>{{profile.name}}</span>
+							</h2>
 
-						<p class="h4 profile-address text-muted">{{emails.[0].address}}</p>
-					{{/if}}
+							<p class="h4 profile-address text-muted">{{emails.[0].address}}</p>
+						{{/if}}
+					</div>
 				</div>
-			</div>
 
-			<div class="page-header--navigation valign pull-right">
-				<div class="content">
-					<div class="number-text-nav pull-left">
-						<a href="{{pathFor 'userCompanies' _id}}">
-							<p class="h3">{{companiesCount}}</p>
-							<p class="text-muted">Organizações</p>
-						</a>
-					</div>
+				<div class="page-header--navigation tab">
+					<ul class="tab-row">
+						<li class="tab-item {{isActiveRoute 'profile'}} {{isActiveRoute 'me'}}">
+							<a href="{{pathFor 'profile'}}">
+								<p>Sobre</p>
+							</a>
+						</li>
 
-					<div class="number-text-nav pull-left">
-						<div>
-							<p class="h3">0</p>
-							<p class="text-muted">Completas</p>
-						</div>
-					</div>
-					<div class="number-text-nav pull-left">
-						<div>
-							<p class="h3">0</p>
-							<p class="text-muted">Em andamento</p>
-						</div>
-					</div>
+						<li class="tab-item {{isActiveRoute 'userCompanies'}}">
+							<a href="{{pathFor 'userCompanies'}}">
+								<p><strong>{{companiesCount}}</strong></p>
+								<p class="text-muted">Organizações</p>
+							</a>
+						</li>
+					</ul>
 				</div>
 			</div>
 		</header>
 
 		<section class="clearfix">
-			{{> yield 'content'}}
+			<div class="container">
+				{{> yield 'content'}}
+			</div>
 		</section>
 	</section>
 </template>

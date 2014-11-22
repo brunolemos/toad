@@ -1,19 +1,51 @@
 <template name="projects">
-	<section id="projects" class="well">
-		<header>
-			<div class="row">
-				<div class="col-xs-10">
-					<h2>Projetos</h2>
+	<section id="projects">
+		<header class="page-header clearfix light-theme">
+			<div class="container">
+				<div class="page-header--info pull-left valign">
+					<div class="content">
+						<h1>Projetos</h1>
+					</div>
+				</div>
+					
+				<div class="page-header--actions pull-right valign">
+					<div class="content">
+						<a href="{{pathFor 'newProject'}}" class="btn btn-primary btn-fab btn-raised mdi-content-add withripple newProject">
+							<div class="ripple-wrapper"></div>
+						</a>
+					</div>
 				</div>
 
-				<section class="actions col-xs-2">
-					<a href="{{pathFor 'newProject'}}" class="btn btn-primary btn-fab btn-raised mdi-content-add withripple pull-right newProject">
-						<div class="ripple-wrapper"></div>
-					</a>
-				</section>
+				<div class="page-header--navigation tab">
+					<ul class="tab-row">
+						<li class="tab-item {{isActiveRoute 'projects'}}">
+							<a href="{{pathFor 'projects'}}">
+								<p><strong>0</strong></p>
+								<p class="text-muted">Meus projetos</p>
+							</a>
+						</li>
+
+						<li class="tab-item {{isActiveRoute 'completedProjects'}}">
+							<div>
+								<p><strong>0</strong></p>
+								<p class="text-muted">Completos</p>
+							</div>
+						</li>
+						<li class="tab-item {{isActiveRoute 'archievedProjects'}}">
+							<div>
+								<p><strong>0</strong></p>
+								<p class="text-muted">Arquivados</p>
+							</div>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</header>
 
-		{{> listProjects projects=projects}}
+		<article class="content">
+			<div class="container">
+				{{> yield 'content'}}
+			</div>
+		</article>
 	</section>
 </template>

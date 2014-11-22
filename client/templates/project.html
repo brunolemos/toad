@@ -1,0 +1,68 @@
+<template name="project">
+	<section id="project">
+		<header class="page-header clearfix light-theme">
+			<div class="container">
+				<div class="page-header--info pull-left valign">
+					<div class="content">
+						<h1>
+							<a href="{{pathFor route='projects'}}">Projetos</a>
+							<i class="text-muted mdi-navigation-chevron-right"></i>
+							<input id="projectName" type="text" name="name" class="h1" value="{{name}}" placeholder="Nome do projeto"/>
+						</h1>
+					</div>
+				</div>
+					
+				{{#if this._id}}
+					<div class="page-header--others pull-right valign">
+						<div class="content">
+							{{> projectCompletedTasksChart}}
+						</div>
+					</div>
+				{{/if}}
+
+				{{#if this._id}}
+					<div class="page-header--navigation tab">
+						<ul class="tab-row">
+							<li class="tab-item {{isActiveRoute 'project'}}">
+								<a href="{{pathFor 'project'}}">
+									<p><strong>0</strong></p>
+									<p class="text-muted">Tarefas</p>
+								</a>
+							</li>
+
+							<li class="tab-item {{isActiveRoute 'projectDashboard'}}">
+								<a href="{{pathFor 'projectDashboard'}}">
+									<p>Dashboard</p>
+								</a>
+							</li>
+
+							<li class="tab-item {{isActiveRoute 'projectReport'}}">
+								<a href="{{pathFor 'projectReport'}}">
+									<p>Relatório</p>
+								</a>
+							</li>
+						</ul>
+					</div>
+				{{/if}}
+			</div>
+		</header>
+
+		<article class="content">
+			<div class="container">
+				{{> yield 'content'}}
+			</div>
+		</article>
+
+		{{#if this._id}}
+			<section class="actions clearfix">
+				<div class="container">
+					<div class="pull-right">
+						<button id="removeProject" type="button" class="btn btn-danger mdi-action-delete withripple">
+							<div class="ripple-wrapper"></div>
+						</button>
+					</div>
+				</div>
+			</section>
+		{{/if}}
+	</section>
+</template>

@@ -23,16 +23,16 @@ Template.CompletedTasksChart.destroyed = function() {
 Template.LateTasksChart.rendered = function(a) {
 	var projectId = Session.get('selectedProjectId');
 	
-	var total 		= Tasks.find({projectId: projectId}).count();;
-	var notChecked 	= Tasks.find({projectId: projectId, checked: false}).count();
+	var checked 	= Tasks.find({projectId: projectId, checked: true}).fetch();
+	var notChecked 	= Tasks.find({projectId: projectId, checked: false}).fetch();
 	
 	now = moment();
 	var toolate = 0;
 	var late = 0; 
-	for(var i=0; i<notChecked.length();++i){
+	for(var i = 0; i < notChecked.length; i++) {
 		date = notChecked[i].endDate;
 		diff = now.diff(date, 'days');
-
+		
 		if (diff > 0 && diff < 10){
 			 late++;
 		}else if(diff > 10){
@@ -40,7 +40,7 @@ Template.LateTasksChart.rendered = function(a) {
 		}
 	}
 
-	createDoughnutChart(projectId, checked, notChecked);
+	createDoughnutChart(projectId, checked.length, notChecked.length);
 }
 
 Template.LateTasksChart.destroyed = function() {

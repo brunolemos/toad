@@ -1,4 +1,4 @@
-Template.projectDetails.events({
+Template.project.events({
 	'keyup #projectName': function(e, template) {
 		if(e.which == 13) {
 			$(e.target).blur();
@@ -37,19 +37,6 @@ Template.projectDetails.events({
 	    	Projects.remove({_id: this._id}, saveProjectCallback);
 	    }
 	},
-
-	'click #report': function(e, template) {
-		Router.go('report', {projectId: this._id});
-	},
-
-	'click #tasks': function(e,template) {
-		Router.go('projectDetails', {projectId: this._id});
-	},
-
-	'click #dashboard': function(e,template) {
-		Router.go('dashboard', {projectId: this._id});
-	},
-
 });
 
 function saveProjectCallback(error, result) {
@@ -57,6 +44,6 @@ function saveProjectCallback(error, result) {
 		Session.set('error', error.message);
 	} else if(result) {
 		Session.set('error', null);
-		Router.go('projectDetails', {projectId: result});
+		Router.go('project', {_id: result});
 	}
 }

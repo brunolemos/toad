@@ -3,7 +3,7 @@ Template.taskRowEditable.events({
 		if(e.target.localName != 'td' && e.target.localName != 'th')
 			return;
 
-		// Router.go('editProjectTask', {projectId: this.projectId, _id: this._id});
+		// Router.go('editProjectTask', {_id: this.projectId, _id: this._id});
 	    if(Session.equals("editTaskId", this._id)) {
 	    	Session.set("editTaskId", null);
 	    } else {

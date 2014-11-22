@@ -1,9 +1,15 @@
 <template name="listCompanies">
 	<section id="company-list" class="list-view clearfix">
 		{{#each companies}}
-			<div class="item pointer">
-				<h3>{{name}}</h3>
-			</div>
+			<a href="{{pathFor 'company'}}" class="item clearfix">
+				<div class="pull-left">
+					<div class="title">{{name}}</div>
+					<div class="description text-muted">Descrição da empresa</div>
+				</div>
+				
+				<div class="pull-right">
+				</div>
+			</a>
 		{{/each}}
 	</section>
 

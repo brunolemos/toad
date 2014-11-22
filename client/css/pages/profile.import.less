@@ -1,23 +1,15 @@
-.profile-page {
-	header {
-		margin-bottom: 24px;
-		
-		&.valign {
-			height: 120px;
+#profile {
+	header.page-header {
+		&.dark-theme {
+			background-color: @theme-color;
 		}
 
-		> .valign {
-			height: 120px;
+		&.light-theme {
+			background-color: @dark-transparent-bg;
 		}
 
-		.page-header--info {
-			margin-left: 20px;
-
-			.content {
-				> * {
-					margin: 0 0 10px;
-				}
-			}
+		.valign {
+			height: 120px;
 		}
 	}
 }

@@ -1,40 +1,50 @@
 <template name="company">
-	<section id="company" class="profile-page well">
-		<header class="clearfix">
-			<div class="page-header--avatar pull-left valign">
-				<div class="content">
-					<img src="{{facebookAvatar facebookId 120}}" class="avatar avatar-lg img-circle"/>
-				</div>
-			</div>
-
-			<div class="page-header--info pull-left valign">
-				<div class="content">
-					<h2 id="profile-name" class="profile-name">{{name}}</h2>
-					<a href="http://facebook.com/{{facebookId}}" target="_blank" class="h4 profile-address text-muted">facebook.com/{{facebookId}}</a>
-				</div>
-			</div>
-
-			<div class="page-header--navigation valign pull-right">
-				<div class="content">
-					<div class="number-text-nav pull-left">
-						<a href="{{pathFor 'companyPeople' this}}">
-							<p class="h3">{{membersCount}}</p>
-							<p class="text-muted">Membros</p>
-						</a>
+	<section id="company">
+		<header class="page-header clearfix light-theme">
+			<div class="container">
+				<div class="page-header--icon pull-left valign">
+					<div class="content">
+						<img src="{{facebookAvatar facebookId 120}}" class="avatar avatar-lg img-circle"/>
 					</div>
+				</div>
 
-					<div class="number-text-nav pull-left">
-						<a href="{{pathFor 'companyProjects' this}}">
-							<p class="h3">{{projectsCount}}</p>
-							<p class="text-muted">Projetos</p>
-						</a>
+				<div class="page-header--info pull-left valign">
+					<div class="content">
+						<h2 id="profile-name" class="profile-name">{{name}}</h2>
+						<a href="http://facebook.com/{{facebookId}}" target="_blank" class="h4 profile-address text-muted">facebook.com/{{facebookId}}</a>
 					</div>
+				</div>
+
+				<div class="page-header--navigation tab">
+					<ul class="tab-row">
+						<li class="tab-item {{isActiveRoute 'company'}}">
+							<a href="{{pathFor 'company'}}">
+								<p>Sobre</p>
+							</a>
+						</li>
+
+						<li class="tab-item {{isActiveRoute 'companyProjects'}}">
+							<a href="{{pathFor 'companyProjects'}}">
+								<p><strong>{{projectsCount}}</strong></p>
+								<p class="text-muted">Projetos</p>
+							</a>
+						</li>
+
+						<li class="tab-item {{isActiveRoute 'companyPeople'}}">
+							<a href="{{pathFor 'companyPeople'}}">
+								<p><strong>{{membersCount}}</strong></p>
+								<p class="text-muted">Membros</p>
+							</a>
+						</li>
+					</ul>
 				</div>
 			</div>
 		</header>
 
 		<section class="clearfix">
-			{{> yield 'content'}}
+			<div class="container">
+				{{> yield 'content'}}
+			</div>
 		</section>
 	</section>
 </template>

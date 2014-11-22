@@ -7,39 +7,51 @@ html {
 
 body {
 	padding-bottom: 60px;
+	background-color: #fff;
+	color: @default-color-dark;
+	overflow: visible;
+	overflow-x: auto;
 }
 
 h1, .h1 {
+	font-size: 30px;
+	line-height: 60px;
 	height: auto !important;
-	margin-bottom: 36px;
+	margin: 0;
 	padding: 0;
+	letter-spacing: 1.5px;
 }
 
 h2, .h2 {
+	font-size: 24px;
+	line-height: 30px;
 	height: auto !important;
-	line-height: 42px;
 	margin-bottom: 30px;
 	padding: 0;
 }
 
 h3, .h3 {
+	font-size: 20px;
+	line-height: 24px;
 	height: auto !important;
-	font-size: 24px;
-	margin-top: 20px;
-	margin-bottom: 10px;
+	margin-bottom: 24px;
 	padding: 0;
 }
 
 h4, .h4 {
-	height: auto !important;
 	font-size: 16px;
-	margin-top: 12px;
-	margin-bottom: 10px;
+	line-height: 20px;
+	height: auto !important;
+	margin-bottom: 20px;
 	padding: 0;
 }
 
-a, a:link, a:focus, a:hover {
-	color: @main-color;
+a, a:link {
+	color: @theme-color;
+}
+
+a:focus, a:hover {
+	color: darken(@theme-color, 20%);
 	cursor: pointer;
 }
 
@@ -47,9 +59,19 @@ input {
 	background-color: transparent;
 
 	&:hover {
-		background-color: @darken-transparent-bg-hover;
+		background-color: @dark-transparent-bg-hover;
+	}
+
+	&:focus {
+		outline: none;
+		// outline-color: @theme-color;
 	}
 }
+
+::-webkit-input-placeholder { color: @text-muted-dark; opacity: 1; }
+     :-ms-input-placeholder { color: @text-muted-dark; opacity: 1; }
+         ::-moz-placeholder { color: @text-muted-dark; opacity: 1; }
+          :-moz-placeholder { color: @text-muted-dark; opacity: 1; }
 
 .pointer {
 	cursor: pointer;
@@ -60,16 +82,16 @@ input {
 }
 
 .avatar {
-	background-color: @darken-transparent-bg;
+	background-color: @dark-transparent-bg;
 
 	&.avatar-sm {
-		width: 40px;
-		height: 40px;
+		width: 30px;
+		height: 30px;
 	}
 
 	&.avatar-md {
-		width: 100px;
-		height: 100px;
+		width: 80px;
+		height: 80px;
 	}
 
 	&.avatar-lg {
@@ -78,7 +100,7 @@ input {
 	}
 
 	&.avatar-status {
-		border: 4px solid #fff;
+		border: 4px solid @light-transparent-bg-2;
 		box-shadow: 0 0 1px 1px #ccc;
 
 		&.status-online {
@@ -105,7 +127,7 @@ table {
 
 .valign {
     display: table;
-    height: 100px;
+    height: 60px;
 
     > .content {
 		display: table-cell;
@@ -113,24 +135,67 @@ table {
     }
 }
 
-.number-text-nav {
-	> a {
-		text-decoration: none;
+.tab {
+	display: table;
+	width: 100%;
+	table-layout: fixed;
+	border: 1px solid @dark-transparent-bg-2;
+	border-bottom: none;
+	border-radius: 4px 4px 0 0;
 
-		&:hover {
-			background-color: @darken-transparent-bg;
-		}
-	}
+	> .tab-row {
+		display: table-row;
+		list-style: none;
+
+		> .tab-item {
+			display: table-cell;
+			list-style: none;
+			font-size: 18px;
+			vertical-align: middle;
+			height: 60px;
+			// box-shadow: inset 0px 30px 50px -20px rgba(0, 0, 0, 0.05);
+
+			&:first-child {
+				border-radius: 4px 0 0 0;
+			}
+
+			&:last-child {
+				border-radius: 0 4px 0 0;
+			}
+
+			&.active {
+				background-color: #fff;
+
+				a {
+					color: @default-color-dark;
+				}
+
+				.text-muted {
+					color: @text-muted-dark;
+				}
+			}
+
+			&:not(.active) {
+				background-color: @dark-transparent-bg-2;
+
+				&:hover {
+					background-color: @dark-transparent-bg-2-hover;
+				}
+			}
 	
-	> * {
-		display: block;
-		margin-left: 4px;
-		padding: 8px 20px;
-		text-align: right;
-		text-transform: uppercase;
+			> * {
+				display: block;
+				padding: 8px 10px;
+				text-align: center;
 
-		p {
-			margin: 4px 0;
+				p {
+					margin: -2px 0;
+				}
+			}
+
+			a {
+				text-decoration: none;
+			}
 		}
 	}
 }
@@ -141,4 +206,37 @@ table {
 
 .late {
 	color: #ff5722;
+}
+
+.text-muted {
+	color: @text-muted-dark;
+}
+
+.dark-theme {
+	color: @default-color-light;
+
+	&.text-muted, .text-muted { 
+		color: @text-muted-light; 
+	}
+
+	&a, a {
+		color: rgba(255, 255, 255, 0.8);
+
+		&:hover {
+			color: #fff;
+		}
+	}
+
+	::-webkit-input-placeholder { color: @text-muted-light; opacity: 1; }
+	     :-ms-input-placeholder { color: @text-muted-light; opacity: 1; }
+	         ::-moz-placeholder { color: @text-muted-light; opacity: 1; }
+	          :-moz-placeholder { color: @text-muted-light; opacity: 1; }
+}
+
+.light-theme {
+	color: @default-color-dark;
+	
+	&.text-muted, .text-muted {
+		color: @text-muted-dark;
+	}
 }

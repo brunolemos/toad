@@ -1,10 +1,29 @@
 .list-view {
+	margin: 0 -15px;
+
 	> .item {
-		margin: 0 -19px;
-		padding: 19px;
+		display: inline-block;
+		width: 100%;
+		padding: 15px 10px;
+		border-radius: 3px;
+
+		-webkit-transition: background, 0.1s;
+		   -moz-transition: background, 0.1s;
+		    -ms-transition: background, 0.1s;
+		     -o-transition: background, 0.1s;
+		        transition: background, 0.1s;
 
 		&:hover {
-			background-color: @darken-transparent-bg-hover;
+			background-color: @dark-transparent-bg-hover;
+		}
+
+		.title {
+			font-size: 20px;
+			font-weight: 500;
+		}
+
+		.description {
+			font-size: 17px;
 		}
 	}
 }

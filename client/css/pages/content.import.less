@@ -4,6 +4,65 @@
 	> section {
 		min-height: 250px;
 	}
+
+	// > .well {
+	// 	margin: 0;
+	// 	padding: 0;
+	// }
+
+	header.page-header {
+		padding: 0;
+		margin: -30px 0 30px 0;
+		border: none;
+
+		&.dark-theme {
+			background-color: #5A5A5A;
+		}
+
+		&.light-theme {
+			background-color: @dark-transparent-bg;
+		}
+		
+		> .container {
+			position: relative;
+			padding-top: 30px;
+		}
+
+		a:hover {
+			text-decoration: none;
+		}
+
+		.page-header--icon {
+			margin-bottom: 40px;
+			margin-right: 20px;
+		}
+
+		.page-header--info {
+			margin-bottom: 40px;
+
+			.content {
+				> * {
+					margin: 0 0 6px;
+				}
+			}
+		}
+
+		// #page-button {
+		// 	position: absolute;
+		// 	bottom: -28px;
+		// 	right: -120px;
+		// }
+
+		&.dark-theme, .dark-theme {
+			.btn-primary {
+				background-color: @light-transparent-bg-2;
+
+				&:hover {
+					background-color: @light-transparent-bg-2-hover;
+				}
+			}
+		}
+	}
 }
 	
 #messages .alert {

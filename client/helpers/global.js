@@ -1,3 +1,18 @@
+UI.registerHelper('isActiveRoute', function(route, className) {
+	if(typeof(className) != 'string') className = 'active';
+	var currentRoute = Router.current().route.getName();
+
+	return route == currentRoute ? 'active' : '';
+});
+
+UI.registerHelper('isActivePath', function(path, className) {
+	if(typeof(className) != 'string') className = 'active';
+	var currentRoute = Router.current().route.getName();
+	var currentPath = Router.path(currentRoute);
+	
+	return currentPath.indexOf(path) <= 1 ? 'active' : '';
+});
+
 UI.registerHelper('userAvatar', function(user, size) {
 	if(typeof(user) == 'string') user = Meteor.users.findOne(user);
 	if(!(size > 0)) size = 150;

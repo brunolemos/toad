@@ -1,4 +1,4 @@
-#main {
+#main, #app-header {
 	.btn.pull-left {
 		margin-right: 15px;
 	}
@@ -7,9 +7,56 @@
 		margin-left: 15px;
 	}
 
-	.navbar .navbar-nav>li>a, .navbar .navbar-brand {
-		padding-top: 20px;
-		padding-bottom: 20px;
+	.btn-primary {
+		background-color: @theme-color;
+
+		&:hover {
+			background-color: darken(@theme-color, 5%);
+		}
+	}
+
+	.navbar {
+		height: @navbar-height;
+		margin-bottom: 30px;
+
+		&.navbar-transparent { background: transparent; }
+		&.navbar-white { background: #fff; }
+		&.navbar-theme { background: darken(@theme-color, 5%) }
+		&.navbar-darken { background: darken(@theme-color, 5%); }
+
+		&.dark-theme, .dark-theme {
+			.navbar-nav > li > a, .navbar-brand {
+				color: @text-muted-light;
+
+				&:hover {
+					color: #fff;
+				}
+			}
+		}
+
+		&.light-theme, .light-theme {
+			.navbar-nav > li > a, .navbar-brand {
+				color: @text-muted-dark;
+
+				&:hover {
+					color: @theme-color;
+				}
+			}
+		}
+
+		.navbar-nav > li > a, .navbar-brand {
+			height: @navbar-height;
+			line-height: @navbar-height;
+			vertical-align: middle;
+			padding-top: 0;
+			padding-bottom: 0;
+			font-size: 18px;
+			font-weight: 400;
+		}
+
+		.avatar {
+			margin-top: -5px;
+		}
 	}
 
 	.form-group {
@@ -17,7 +64,7 @@
 	}
 
 	.form-control {
-		border-color: @darken-transparent-bg;
+		border-color: @dark-transparent-bg;
 	}
 }
 
