@@ -8,6 +8,8 @@ Meteor.publish("peopleFromCompanies", function(companies) {
 });
 
 Meteor.publish("projectsFromMyCompanies", function() {
+	if(!this.userId) return;
+	
 	var user = Meteor.users.findOne(this.userId);
 	var companies = user.profile.companies;
 	return Projects.find({companyId: { $in: companies }});

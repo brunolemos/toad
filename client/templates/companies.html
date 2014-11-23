@@ -1,8 +1,8 @@
 <template name="companies">
 	<section id="companies">
-		<header class="page-header clearfix dark-theme">
+		<header class="page-header clearfix light-theme">
 			<div class="container">
-				<div class="page-header--icon pull-left valign">
+				<div class="page-header--info pull-left valign">
 					<div class="content">
 						<h1>Empresas</h1>
 					</div>
@@ -23,6 +23,13 @@
 								<p><strong>{{currentUser.profile.companies.length}}</strong></p>
 								<p class="text-muted">Minhas empresas</p>
 							</a>
+						</li>
+
+						<li class="tab-item">
+							<div>
+								<p><strong>0</strong></p>
+								<p class="text-muted">Favoritas</p>
+							</div>
 						</li>
 
 						<li class="tab-item {{isActiveRoute 'allCompanies'}}">

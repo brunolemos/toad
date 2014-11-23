@@ -1,4 +1,5 @@
 .tab-view {
+	clear: both;
 	display: table;
 	width: 100%;
 	table-layout: fixed;
@@ -7,14 +8,17 @@
 	border-radius: 4px 4px 0 0;
 
 	> .tab-row {
-		display: table-row;
 		list-style: none;
+		display: table-row;
+		margin: 0;
+		padding: 0;
 
 		> .tab-item {
 			display: table-cell;
 			list-style: none;
 			font-size: 18px;
 			vertical-align: middle;
+			width: 25%;
 			height: 60px;
 			// box-shadow: inset 0px 30px 50px -20px rgba(0, 0, 0, 0.05);
 			cursor: default;

@@ -17,13 +17,13 @@
 				<div class="page-header--info pull-left valign">
 					<div class="content">
 						{{#if isThisMe _id}}
-							<input type="text" id="profile-name" name="name" class="profile-name h2 noborder" value="{{profile.name}}" />
+							<input type="text" id="profile-name" name="name" class="profile-name h1 noborder" value="{{profile.name}}" />
 							<p class="h4 profile-address text-muted">{{emails.[0].address}}</p>
 						{{else}}
-							<h2 id="profile-name" class="profile-name">
+							<h1 id="profile-name" class="profile-name">
 								<i class="status-icon status-{{#if status.online}}online{{else}}offline{{/if}} mdi-image-brightness-1"></i>
 								<span>{{profile.name}}</span>
-							</h2>
+							</h1>
 
 							<p class="h4 profile-address text-muted">{{emails.[0].address}}</p>
 						{{/if}}
@@ -38,11 +38,24 @@
 							</a>
 						</li>
 
+						<li class="tab-item {{isActiveRoute 'userProjects'}}">
+							<a href="{{pathFor 'userProjects'}}">
+								<p><strong>{{projectsCount}}</strong></p>
+								<p class="text-muted">Projetos</p>
+							</a>
+						</li>
+
 						<li class="tab-item {{isActiveRoute 'userCompanies'}}">
 							<a href="{{pathFor 'userCompanies'}}">
 								<p><strong>{{companiesCount}}</strong></p>
 								<p class="text-muted">Organizações</p>
 							</a>
+						</li>
+
+						<li class="tab-item">
+							<div>
+								<p>Relatório</p>
+							</div>
 						</li>
 					</ul>
 				</div>
