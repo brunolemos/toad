@@ -3,5 +3,27 @@
 		.valign {
 			height: 120px;
 		}
+
+		.page-header--actions {
+			.company-association:not(.associated) {
+				> * {
+					display: none;
+				}
+
+				> #associateToCompany {
+					display: block;
+				}
+			}
+
+			.company-association.associated {
+				> * {
+					display: none;
+				}
+
+				> #disassociateFromCompany {
+					display: block;
+				}
+			}
+		}
 	}
 }

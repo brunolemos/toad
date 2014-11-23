@@ -1,3 +1,7 @@
+UI.registerHelper('isMyCompany', isMyCompany);
+UI.registerHelper('canRemoveProject', canRemoveProject);
+UI.registerHelper('canRemoveTask', canRemoveTask);
+
 UI.registerHelper('isActiveRoute', function(route, className) {
 	if(typeof(className) != 'string') className = 'active';
 	var currentRoute = Router.current().route.getName();
@@ -13,32 +17,27 @@ UI.registerHelper('isActivePath', function(path, className) {
 	return currentPath.indexOf(path) <= 1 ? 'active' : '';
 });
 
+UI.registerHelper('facebookAvatar', facebookAvatar);
+
+UI.registerHelper('companyAvatar', function(company, size) {
+	if(typeof(company) == 'string') company = Companies.findOne(company);
+	if(!company) return Gravatar.imageUrl('', {size: size, default: 'mm'});
+	
+	return facebookAvatar(company.facebookId, size);
+});
+
 UI.registerHelper('userAvatar', function(user, size) {
 	if(typeof(user) == 'string') user = Meteor.users.findOne(user);
 	if(!(size > 0)) size = 150;
 	var email = '';
-
+	
 	try {
-		if (user.profile.picture) return user.profile.picture;
-		if (user.services.facebook) return "http://graph.facebook.com/" + user.services.facebook.id + "/picture/?width=" + size + "&height=" + size;
 		email = user.emails[0].address;
+		if (user.profile.picture) return user.profile.picture;
+		if (user.services.facebook) return facebookAvatar(user.services.facebook.id, size);
 	} catch(e) {}
 
 	return Gravatar.imageUrl(email, {size: size, default: 'mm'});
-});
-
-UI.registerHelper('facebookAvatar', function(facebookUrl, size) {
-	if(!(size > 0)) size = 150;
-	var facebookId = facebookUrl;
-	if(!facebookId) {
-		return Gravatar.imageUrl('', {size: size, default: 'mm'});
-	}
-
-	try {
-		facebookId = facebookUrl.match(/(?:https?:\/\/)?(?:www\.)?facebook\.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[\w\-]*\/)*([\w\-\.]*)/)[1];
-	} catch(e) {}
-	
-	return "http://graph.facebook.com/" + facebookId + "/picture/?width=" + size + "&height=" + size;
 });
 
 UI.registerHelper('today', function() {
@@ -79,6 +78,10 @@ UI.registerHelper('loadUser', function(userId) {
 	return Meteor.users.findOne(userId);
 });
 
+UI.registerHelper('loadCompany', function(companyId) {
+	return Companies.findOne(companyId);
+});
+
 UI.registerHelper('loadProject', function(projectId) {
 	return Projects.findOne(projectId);
 });
@@ -110,3 +113,17 @@ UI.registerHelper('momentFromNowDiff', function(date){
 		return "onDate";
 	}
 });
+
+function facebookAvatar(facebookUrl, size) {
+	if(!(size > 0)) size = 150;
+	var facebookId = facebookUrl;
+	if(!facebookId) {
+		return Gravatar.imageUrl('', {size: size, default: 'mm'});
+	}
+
+	try {
+		facebookId = facebookUrl.match(/(?:https?:\/\/)?(?:www\.)?facebook\.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[\w\-]*\/)*([\w\-\.]*)/)[1];
+	} catch(e) {}
+	
+	return "http://graph.facebook.com/" + facebookId + "/picture/?width=" + size + "&height=" + size;
+}

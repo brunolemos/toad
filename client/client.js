@@ -10,8 +10,12 @@ Meteor.startup(function() {
 			var myCompanies = [];
 		}
 
-		Meteor.subscribe("usersFromMyCompanies", myCompanies);
+		Meteor.subscribe("peopleFromCompanies", myCompanies);
 		Meteor.subscribe("projectsFromMyCompanies", myCompanies);
+	});
+
+	Tracker.autorun(function() {
+		Meteor.subscribe("peopleFromCompanies", [Session.get('selectedCompanyId')]);
 	});
 
 	var tasksHandler = [];

@@ -1,0 +1,45 @@
+<template name="companies">
+	<section id="companies">
+		<header class="page-header clearfix dark-theme">
+			<div class="container">
+				<div class="page-header--icon pull-left valign">
+					<div class="content">
+						<h1>Empresas</h1>
+					</div>
+				</div>
+				
+				<div class="page-header--actions pull-right valign">
+					<div class="content">
+						<a href="{{pathFor 'newCompany'}}" class="btn btn-primary btn-fab btn-raised mdi-content-add withripple">
+							<div class="ripple-wrapper"></div>
+						</a>
+					</div>
+				</div>
+
+				<div class="page-header--navigation tab-view">
+					<ul class="tab-row">
+						<li class="tab-item {{isActiveRoute 'companies'}}">
+							<a href="{{pathFor 'companies'}}">
+								<p><strong>{{currentUser.profile.companies.length}}</strong></p>
+								<p class="text-muted">Minhas empresas</p>
+							</a>
+						</li>
+
+						<li class="tab-item {{isActiveRoute 'allCompanies'}}">
+							<a href="{{pathFor 'allCompanies'}}">
+								<p><strong>Todas</strong></p>
+								<p class="text-muted">as públicas</p>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</header>
+
+		<section class="clearfix">
+			<div class="container">
+				{{> yield 'content'}}
+			</div>
+		</section>
+	</section>
+</template>

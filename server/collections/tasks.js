@@ -2,28 +2,17 @@ Tasks.allow({
 	insert: function(userId, doc) {
 		doc.createdBy = userId;
 		doc.createdAt = new Date();
-		return userId && hasAccessToProject(userId, doc.projectId);
+		return userId && isProjectFromMyCompanies(doc.projectId);
 	},
 
 	update: function(userId, doc) {
-		return userId && hasAccessToProject(userId, doc.projectId);
+		var project = Projects.findOne(doc.projectId);
+		if(!project) return true;
+
+		return userId && isProjectFromMyCompanies(project._id);
 	},
 	
 	remove: function(userId, doc) {
-		return userId && hasAccessToProject(userId, doc.projectId);
+		return userId && canRemoveTask(doc);
 	},
 });
-
-function hasAccessToProject(userId, projectId) {
-	check(userId, String);
-	check(projectId, String);
-	
-	try {
-		var companyId = Projects.findOne(projectId).companyId;
-		var user = Meteor.users.findOne(userId);
-		return user.profile.companies.indexOf(companyId) >= 0;
-
-	} catch(e) {
-		return false;
-	}
-}

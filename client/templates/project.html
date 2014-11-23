@@ -15,17 +15,25 @@
 				{{#if this._id}}
 					<div class="page-header--others pull-right valign">
 						<div class="content">
-							{{> projectCompletedTasksChart}}
+							{{> projectCompletedTasksChart projectId=_id size=56 class='pull-right'}}
+
+							<a href="{{pathFor 'company' _id=companyId}}" class="pull-right">
+								<img src="{{companyAvatar companyId 56}}" class="avatar avatar-56 img-circle"/>
+							</a>
+
+							<a href="{{pathFor 'profile' _id=createdBy}}" class="pull-right">
+								<img src="{{userAvatar createdBy 56}}" class="avatar avatar-56 img-circle"/>
+							</a>
 						</div>
 					</div>
 				{{/if}}
 
 				{{#if this._id}}
-					<div class="page-header--navigation tab">
+					<div class="page-header--navigation tab-view">
 						<ul class="tab-row">
 							<li class="tab-item {{isActiveRoute 'project'}}">
 								<a href="{{pathFor 'project'}}">
-									<p><strong>0</strong></p>
+									<p><strong>{{tasksCount}}</strong></p>
 									<p class="text-muted">Tarefas</p>
 								</a>
 							</li>
@@ -54,15 +62,17 @@
 		</article>
 
 		{{#if this._id}}
-			<section class="actions clearfix">
-				<div class="container">
-					<div class="pull-right">
-						<button id="removeProject" type="button" class="btn btn-danger mdi-action-delete withripple">
-							<div class="ripple-wrapper"></div>
-						</button>
+			{{#if canRemoveProject this}}
+				<section class="actions clearfix">
+					<div class="container">
+						<div class="pull-right">
+							<button id="removeProject" type="button" class="btn btn-danger mdi-action-delete withripple">
+								<div class="ripple-wrapper"></div>
+							</button>
+						</div>
 					</div>
-				</div>
-			</section>
+				</section>
+			{{/if}}
 		{{/if}}
 	</section>
 </template>

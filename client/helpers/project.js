@@ -3,3 +3,9 @@ Template.project.rendered = function() {
 		this.find('#projectName').focus();
 	}
 }
+
+Template.project.helpers({
+	tasksCount: function() {
+		return Tasks.find({projectId: this._id}).count();
+	},
+});

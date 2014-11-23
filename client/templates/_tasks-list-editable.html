@@ -15,7 +15,7 @@
 
 				<tbody>
 					{{#each tasks}}
-						{{> taskRowEditable}}
+						{{> taskRowEditable this}}
 					{{/each}}
 
 					{{> taskRowEditable newTask=true}}
@@ -64,7 +64,9 @@
 			</td>
 
 			<td class="task-col-actions">
-				<i class="mdi-action-delete delete-task"></i>
+				{{#if canRemoveTask this}}
+					<i class="mdi-action-delete delete-task"></i>
+				{{/if}}
 			</td>
 		{{/if}}
 	</tr>

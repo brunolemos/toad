@@ -1,17 +1,24 @@
 <template name="listPeople">
-	<section id="people-list" class="people-list">
-		<div class="row">
-			{{#each people}}
-				<div class="item col-xs-6 col-sm-4">
-					<a href="{{pathFor 'profile'}}" class="person center-block text-center">
-						<p><img src="{{userAvatar this 80}}" class="avatar avatar-md img-circle"/></p>
-						<p class="user-name h4" title="{{#if status.online}}Online{{else}}Último acesso: {{momentFromNow status.lastLogin.date}}{{/if}}">
-							<i class="status-icon status-{{#if status.online}}online{{else}}offline{{/if}} mdi-image-brightness-1"></i>
-							<span>{{profile.name}}</span>
-						</p>
-					</a>
+	<section id="people-list" class="list-view clearfix">
+		{{#each people}}
+			<a href="{{pathFor 'profile'}}" class="item clearfix">
+				<div class="avatar-area">
+					<img src="{{userAvatar this 56}}" class="avatar avatar-56 img-circle"/>
 				</div>
-			{{/each}}
-		</div>
+
+				<div>
+					<div class="title">{{profile.name}}</div>
+					<div class="description text-muted">Posição na empresa</div>
+				</div>
+				
+				<div class="text-right">
+					{{#if status.online}}
+						<em class="text-success">online</em>
+					{{else}}
+						<em class="text-muted">{{momentFromNow status.lastLogin.date}}</em>
+					{{/if}}
+				</div>
+			</a>
+		{{/each}}
 	</section>
 </template>

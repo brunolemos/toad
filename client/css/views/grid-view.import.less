@@ -1,8 +1,9 @@
 .list-view {
+	width: 100%;
 	margin: 0 -15px;
 
 	> .item {
-		display: inline-block;
+		display: table;
 		width: 100%;
 		padding: 15px 10px;
 		border-radius: 3px;
@@ -15,15 +16,26 @@
 
 		&:hover {
 			background-color: @dark-transparent-bg-hover;
+			text-decoration: none;
 		}
 
-		.title {
-			font-size: 20px;
-			font-weight: 500;
-		}
+		> * {
+			display: table-cell;
+			vertical-align: middle;
 
-		.description {
-			font-size: 17px;
+			&.avatar-area:first-child {
+				width: calc(56px + 15px);
+				padding-right: 15px;
+			}
+
+			.title {
+				font-size: 20px;
+				font-weight: 500;
+			}
+
+			.description {
+				font-size: 17px;
+			}
 		}
 	}
 }

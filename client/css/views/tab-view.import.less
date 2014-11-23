@@ -1,0 +1,65 @@
+.tab-view {
+	display: table;
+	width: 100%;
+	table-layout: fixed;
+	border: 1px solid @dark-transparent-bg-2;
+	border-bottom: none;
+	border-radius: 4px 4px 0 0;
+
+	> .tab-row {
+		display: table-row;
+		list-style: none;
+
+		> .tab-item {
+			display: table-cell;
+			list-style: none;
+			font-size: 18px;
+			vertical-align: middle;
+			height: 60px;
+			// box-shadow: inset 0px 30px 50px -20px rgba(0, 0, 0, 0.05);
+			cursor: default;
+
+			&:first-child {
+				border-radius: 4px 0 0 0;
+			}
+
+			&:last-child {
+				border-radius: 0 4px 0 0;
+			}
+
+			&.active {
+				background-color: #fff;
+
+				a {
+					color: @default-color-dark;
+				}
+
+				.text-muted {
+					color: @text-muted-dark;
+				}
+			}
+
+			&:not(.active) {
+				background-color: @dark-transparent-bg-2;
+
+				&:hover {
+					background-color: @dark-transparent-bg-2-hover;
+				}
+			}
+	
+			> * {
+				display: block;
+				padding: 8px 10px;
+				text-align: center;
+
+				p {
+					margin: -2px 0;
+				}
+			}
+
+			a {
+				text-decoration: none;
+			}
+		}
+	}
+}

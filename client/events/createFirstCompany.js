@@ -6,7 +6,7 @@ Template.createFirstCompany.events({
 	    var company = Companies.findOne({facebookId: facebookId});
 
 	    if(company) {
-	    	Meteor.call('updateUserCompany', company._id, onUpdateUserCompany);
+	    	Meteor.call('associateToCompany', company._id, onAssociateToCompany);
 	    } else {
 			FlashMessages.sendWarning("Empresa não foi encontrada.");
 	    }
@@ -20,7 +20,7 @@ Template.createFirstCompany.events({
 	    data.facebookId = Session.get('companyFacebookId');
 	    data.admins = [Meteor.userId()];
 
-    	Meteor.call('insertCompanyAndUpdateUser', data.name, data.facebookId, data.admins, onUpdateUserCompany);
+    	Meteor.call('insertCompanyAndUpdateUser', data.name, data.facebookId, data.admins, onAssociateToCompany);
 	},
 
 	'change input[name=facebookUrl]': function(e, template) {
@@ -34,7 +34,7 @@ Template.createFirstCompany.events({
 	},
 });
 
-function onUpdateUserCompany(error, result) {
+function onAssociateToCompany(error, result) {
 	if(error) {
 		FlashMessages.sendError(error.message);
 

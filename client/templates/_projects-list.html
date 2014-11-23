@@ -2,13 +2,21 @@
 	<section id="project-list" class="list-view">
 		{{#each projects}}
 			<a href="{{pathFor 'project'}}" class="item clearfix">
-				<div class="pull-left">
+				<div>
 					<div class="title">{{name}}</div>
 					<div class="description text-muted">Descrição do projeto</div>
 				</div>
 
-				<div class="pull-right">
-					{{> projectCompletedTasksChart}}
+				<div class="actions text-right">
+					{{> projectCompletedTasksChart projectId=_id size=30 class='pull-right'}}
+					
+					<a href="{{pathFor 'company' _id=companyId}}">
+						<img src="{{companyAvatar companyId 30}}" class="avatar avatar-sm img-circle pull-right"/>
+					</a>
+
+					<a href="{{pathFor 'profile' _id=createdBy}}">
+						<img src="{{userAvatar createdBy 30}}" class="avatar avatar-sm img-circle pull-right"/>
+					</a>
 				</div>
 			</a>
 		{{else}}
@@ -17,8 +25,4 @@
 			</div>
 		{{/each}}
 	</section>
-</template>
-
-<template name="projectCompletedTasksChart">
-	<canvas id="chart-{{_id}}" width="56" height="56" class="chart pull-right" data-project-id="{{_id}}" data-dummy="{{dummy}}"></canvas>
 </template>

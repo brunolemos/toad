@@ -90,7 +90,6 @@ Template.taskRowEditable.events({
  	// we don't flood the server with updates (handles the event at most once 
   	// every 300ms)
   	// 'keyup input[type=text]': _.throttle(function(event) {
-  	// 	console.log("AAA");
    //  	Tasks.update(this._id, {$set: {name: event.target.value}});
   	// }, 300),
 });

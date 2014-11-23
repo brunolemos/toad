@@ -14,7 +14,10 @@ Template.project.events({
 		if(this._id) {
 			Projects.update({_id: this._id}, {$set: data});
 		} else {
-	    	data.companyId    = Meteor.user().profile.companies[0];
+			var companyId = Meteor.user().profile.selectedCompany;
+			if(!companyId) companyId = Meteor.user().profile.companies[0];
+
+	    	data.companyId = companyId;
 			Projects.insert(data, saveProjectCallback);
 		}
 	},

@@ -2,7 +2,11 @@
 	<section id="company-list" class="list-view clearfix">
 		{{#each companies}}
 			<a href="{{pathFor 'company'}}" class="item clearfix">
-				<div class="pull-left">
+				<div class="avatar-area">
+					<img src="{{companyAvatar this 56}}" class="avatar avatar-56 img-circle"/>
+				</div>
+
+				<div>
 					<div class="title">{{name}}</div>
 					<div class="description text-muted">Descrição da empresa</div>
 				</div>

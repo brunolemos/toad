@@ -1,10 +1,10 @@
 <template name="company">
 	<section id="company">
-		<header class="page-header clearfix light-theme">
+		<header class="page-header clearfix dark-theme">
 			<div class="container">
 				<div class="page-header--icon pull-left valign">
 					<div class="content">
-						<img src="{{facebookAvatar facebookId 120}}" class="avatar avatar-lg img-circle"/>
+						<img src="{{companyAvatar this 120}}" class="avatar avatar-lg img-circle"/>
 					</div>
 				</div>
 
@@ -14,8 +14,17 @@
 						<a href="http://facebook.com/{{facebookId}}" target="_blank" class="h4 profile-address text-muted">facebook.com/{{facebookId}}</a>
 					</div>
 				</div>
+				
+				<div class="page-header--actions pull-right valign">
+					<div class="content">
+						<div class="company-association {{#if isMyCompany}}associated{{/if}}">
+							<button id="associateToCompany" type="button" class="btn btn-primary btn-fab btn-raised withripple mdi-communication-vpn-key" title="Entrar nesta empresa"></button>
+							<button id="disassociateFromCompany" type="button" class="btn btn-primary btn-fab btn-raised withripple mdi-content-remove" title="Sair desta empresa"></button>
+						</div>
+					</div>
+				</div>
 
-				<div class="page-header--navigation tab">
+				<div class="page-header--navigation tab-view">
 					<ul class="tab-row">
 						<li class="tab-item {{isActiveRoute 'company'}}">
 							<a href="{{pathFor 'company'}}">
@@ -23,12 +32,14 @@
 							</a>
 						</li>
 
-						<li class="tab-item {{isActiveRoute 'companyProjects'}}">
-							<a href="{{pathFor 'companyProjects'}}">
-								<p><strong>{{projectsCount}}</strong></p>
-								<p class="text-muted">Projetos</p>
-							</a>
-						</li>
+						{{#if isMyCompany _id}}
+							<li class="tab-item {{isActiveRoute 'companyProjects'}}">
+								<a href="{{pathFor 'companyProjects'}}">
+									<p><strong>{{projectsCount}}</strong></p>
+									<p class="text-muted">Projetos</p>
+								</a>
+							</li>
+						{{/if}}
 
 						<li class="tab-item {{isActiveRoute 'companyPeople'}}">
 							<a href="{{pathFor 'companyPeople'}}">

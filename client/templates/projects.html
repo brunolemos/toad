@@ -16,25 +16,24 @@
 					</div>
 				</div>
 
-				<div class="page-header--navigation tab">
+				<div class="page-header--navigation tab-view">
 					<ul class="tab-row">
 						<li class="tab-item {{isActiveRoute 'projects'}}">
 							<a href="{{pathFor 'projects'}}">
-								<p><strong>0</strong></p>
+								<p><strong>{{myProjectsCount}}</strong></p>
 								<p class="text-muted">Meus projetos</p>
 							</a>
 						</li>
 
 						<li class="tab-item {{isActiveRoute 'completedProjects'}}">
 							<div>
-								<p><strong>0</strong></p>
+								<p><strong>{{completedProjectsCount}}</strong></p>
 								<p class="text-muted">Completos</p>
 							</div>
 						</li>
 						<li class="tab-item {{isActiveRoute 'archievedProjects'}}">
 							<div>
-								<p><strong>0</strong></p>
-								<p class="text-muted">Arquivados</p>
+								<p>Antigos</p>
 							</div>
 						</li>
 					</ul>
