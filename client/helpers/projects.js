@@ -1,10 +1,15 @@
 Template.projects.helpers({
 	myProjectsCount: function() {
 		var companies = Meteor.user().profile.companies;
-		return Projects.find({companyId: { $in: companies }}).count();
+		if(!(companies && companies.length >= 0)) companies = [];
+
+		return Projects.find({createdBy: Meteor.userId(), companyId: { $in: companies }}).count();
 	},
 
-	completedProjectsCount: function() {
-		return 0;
+	allProjectsCount: function() {
+		var companies = Meteor.user().profile.companies;
+		if(!(companies && companies.length >= 0)) companies = [];
+		
+		return Projects.find({companyId: { $in: companies }}).count();
 	},
 });

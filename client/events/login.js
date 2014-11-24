@@ -4,7 +4,7 @@ Template.login.events({
 
 	    var email = $('input[name=email]').val();
 	    var password = $('input[name=password]').val();
-	    
+
 	    Meteor.loginWithPassword({email: email}, password, onLoginSignupAttempt);
 	},
 
@@ -40,13 +40,17 @@ Template.login.events({
 	},
 });
 
-function onLoginSignupAttempt(error, result) {
+function onLoginSignupAttempt(error) {
 	if(error) {
 		FlashMessages.sendError(error.message);
-	} else if(result) {
-		var route = Router.current().route.getName();
-		if(route == 'login' || route == 'signup') {
-			Router.go('/');
-		}
+	// } else {
+	// 	var route = Router.current().route.getName();
+	// 	if(route == 'login' || route == 'signup') {
+	// 		var redirect_url = Session.get('redirectAfterLogin');
+	// 		if(!redirect_url) redirect_url = '/';
+	// 		console.log("Redirecting to " + redirect_url);
+
+	// 		Router.go(redirect_url);
+	// 	}
 	}
 }

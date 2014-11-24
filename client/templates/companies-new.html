@@ -1,0 +1,49 @@
+<template name="newCompany">
+	<section id="newCompany">
+		<header class="page-header clearfix light-theme">
+			<div class="container">
+				<div class="page-header--info pull-left valign">
+					<div class="content">
+						<h1>
+							<a href="{{pathFor route='companies'}}">Empresas</a>
+							<i class="text-muted mdi-navigation-chevron-right"></i>
+							<span>Nova empresa</span>
+						</h1>
+					</div>
+				</div>
+				
+				<div class="page-header--others pull-right valign">
+					<div class="content">
+						<div id="avatar-area" class="pull-right">
+							<img src="{{facebookAvatar facebookId 80}}" class="avatar avatar-md img-circle pull-right" alt="{{company.name}}" title="{{company.name}}"/>
+						</div>
+					</div>
+				</div>
+
+				<div class="page-header--navigation tab-view">
+					<ul class="tab-row">
+						<li class="tab-item {{isActiveRoute 'newCompany'}}">
+							<a href="{{pathFor 'newCompany'}}">
+								<p><strong>Nova</strong></p>
+								<p class="text-muted">empresa</p>
+							</a>
+						</li>
+
+						<li class="tab-item {{isActiveRoute 'newCompanyAll'}}">
+							<a href="{{pathFor 'newCompanyAll'}}">
+								<p><strong>Procurar</strong></p>
+								<p class="text-muted">empresa</p>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</header>
+
+		<section class="clearfix">
+			<div class="container">
+				{{> yield 'content'}}
+			</div>
+		</section>
+	</section>
+</template>

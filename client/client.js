@@ -4,14 +4,14 @@ Meteor.startup(function() {
 	Meteor.subscribe("allCompanies");
 
 	Tracker.autorun(function() {
-		try {
-			var myCompanies = Meteor.user().profile.companies;
-		} catch(e) {
-			var myCompanies = [];
+		if(Meteor.userId()) {
+			var companies = Meteor.user().profile.companies;
+		} else {
+			var companies = [];
 		}
-
-		Meteor.subscribe("peopleFromCompanies", myCompanies);
-		Meteor.subscribe("projectsFromMyCompanies", myCompanies);
+		
+		Meteor.subscribe("peopleFromCompanies", companies);
+		Meteor.subscribe("projectsFromMyCompanies", companies);
 	});
 
 	Tracker.autorun(function() {

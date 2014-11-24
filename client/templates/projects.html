@@ -25,11 +25,11 @@
 							</a>
 						</li>
 
-						<li class="tab-item {{isActiveRoute 'completedProjects'}}">
-							<div>
-								<p><strong>{{completedProjectsCount}}</strong></p>
-								<p class="text-muted">Completos</p>
-							</div>
+						<li class="tab-item {{isActiveRoute 'allProjects'}}">
+							<a href="{{pathFor 'allProjects'}}">
+								<p><strong>{{allProjectsCount}}</strong></p>
+								<p class="text-muted">Todos</p>
+							</a>
 						</li>
 						<li class="tab-item {{isActiveRoute 'archievedProjects'}}">
 							<div>

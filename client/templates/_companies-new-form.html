@@ -1,0 +1,23 @@
+<template name="newCompanyForm">
+		<form name="newCompany" role="form">
+			<div class="form-group">
+				<label for="facebookUrl">Facebook</label>
+				<div class="form-control-wrapper">
+					<input type="text" name="facebookUrl" placeholder="Link da fanpage da empresa" class="form-control input-lg empty" autofocus />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="name">Nome</label>
+				<div class="form-control-wrapper">
+					<input type="text" name="name" placeholder="Nome da empresa" class="form-control input-lg empty" required/>
+				</div>
+			</div>
+
+
+			<section class="actions form-group">
+				<p><button type="submit" class="btn btn-success btn-lg btn-block">Cadastrar</button></p>
+				<p class="text-center">Ou <a href="{{pathFor 'newCompanyAll'}}">procure sua empresa</a> no catálogo</p>
+			</section>
+		</form>
+	</template>

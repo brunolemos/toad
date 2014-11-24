@@ -1,11 +1,11 @@
 Session.setDefault('isCreateCompany', true);
 
-Template.createFirstCompany.created = function() {
+Template.newCompany.created = function() {
 	Session.set('companyFacebookId', null);
 	Session.set('error', null);
 };
 
-Template.createFirstCompany.helpers({
+Template.newCompany.helpers({
 	isCreateCompany: function() {
 		return Session.get('isCreateCompany');
 	},
