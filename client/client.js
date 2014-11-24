@@ -18,6 +18,10 @@ Meteor.startup(function() {
 		Meteor.subscribe("peopleFromCompanies", [Session.get('selectedCompanyId')]);
 	});
 
+	Tracker.autorun(function() {
+		Meteor.subscribe("publicProfile", Session.get('selectedUserId'));
+	});
+
 	var tasksHandler = [];
 	Projects.find().observeChanges({
 		added: function(id) {
