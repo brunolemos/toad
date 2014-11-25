@@ -7,13 +7,13 @@
 		margin-left: 15px;
 	}
 
-	.btn-primary {
-		background-color: @theme-color;
+	// .btn-primary {
+	// 	background-color: @theme-color;
 
-		&:hover {
-			background-color: darken(@theme-color, 5%);
-		}
-	}
+	// 	&:hover {
+	// 		background-color: darken(@theme-color, 5%);
+	// 	}
+	// }
 
 	.navbar {
 		min-height: @navbar-height;
@@ -21,8 +21,11 @@
 
 		&.navbar-transparent { background: transparent; }
 		&.navbar-white { background: #fff; }
-		&.navbar-theme { background: darken(@theme-color, 5%) }
-		&.navbar-darken { background: darken(@theme-color, 5%); }
+		// &.navbar-theme { background: darken(@theme-color, 5%) }
+		
+		> .background-overlay {
+			background-color: @dark-transparent-bg-2;
+		}
 
 		&.dark-theme, .dark-theme {
 			.navbar-nav > li > a, .navbar-brand {
@@ -39,7 +42,8 @@
 				color: @text-muted-dark;
 
 				&:hover {
-					color: @theme-color;
+					color: #000;
+					// color: @theme-color;
 				}
 			}
 		}

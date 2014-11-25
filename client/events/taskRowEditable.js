@@ -1,26 +1,4 @@
 Template.taskRowEditable.events({
-	'click .task-item > .pointer': function(e, template) {
-		if(e.target.localName != 'td' && e.target.localName != 'th')
-			return;
-
-		// Router.go('editProjectTask', {_id: this.projectId, _id: this._id});
-	    if(Session.equals("editTaskId", this._id)) {
-	    	Session.set("editTaskId", null);
-	    } else {
-	    	Session.set("editTaskId", this._id);
-
-	    	// setTimeout(function() {
-		    // 	$(e.target).parent().find('input[name=name]').focus();
-	    	// }, 0300);
-	    }
-	},
-
-	'blur .task-item input': function(event) {
-    	if (Session.equals('editTaskId', this._id)) {
-      		Session.set('editTaskId', null);
-    	}
-  	},
-
 	'change .task-item input': function(e, template) {
 		if(!this._id) return false;
 		if($(e.target).data('ignore-change')) return false;
@@ -69,8 +47,6 @@ Template.taskRowEditable.events({
 
 		//ESC = Cancel
 		} else if(e.which == 27) {
-	    	Session.set("editTaskId", null);
-	    	
 			e.preventDefault();
 
 			if(e.target.value == '') {
@@ -85,11 +61,4 @@ Template.taskRowEditable.events({
 			}
 		}
 	},
-
-	// update the text of the item on keypress but throttle the event to ensure
- 	// we don't flood the server with updates (handles the event at most once 
-  	// every 300ms)
-  	// 'keyup input[type=text]': _.throttle(function(event) {
-   //  	Tasks.update(this._id, {$set: {name: event.target.value}});
-  	// }, 300),
 });

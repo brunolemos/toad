@@ -1,3 +1,21 @@
+Template.company.rendered = function() {
+	var self = this;
+
+	Tracker.autorun(function(a) {
+		var data = Template.currentData(self.view);
+		if(!data) return;
+
+		if(data && data.themeColor) setTimeout(function() {
+			setTheme(data.themeColor, data.isDarkTheme);
+		}, 0200);
+	});
+}
+
+Template.company.destroyed = function() {
+	setTimeout(resetTheme, 0100);
+}
+
+
 Template.company.helpers({
 	membersCount: function() {
 		return Meteor.users.find({'profile.companies': this._id}).count();

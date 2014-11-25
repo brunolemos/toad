@@ -30,4 +30,28 @@
 			</div>
 		</div>
 	</section>
+
+	<style type="text/css">
+		a,
+		#app-header .light-theme .navbar-nav > li > a:hover, 
+		#app-header .light-theme .navbar-nav > li > .navbar-brand:hover {
+			color: {{themeColor}};
+		}
+
+		a:hover,
+		a:focus {
+			color: {{themeColor}}; /*darken 20%*/
+		}
+
+		#app-header .navbar.navbar-theme, 
+		#main .btn-primary, 
+		#main .page-header {
+			background-color: {{themeColor}};
+			transition: background .4s ease;
+		}
+
+		#main .btn-primary:hover {
+			background-color: {{themeColor}}; /*darken 5%*/
+		}
+	</style>
 </template>

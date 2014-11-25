@@ -2,6 +2,14 @@ UI.registerHelper('isMyCompany', isMyCompany);
 UI.registerHelper('canRemoveProject', canRemoveProject);
 UI.registerHelper('canRemoveTask', canRemoveTask);
 
+UI.registerHelper('themeColor', function(key) {
+	return Session.get('theme-color');
+});
+
+UI.registerHelper('themeClass', function(key) {
+	return Session.get('theme-class');
+});
+
 UI.registerHelper('isActiveRoute', function(route, className) {
 	if(typeof(className) != 'string') className = 'active';
 	var currentRoute = Router.current().route.getName();

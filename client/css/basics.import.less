@@ -46,12 +46,7 @@ h4, .h4 {
 	padding: 0;
 }
 
-a, a:link {
-	color: @theme-color;
-}
-
 a:focus, a:hover {
-	color: darken(@theme-color, 20%);
 	cursor: pointer;
 	text-decoration: none;
 }
@@ -59,13 +54,8 @@ a:focus, a:hover {
 input {
 	background-color: transparent;
 
-	&:hover {
-		background-color: @dark-transparent-bg-hover;
-	}
-
 	&:focus {
 		outline: none;
-		// outline-color: @theme-color;
 	}
 }
 
@@ -156,15 +146,21 @@ table {
 .dark-theme {
 	color: @default-color-light;
 
-	&.text-muted, .text-muted { 
+	.text-muted { 
 		color: @text-muted-light; 
 	}
 
-	&a, a {
+	a {
 		color: rgba(255, 255, 255, 0.8);
 
 		&:hover {
 			color: #fff;
+		}
+	}
+
+	input {
+		&:hover {
+			background-color: @light-transparent-bg-hover;
 		}
 	}
 
@@ -174,10 +170,29 @@ table {
 	          :-moz-placeholder { color: @text-muted-light; opacity: 1; }
 }
 
+
+
+
+
+
 .light-theme {
 	color: @default-color-dark;
+
+	.text-muted { 
+		color: @text-muted-dark; 
+	}
+
+	a {
+		color: rgba(0, 0, 0, 0.9);
+
+		&:hover {
+			color: #000;
+		}
+	}
 	
-	&.text-muted, .text-muted {
-		color: @text-muted-dark;
+	input {
+		&:hover {
+			background-color: @dark-transparent-bg-hover;
+		}
 	}
 }
