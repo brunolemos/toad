@@ -1,7 +1,7 @@
 Template.company.rendered = function() {
 	var self = this;
 
-	Tracker.autorun(function(a) {
+	this.autorun(function(a) {
 		var data = Template.currentData(self.view);
 		if(!data) return;
 
