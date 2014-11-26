@@ -1,0 +1,48 @@
+<template name="settings">
+	<section id="settings">
+		<header class="page-header clearfix {{themeClass}}">
+			<div class="container">
+				<div class="page-header--info pull-left valign">
+					<div class="content">
+						<h1>Configurações</h1>
+					</div>
+				</div>
+
+				<div class="page-header--navigation tab-view">
+					<ul class="tab-row">
+						<li class="tab-item">
+							<div>
+								<p class="text-muted">Meu perfil</p>
+							</div>
+						</li>
+
+						<li class="tab-item active">
+							<div>
+								<p><strong>Serviços</strong></p>
+								<p class="text-muted">conectados</p>
+							</div>
+						</li>
+
+						<li class="tab-item">
+							<div>
+								<p class="text-muted">Minha conta</p>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</header>
+
+		<article class="content">
+			<div class="container">
+				<h2>Facebook</h2>
+				{{#if currentUser.services.facebook}}
+					<button id="unlinkFromFacebook" class="btn btn-danger">Desconectar do Facebook</button>
+				{{else}}
+					<button id="linkWithFacebook" class="btn btn-facebook">Conectar ao Facebook</button>
+				{{/if}}
+				<!-- {{> yield 'content'}} -->
+			</div>
+		</article>
+	</section>
+</template>

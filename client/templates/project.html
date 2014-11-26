@@ -17,13 +17,17 @@
 						<div class="content">
 							{{> projectCompletedTasksChart projectId=_id size=56 class='pull-right'}}
 
-							<a href="{{pathFor 'company' _id=companyId}}" class="pull-right">
-								<img src="{{companyAvatar companyId 56}}" class="avatar avatar-56 img-circle"/>
-							</a>
+							{{#with loadCompany companyId}}
+								<a href="{{pathFor 'company' _id=_id}}" class="pull-right">
+									<img src="{{companyAvatar this 56}}" class="avatar avatar-56 img-circle" alt="{{name}}" title="{{name}}"/>
+								</a>
+							{{/with}}
 
-							<a href="{{pathFor 'profile' _id=createdBy}}" class="pull-right">
-								<img src="{{userAvatar createdBy 56}}" class="avatar avatar-56 img-circle"/>
-							</a>
+							{{#with loadUser createdBy}}
+								<a href="{{pathFor 'profile' _id=_id}}" class="pull-right">
+									<img src="{{userAvatar _id 56}}" class="avatar avatar-56 img-circle" alt="{{profile.name}}" title="{{profile.name}}"/>
+								</a>
+							{{/with}}
 						</div>
 					</div>
 				{{/if}}

@@ -40,11 +40,11 @@ UI.registerHelper('userAvatar', function(user, size) {
 	var email = '';
 	
 	try {
-		email = user.emails[0].address;
+		if(user.emails && user.emails.length >= 0) email = user.emails[0].address;
 		if (user.profile.picture) return user.profile.picture;
 		if (user.services.facebook) return facebookAvatar(user.services.facebook.id, size);
 	} catch(e) {}
-
+	
 	return Gravatar.imageUrl(email, {size: size, default: 'mm'});
 });
 
